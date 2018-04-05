@@ -1,8 +1,31 @@
-
 // Body
-$body-bg: #f5f8fa;
+$body-bg: rgba(148, 182, 171, 0.05);
+
+// Grid columns
+$grid-gutter-width: 20px;
 
 // Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$font-family-sans-serif: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-size-base: 0.875rem; //14px
+$font-size-sm: 0.75rem; //12px
+$font-size-lg: 1.125rem; // 8px
+
+$font-weight-semibold: 600;
+
+$h1-font-size: 3rem; //48px
+$h2-font-size: 2.875rem; //46px
+$h3-font-size: 2.125rem; // 34px
+// $h6-font-size = 14px
+
+// Colors
+$text-muted: #AFAFAF;
+$grey: #313131;
+//$primary: $blue !default;
+//$secondary: $gray-600 !default;
+
+// The navigation bar text colors
+$black: rgb(0, 0, 0);
+$navbar-light-color: rgba($black, 1);
+$navbar-light-hover-color: rgba($black, .5);
+$navbar-light-active-color: rgba($black, .7);
+$navbar-light-disabled-color: rgba($black, .3);

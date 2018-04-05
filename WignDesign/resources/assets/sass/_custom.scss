@@ -1,0 +1,53 @@
+// Custom page css (Not in Bootstrap)
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 66px; /* Margin bottom by footer height */
+}
+
+body > .container {
+  padding: 66px 15px 0;
+}
+
+.text-small {
+  font-size: $font-size-sm;
+}
+
+.wign-logo {
+  width: 110px;
+  height: 34px;
+}
+
+.header-flag {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 5px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 66px; /* Set the fixed height of the footer here */
+  background-color: $white;
+  font-weight: 300;
+  font-size: 0.625rem;
+  text-align: center;
+}
+
+.footer-nav a {
+  color: $grey;
+  text-decoration: underline;
+  padding: 0 0.25rem;
+
+  &.fa {
+    text-decoration: none;
+    font-size: 1rem;
+    position: relative;
+    top: 2px;
+  }
+
+}
