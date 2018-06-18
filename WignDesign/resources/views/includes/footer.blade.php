@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer w-100 bg-light text-xsmall text-center font-weight-light">
     <div class="container">
         <nav class="pt-3 pb-1 footer-nav">
             <a href="#">Kontakt</a>

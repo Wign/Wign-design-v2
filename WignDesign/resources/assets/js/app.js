@@ -15,7 +15,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('sign-component', require('./components/SignComponent.vue'));
+Vue.component('request-component', require('./components/RequestComponent.vue'));
+Vue.component('sign-media-component', require('./components/SignMediaComponent'));
+
 
 const app = new Vue({
     el: '#app'

@@ -8,12 +8,32 @@ body {
   margin-bottom: 66px; /* Margin bottom by footer height */
 }
 
-body > .container {
-  padding: 66px 15px 0;
+body > main {
+  padding-top: 66px;
+}
+
+h6 {
+  font-weight: 700;
+}
+
+.text-xsmall {
+  font-size: $font-size-xs;
 }
 
 .text-small {
   font-size: $font-size-sm;
+}
+
+.text-medium {
+  font-size: $font-size-md;
+}
+
+.font-weight-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.credit {
+  text-shadow: 0 0 2px $black;
 }
 
 .wign-logo {
@@ -27,15 +47,24 @@ body > .container {
   margin-bottom: 5px;
 }
 
+.bg-translucent {
+  background: rgba($white,0.80);
+}
+
 .footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
   height: 66px; /* Set the fixed height of the footer here */
-  background-color: $white;
-  font-weight: 300;
-  font-size: 0.625rem;
-  text-align: center;
+}
+
+.img-scale-hover {
+  overflow: hidden;
+}
+.img-scale-hover img {
+  transition: all 0.3s;
+}
+.img-scale-hover:hover img {
+  transform: scale(1.1);
 }
 
 .footer-nav a {
@@ -43,11 +72,24 @@ body > .container {
   text-decoration: underline;
   padding: 0 0.25rem;
 
+  &:hover {
+    color: $gray-500;
+  }
+
   &.fa {
     text-decoration: none;
     font-size: 1rem;
     position: relative;
     top: 2px;
   }
+}
 
+.mh-500 {
+  min-height: 500px; // Used in index
+}
+
+.search-box {
+  background: rgba($white,0.6);
+  box-shadow: 0 0 5px 2px rgba($black,0.15);
+  border-radius: 0.5rem;
 }

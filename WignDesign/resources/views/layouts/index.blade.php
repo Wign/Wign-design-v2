@@ -1,6 +1,16 @@
 @extends('layouts.master')
 
+@push('styles')
+    <style>
+        body {
+            /*background: url("images/background/viggo/eksamen-tegning.jpg") no-repeat center center fixed;*/
+            background: url("images/background/alexei/4school.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+@endpush
+
 @section('content')
-    <h1>Hello World!</h1>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fortuna fortis; Si alia sentit, inquam, alia loquitur, numquam intellegam quid sentiat; Non enim quaero quid verum, sed quid cuique dicendum sit. Quem si tenueris, non modo meum Ciceronem, sed etiam me ipsum abducas licebit.
+    @include('components.index.search')
+    @include('components.index.discovery')
 @endsection
