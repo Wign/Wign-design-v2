@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Tags extends Migration
+class CreateGlossariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class Tags extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('glossaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->string('tag');
+            $table->integer('translation_id')->unsigned();
+            $table->integer('bucket_id')->unsigned();
+            $table->timestamp('created_at', 0)->nullable();
         });
     }
 
@@ -27,6 +28,6 @@ class Tags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('glossaries');
     }
 }

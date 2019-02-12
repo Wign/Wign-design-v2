@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Artists extends Migration
+class CreateTaggablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class Artists extends Migration
      */
     public function up()
     {
-        Schema::create('artists', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->string('name');
-            $table->string('href');
-            $table->text('description');
-            $table->string('video_url');
-            $table->string('portrait_img');
+            $table->integer('tag_id')->unsigned();
+            $table->integer('description_id')->unsigned();
+            $table->timestamp('created_at', 0)->nullable();
         });
     }
 
@@ -31,6 +28,6 @@ class Artists extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('taggables');
     }
 }

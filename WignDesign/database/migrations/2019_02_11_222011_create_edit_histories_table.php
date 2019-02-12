@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Languages extends Migration
+class CreateEditHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class Languages extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('edit_histories', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('old_translation_id')->unsigned();
+            $table->integer('new_translation_id')->unsigned();
             $table->timestamps();
-            $table->string('signlanguage');
         });
     }
 
@@ -27,6 +28,6 @@ class Languages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('edit_histories');
     }
 }

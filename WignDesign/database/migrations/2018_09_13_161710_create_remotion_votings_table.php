@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Followers extends Migration
+class CreateRemotionVotingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class Followers extends Migration
      */
     public function up()
     {
-        Schema::create('followers', function (Blueprint $table) {
+        Schema::create('remotion_votings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer( 'remotion_id' )->unsigned();
+            $table->integer( 'qcv_id' )->unsigned();
+            $table->boolean( 'approve' )->nullable();
             $table->timestamps();
-            $table->integer('user_id')->unsigned();
-            $table->integer('bucket_id')->unsigned();
         });
     }
 
@@ -28,6 +29,6 @@ class Followers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('followers');
+        Schema::dropIfExists('remotion_votings');
     }
 }

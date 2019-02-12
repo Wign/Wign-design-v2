@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Words extends Migration
+class CreateSilsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class Words extends Migration
      */
     public function up()
     {
-        Schema::create('words', function (Blueprint $table) {
+        Schema::create('sils', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer( 'level_id' )->unsigned();
+            $table->integer('sign_id')->unsigned();
             $table->timestamps();
-            $table->string('name');
-            $table->integer('language_id')->unsigned();
+            $table->softDeletes();
         });
-
-
     }
 
     /**
@@ -30,6 +29,6 @@ class Words extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buckets');
+        Schema::dropIfExists('sils');
     }
 }

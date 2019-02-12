@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Descriptions extends Migration
+class CreateHandshapesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class Descriptions extends Migration
      */
     public function up()
     {
-        Schema::create('descriptions', function (Blueprint $table) {
+        Schema::create('handshapes', function (Blueprint $table) {
             $table->increments('id');
+            // Something here ( TODO KA!)
             $table->timestamps();
-            $table->integer('sign_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->text('description');
         });
     }
 
@@ -29,6 +27,6 @@ class Descriptions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('descriptions');
+        Schema::dropIfExists('handshapes');
     }
 }

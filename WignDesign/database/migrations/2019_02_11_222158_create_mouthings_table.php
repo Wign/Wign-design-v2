@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Aliases extends Migration
+class CreateMouthingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Aliases extends Migration
      */
     public function up()
     {
-        Schema::create('aliases', function (Blueprint $table) {
+        Schema::create('mouthings', function (Blueprint $table) {
             $table->increments('id');
+            // TODO KA ALSOOOO
             $table->timestamps();
-            $table->integer('word_id')->unsigned();
-            $table->string('alias');
         });
     }
 
@@ -28,6 +27,6 @@ class Aliases extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aliases');
+        Schema::dropIfExists('mouthings');
     }
 }

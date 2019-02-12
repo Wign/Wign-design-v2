@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Buckets extends Migration
+class CreateLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Buckets extends Migration
      */
     public function up()
     {
-        Schema::create('buckets', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->increments('id');
+            $table->smallinteger( 'rank' )->unsigned()->default(0);
             $table->timestamps();
-            $table->integer('owner_id')->unsigned();
-            $table->uuid('uuid');
         });
     }
 
@@ -28,6 +27,6 @@ class Buckets extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buckets');
+        Schema::dropIfExists('levels');
     }
 }

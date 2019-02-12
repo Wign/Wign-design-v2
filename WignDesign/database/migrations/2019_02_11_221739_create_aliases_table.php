@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Blacklist extends Migration
+class CreateAliasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class Blacklist extends Migration
      */
     public function up()
     {
-        Schema::create('blacklist', function (Blueprint $table) {
+        Schema::create('aliases', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('child_word_id')->unsigned();
+            $table->integer('parent_word_id')->unsigned();
+            $table->integer( 'user_id')->unsigned();    // creators
             $table->timestamps();
-            $table->string('ip');
-            $table->string('reason');
         });
     }
 
@@ -28,6 +29,6 @@ class Blacklist extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blacklist');
+        Schema::dropIfExists('aliases');
     }
 }

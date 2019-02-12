@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Arts extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class Arts extends Migration
      */
     public function up()
     {
-        Schema::create('arts', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->string('img_name');
-            $table->string('title');
-            $table->year('year');
-            $table->integer('artist_id')->unsigned();
+            $table->string('tag')->unique();
+            $table->timestamp('created_at', 0)->nullable();
         });
     }
 
@@ -30,6 +27,6 @@ class Arts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('art');
+        Schema::dropIfExists('tags');
     }
 }

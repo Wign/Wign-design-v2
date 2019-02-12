@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Glossarires extends Migration
+class CreateArtistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Glossarires extends Migration
      */
     public function up()
     {
-        Schema::create('glossaries', function (Blueprint $table) {
+        Schema::create('artists', function (Blueprint $table) {
             $table->increments('id');
+            //TODO TM!!!!!!!!!!!!
             $table->timestamps();
-            $table->integer('bucket_id')->unsigned();
-            $table->integer('sign_id')->unsigned();
         });
     }
 
@@ -28,6 +27,6 @@ class Glossarires extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('glossaries');
+        Schema::dropIfExists('artists');
     }
 }

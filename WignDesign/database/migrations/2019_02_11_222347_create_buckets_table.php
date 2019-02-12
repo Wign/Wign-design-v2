@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Votes extends Migration
+class CreateBucketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class Votes extends Migration
      */
     public function up()
     {
-        Schema::create('votes', function (Blueprint $table) {
+        Schema::create('buckets', function (Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid')->unique();
+            $table->string('title');
+            $table->integer('user_id')->unsigned(); // owner
             $table->timestamps();
-            $table->integer('user_id')->unsigned();
-            $table->integer('sign_id')->unsigned();
         });
     }
 
@@ -28,6 +29,6 @@ class Votes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('votes');
+        Schema::dropIfExists('buckets');
     }
 }
