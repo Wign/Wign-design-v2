@@ -1,0 +1,95 @@
+// Custom page css (Not in Bootstrap)
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 66px; /* Margin bottom by footer height */
+}
+
+body > main {
+  padding-top: 66px;
+}
+
+h6 {
+  font-weight: 700;
+}
+
+.text-xsmall {
+  font-size: $font-size-xs;
+}
+
+.text-small {
+  font-size: $font-size-sm;
+}
+
+.text-medium {
+  font-size: $font-size-md;
+}
+
+.font-weight-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.credit {
+  text-shadow: 0 0 2px $black;
+}
+
+.wign-logo {
+  width: 110px;
+  height: 34px;
+}
+
+.header-flag {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 5px;
+}
+
+.bg-translucent {
+  background: rgba($white,0.80);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 66px; /* Set the fixed height of the footer here */
+}
+
+.img-scale-hover {
+  overflow: hidden;
+}
+.img-scale-hover img {
+  transition: all 0.3s;
+}
+.img-scale-hover:hover img {
+  transform: scale(1.1);
+}
+
+.footer-nav a {
+  color: $grey;
+  text-decoration: underline;
+  padding: 0 0.25rem;
+
+  &:hover {
+    color: $gray-500;
+  }
+
+  &.fa {
+    text-decoration: none;
+    font-size: 1rem;
+    position: relative;
+    top: 2px;
+  }
+}
+
+.mh-500 {
+  min-height: 500px; // Used in index
+}
+
+.search-box {
+  background: rgba($white,0.6);
+  box-shadow: 0 0 5px 2px rgba($black,0.15);
+  border-radius: 0.5rem;
+}
