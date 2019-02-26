@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSilsTable extends Migration
+class CreateExpressionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateSilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sils', function (Blueprint $table) {
+        Schema::create('expressions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer( 'level_id' )->unsigned();
-            $table->integer('sign_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateSilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sils');
+        Schema::dropIfExists('expressions');
     }
 }

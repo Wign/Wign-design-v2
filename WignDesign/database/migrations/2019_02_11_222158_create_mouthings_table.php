@@ -15,7 +15,8 @@ class CreateMouthingsTable extends Migration
     {
         Schema::create('mouthings', function (Blueprint $table) {
             $table->increments('id');
-            // TODO KA ALSOOOO
+            $table->string('type');
+            $table->string('expression');
             $table->timestamps();
         });
     }

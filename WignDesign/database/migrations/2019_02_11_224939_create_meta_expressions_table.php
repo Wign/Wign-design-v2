@@ -17,8 +17,7 @@ class CreateMetaExpressionsTable extends Migration
             $table->increments('id');
             $table->integer( 'sign_id' )->unsigned();
             $table->integer( 'handshape_id' )->unsigned()->nullable();
-            //$table->integer( 'mouthing_id' )->unsigned()->nullable(); To later usage
-            //$table->integer( 'movement_id' )->unsigned()->nullable(); To later usage
+            $table->integer( 'mouthing_id' )->unsigned()->nullable();
             $table->integer('next_expr_id')->unsigned()->nullable();
             $table->integer( 'creator_id' )->unsigned();
             $table->integer( 'editor_id' )->unsigned();

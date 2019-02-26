@@ -15,6 +15,7 @@ class CreateArtsTable extends Migration
     {
         Schema::create('arts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('artist_id')->unsigned();
             //TODO TM!!!!!!!!!!!!
             $table->timestamps();
         });

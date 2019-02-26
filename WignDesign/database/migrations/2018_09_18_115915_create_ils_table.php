@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTilsTable extends Migration
+class CreateIlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateTilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tils', function (Blueprint $table) {
+        Schema::create('ils', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('level_id')->unsigned();
-            $table->integer('translation_id')->unsigned();
+            $table->integer( 'level_id' )->unsigned();
+            $table->integer('object_id')->unsigned(); // translation or sign id
+            $table->string('type')->unique(); // "TRANSLATION", "SIGN"
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +30,6 @@ class CreateTilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tils');
+        Schema::dropIfExists('ils');
     }
 }
