@@ -56,9 +56,10 @@ class ForeignTable extends Migration
 
         Schema::table('meta_expressions', function (Blueprint $table) {
             $table->foreign('sign_id')->references('id')->on('signs');
+            $table->foreign('expression_id')->references('id')->on('expressions');
             $table->foreign('handshape_id')->references('id')->on('handshapes');
             $table->foreign('mouthing_id')->references('id')->on('mouthings');
-            $table->foreign('next_expr_id')->references('id')->on('meta_expressions');
+            //$table->foreign('next_expr_id')->references('id')->on('meta_expressions');
             $table->foreign('creator_id')->references('id')->on('users');
             $table->foreign('editor_id')->references('id')->on('users');
         });
@@ -174,9 +175,10 @@ class ForeignTable extends Migration
 
         Schema::table('meta_expressions', function (Blueprint $table) {
             $table->dropForeign(['sign_id']);
+            $table->dropForeign(['expression_id']);
             $table->dropForeign(['handshape_id']);
             $table->dropForeign(['mouthing_id']);
-            $table->dropForeign(['next_expr_id']);
+            //$table->dropForeign(['next_expr_id']);
             $table->dropForeign(['creator_id']);
             $table->dropForeign(['editor_id']);
         });
