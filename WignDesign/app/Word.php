@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Word extends Model
 {
     // MASS ASSIGNMENT ------------------------------------------
+    use SoftDeletes;
+
     protected $fillable = [
         'creator_id',
         'editor_id',
@@ -47,6 +50,6 @@ class Word extends Model
 
     public function requests()
     {
-        return $this->belongsToMany('App\User', 'request_words', 'word_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany('App\User', 'requests', 'word_id', 'user_id')->withTimestamps();
     }
 }

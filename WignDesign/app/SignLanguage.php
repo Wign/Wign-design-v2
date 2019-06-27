@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Language extends Model
+class SignLanguage extends Model
 {
     // MASS ASSIGNMENT ------------------------------------------
     protected $fillable = [
         'code',
-        'text',
+        'text'
     ];
 
     public $timestamps = false;
@@ -18,7 +18,7 @@ class Language extends Model
 
     public function words()
     {
-        return $this->hasMany('App\Word', 'language_id');
+        return $this->hasMany('App\Sign', 'sign_language_id');
     }
 
 }

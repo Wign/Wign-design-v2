@@ -18,6 +18,7 @@ class CreateGlossariesTable extends Migration
             $table->integer('translation_id')->unsigned();
             $table->integer('bucket_id')->unsigned();
             $table->timestamp('created_at', 0)->nullable();
+            $table->index(['translation_id', 'bucket_id']);
         });
     }
 

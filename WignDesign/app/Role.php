@@ -4,21 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Language extends Model
+class Role extends Model
 {
     // MASS ASSIGNMENT ------------------------------------------
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'code',
-        'text',
+        'type'
     ];
 
-    public $timestamps = false;
-
     // DEFINING RELATIONSHIPS -----------------------------------
-
-    public function words()
+    public function users()
     {
-        return $this->hasMany('App\Word', 'language_id');
+        return $this->hasMany('App\User', 'user_id')->withTimestamps();
     }
-
 }

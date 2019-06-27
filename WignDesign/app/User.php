@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @method static inRandomOrder()
+ */
 class User extends Authenticatable
 {
     // MASS ASSIGNMENT ------------------------------------------
     use Notifiable;
     use SoftDeletes;
-
-    const ADMIN_TYPE = 'admin';
-    const DEFAULT_TYPE = 'default';
 
     /**
      * The attributes that are mass assignable.
@@ -24,8 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'last_login',
         'ban_reason',
-        'type',
         // inactive / passive state to exclude from the votings
     ];
     /**
@@ -77,14 +78,24 @@ class User extends Authenticatable
         return $this->hasMany('App\Translation', 'editor_id');
     }
 
+    public function role()
+    {
+        return $this->belongsTo('App\Role', 'role_id');
+    }
+
+    public function qcvs()
+    {
+        return $this->belongsToMany('App\Level', 'qcvs', 'user_id', 'level_id')->withTimestamps();
+    }
+
     public function likes ()
     {
         return $this->belongsToMany('App\Sign', 'likes', 'user_id', 'sign_id')->withTimestamps();
     }
 
-    public function requestWords ()
+    public function requests ()
     {
-        return $this->belongsToMany('App\Word', 'request_words', 'user_id', 'word_id')->withTimestamps();
+        return $this->belongsToMany('App\Word', 'requests', 'user_id', 'word_id')->withTimestamps();
     }
     /*
     public function remotionAuthor ()    // Creator of this remotion
@@ -95,11 +106,6 @@ class User extends Authenticatable
     public function reviewAuthor ()
     {
         return $this->hasMany('App\Review', 'user_id');
-    }
-
-    public function qcvs ()
-    {
-        return $this->hasMany('App\Qcv', 'user_id');
     }
     */
 }

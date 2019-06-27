@@ -15,7 +15,7 @@ class CreateLevelsTable extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->increments('id');
-            $table->smallinteger( 'rank' )->unsigned()->default(0);
+            $table->smallinteger( 'rank' )->unsigned();
             $table->timestamps();
         });
     }

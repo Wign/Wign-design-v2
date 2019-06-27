@@ -17,9 +17,9 @@ class CreateSignsTable extends Migration
             $table->increments('id');
             $table->string( 'video_uuid' )->unique();
             //$table->string( 'camera_uuid' );
-            //$table->string( 'video_url' );
-            //$table->string( 'thumbnail_url' );
-            //$table->string( 'small_thumbnail_url' );
+            $table->string( 'video_url' );
+            $table->string( 'thumbnail_url' );
+            $table->string( 'small_thumbnail_url' );
             $table->integer( 'playings' )->default(0);
             $table->integer('sign_language_id')->unsigned();
             $table->integer( 'user_id' )->unsigned();   // creator

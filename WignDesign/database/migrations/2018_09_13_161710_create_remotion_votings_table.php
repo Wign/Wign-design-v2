@@ -19,6 +19,7 @@ class CreateRemotionVotingsTable extends Migration
             $table->integer( 'qcv_id' )->unsigned();
             $table->boolean( 'approve' )->nullable();
             $table->timestamps();
+            $table->index(['remotion_id', 'qcv_id']);
         });
     }
 

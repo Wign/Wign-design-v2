@@ -19,6 +19,7 @@ class CreateAliasesTable extends Migration
             $table->integer('parent_word_id')->unsigned();
             $table->integer( 'user_id')->unsigned();    // creators
             $table->timestamps();
+            $table->index('child_word_id', 'parent_word_id');
         });
     }
 

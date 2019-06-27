@@ -18,6 +18,7 @@ class CreateLikesTable extends Migration
             $table->integer( 'sign_id' )->unsigned(); // For nu beholder vi likes til signs. Men det kan overvejes om det skal flyttes over til translation.
             $table->integer( 'user_id' )->unsigned();
             $table->timestamps();
+            $table->index(['sign_id', 'user_id']);
         });
     }
 

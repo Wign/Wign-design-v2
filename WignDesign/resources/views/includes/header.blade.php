@@ -21,7 +21,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto text-small">
                 <li><a class="nav-link" href="/new">@lang("nav.upload")</a></li>
-                <li><a class="nav-link" href="/ask">@lang("nav.requested")</a></li>
+                <li><a class="nav-link" href="{{ route('word.requests') }}">@lang("nav.requested")</a></li>
                 <li><a class="nav-link" href="/signs">@lang("nav.recent")</a></li>
                 <li><a class="nav-link" href="{{ route('about') }}">@lang("nav.about")</a></li>
 

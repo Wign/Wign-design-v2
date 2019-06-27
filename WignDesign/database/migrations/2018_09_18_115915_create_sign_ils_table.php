@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIlsTable extends Migration
+class CreateSignIlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateIlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ils', function (Blueprint $table) {
+        Schema::create('sign_ils', function (Blueprint $table) {
             $table->increments('id');
             $table->integer( 'level_id' )->unsigned();
-            $table->integer('object_id')->unsigned(); // translation or sign id
-            $table->string('type')->unique(); // "TRANSLATION", "SIGN"
+            $table->integer('sign_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +29,6 @@ class CreateIlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ils');
+        Schema::dropIfExists('sign_ils');
     }
 }

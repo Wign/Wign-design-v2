@@ -19,6 +19,7 @@ class CreateReviewVotingsTable extends Migration
             $table->integer( 'qcv_id' )->unsigned();
             $table->boolean( 'approve' )->nullable();
             $table->timestamps();
+            $table->index(['review_id', 'qcv_id']);
         });
     }
 
