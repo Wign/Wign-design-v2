@@ -12,19 +12,19 @@ class SignLanguagesTableSeeder extends Seeder
     public function run()
     {
         $languages = array(
-            collect(['code' => 'dts_DK', 'text' => 'Dansk tegnsprog']),
-            collect(['code' => 'bsl_UK', 'text' => 'British sign language']),
-            collect(['code' => 'asl_US', 'text' => 'American sign language']),
-            collect(['code' => 'sts_SE', 'text' => 'Svenska teckenspråk']),
-            collect(['code' => 'nts_NO', 'text' => 'Norsk tegnspråk']),
-            collect(['code' => 'svk_FI', 'text' => 'Suomalainen viittomakieli']),
-            collect(['code' => 'dgs_DE', 'text' => 'Deutsche Gebärdensprache']),
-            collect(['code' => 'lsf_FR', 'text' => 'Langues des signes française']),
-            collect(['code' => 'lis_IT', 'text' => 'Lingua dei segni italiana']),
-            collect(['code' => 'lse_ES', 'text' => 'Lengua de signos española']),
-            collect(['code' => 'dsg_CH', 'text' => 'Deutschschweizer Gebärdensprache']),
-            collect(['code' => 'lsf_CH', 'text' => 'Langue des Signes Francaise']),
-            collect(['code' => 'lis_CH', 'text' => 'Lingua dei Segni Italiana']),
+            collect(['code' => 'dt_DK', 'text' => 'Dansk tegnsprog']),
+            collect(['code' => 'bs_UK', 'text' => 'British sign language']),
+            collect(['code' => 'as_US', 'text' => 'American sign language']),
+            collect(['code' => 'st_SE', 'text' => 'Svenska teckenspråk']),
+            collect(['code' => 'nt_NO', 'text' => 'Norsk tegnspråk']),
+            collect(['code' => 'sv_FI', 'text' => 'Suomalainen viittomakieli']),
+            collect(['code' => 'dg_DE', 'text' => 'Deutsche Gebärdensprache']),
+            collect(['code' => 'ls_FR', 'text' => 'Langues des signes française']),
+            collect(['code' => 'ls_IT', 'text' => 'Lingua dei segni italiana']),
+            collect(['code' => 'ls_ES', 'text' => 'Lengua de signos española']),
+            collect(['code' => 'dg_CH', 'text' => 'Deutschschweizer Gebärdensprache']),
+            collect(['code' => 'ls_CH', 'text' => 'Langue des Signes Francaise']),
+            collect(['code' => 'ls_CH', 'text' => 'Lingua dei Segni Italiana']),
         );
 
         foreach ($languages as $l)  {

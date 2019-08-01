@@ -1,6 +1,5 @@
 <?php
 
-use App\Level;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -14,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         factory(App\User::class, 100)->create()->each(function($u) {
             $MAX_LEVEL = \App\Level::max('rank');
-            $rankID = random_int(1, $MAX_LEVEL+1);
+            $rankID = random_int(1, $MAX_LEVEL+1); //TODO: Need to fix the levels
             $challenge = random_int(1, $MAX_LEVEL+1);
             $rankID = $rankID >= $challenge ? $challenge : $rankID;
             
