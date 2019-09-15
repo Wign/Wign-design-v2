@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Laradock run" type="docker-deploy" factoryName="docker-compose.yml" server-name="Laradock">
+    <deployment type="docker-compose.yml">
+      <settings>
+        <option name="services">
+          <list>
+            <option value="nginx" />
+            <option value="mysql" />
+          </list>
+        </option>
+        <option name="sourceFilePath" value="Wign/laradock/docker-compose.yml" />
+      </settings>
+    </deployment>
+    <method v="2">
+      <option name="LaunchBrowser.Before.Run" url="http://localhost:80" />
+    </method>
+  </configuration>
+</component>
