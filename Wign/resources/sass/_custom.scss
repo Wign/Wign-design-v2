@@ -1,0 +1,29 @@
+!! OBS!!! DET ER IKKE DEN VI SKAL BRUGE!!!
+
+.img-scale-hover {
+  overflow: hidden;
+}
+.img-scale-hover img {
+  transition: all 0.3s;
+}
+.img-scale-hover:hover img {
+  transform: scale(1.1);
+}
+
+.mh-500 {
+  min-height: 500px; // Used in index
+}
+
+.btn-facebook {
+  background-color: $facebook-blue;
+  color: $white;
+
+  &:hover {
+    background-color: darken($facebook-blue, 10);
+  }
+}
+
+.border-bottom-black {
+  border-bottom: 1px solid $black !important;
+}
+

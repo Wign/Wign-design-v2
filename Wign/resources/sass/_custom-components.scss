@@ -1,0 +1,41 @@
+/** BUTTONS **/
+.btn {
+  @apply inline-block appearance-none align-middle text-center whitespace-no-wrap py-2 px-4 font-semibold leading-normal no-underline
+}
+
+.btn-tyrisk {
+  @apply bg-tyrisk text-gray-100 rounded-full
+}
+
+.btn-tyrisk:hover {
+  @apply bg-tyrisk-light
+}
+
+.btn-tyrisk-outline {
+  @apply border border-tyrisk text-gray-800 bg-gray-100 rounded-full
+}
+
+.btn-tyrisk-outline:hover {
+  @apply bg-gray-300
+}
+
+.btn-black {
+  @apply text-gray-100 bg-black bg-gray-900
+}
+
+.btn-black:hover {
+  @apply bg-gray-800
+}
+
+/** INPUTS **/
+.input {
+  @apply appearance-none py-1 px-2 text-base leading-normal
+}
+
+.input-default {
+  @apply bg-translucent-60 text-gray-700 border-b border-gray-900
+}
+
+.input-error {
+  @apply border-b-2 border-red-500
+}
