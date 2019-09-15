@@ -8,7 +8,7 @@
             <option value="mysql" />
           </list>
         </option>
-        <option name="sourceFilePath" value="Wign/laradock/docker-compose.yml" />
+        <option name="sourceFilePath" value="laradock/docker-compose.yml" />
       </settings>
     </deployment>
     <method v="2">

@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Bash into Workspace" type="ShConfigurationType">
-    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/Wign/laradock/enterWorkspace.sh" />
+    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/laradock/enterWorkspace.sh" />
     <option name="SCRIPT_OPTIONS" value="" />
     <option name="INTERPRETER_PATH" value="/bin/bash" />
     <option name="INTERPRETER_OPTIONS" value="" />
