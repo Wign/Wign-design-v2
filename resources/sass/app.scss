@@ -1,0 +1,15 @@
+@tailwind base;
+
+html {
+    @apply font-body;
+}
+
+body {
+    @apply text-sm;
+}
+
+@tailwind components;
+@import "custom-components";
+
+@tailwind utilities;
+@import "custom-utilities";
