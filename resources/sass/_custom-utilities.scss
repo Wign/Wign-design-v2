@@ -1,0 +1,27 @@
+.header-flag {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 5px;
+}
+
+.wign-logo {
+  width: 110px;
+  height: 34px;
+}
+
+.transition {
+  transition: all 0.3s;
+}
+
+.hover\:scale:hover img, .hover\:scale:hover svg {
+  transform: scale(1.1);
+}
+
+.hover\:scaleBig:hover img, .hover\:scaleBig:hover svg {
+  transform: scale(1.3);
+}
+
+
+.text-shadow {
+  text-shadow: 0 0 2px #000000;
+}
