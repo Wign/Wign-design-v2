@@ -16,7 +16,6 @@ class CreateSignsTable extends Migration
         Schema::create('signs', function (Blueprint $table) {
             $table->increments('id');
             $table->string( 'video_uuid' )->unique();
-            //$table->string( 'camera_uuid' );
             $table->string( 'video_url' );
             $table->string( 'thumbnail_url' );
             $table->string( 'small_thumbnail_url' );
