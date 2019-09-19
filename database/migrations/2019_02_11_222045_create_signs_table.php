@@ -21,7 +21,7 @@ class CreateSignsTable extends Migration
             $table->string( 'small_thumbnail_url' );
             $table->integer( 'playings' )->default(0);
             $table->integer('sign_language_id')->unsigned();
-            $table->integer( 'user_id' )->unsigned();   // creator
+            $table->integer( 'creator_id' )->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
