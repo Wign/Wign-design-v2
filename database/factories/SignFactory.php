@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(\App\Sign::class, function (Faker $faker) {
     $url = "//www.cameratag.com/";
     $videoUUID = "v-" . $faker->uuid;
-    $user = \App\User::withTrashed()->inRandomOrder()->first();
+    $user = \App\User::withTrashed()->random();
     $sl = random_int(0, 1000) > 0 ? \App\SignLanguage::whereCode('dts_DK')->first() : \App\SignLanguage::inRandomOrder()->first();
 
     return [
