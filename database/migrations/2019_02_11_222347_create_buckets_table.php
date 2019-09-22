@@ -17,7 +17,7 @@ class CreateBucketsTable extends Migration
             $table->increments('id');
             $table->uuid('uuid')->unique();
             $table->string('title');
-            $table->integer('user_id')->unsigned(); // owner
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

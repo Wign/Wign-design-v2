@@ -15,8 +15,8 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
-    $banned = random_int(0,19) == 0 ? true : false;
-    $role = random_int(0,99) == 0 ? Role::where('type','admin')->first()->id : Role::where('type','default')->first()->id;
+    $banned = rand(0,19) == 0 ? true : false;
+    $role = rand(0,99) == 0 ? Role::where('type','admin')->first()->id : Role::where('type','default')->first()->id;
 
     $updated_at = $faker->dateTime();
     $tempDate = $faker->dateTime();
