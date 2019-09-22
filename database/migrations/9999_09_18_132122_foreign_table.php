@@ -16,7 +16,7 @@ class ForeignTable extends Migration
         Schema::table('aliases', function (Blueprint $table) {
             $table->foreign('child_word_id')->references('id')->on('words');
             $table->foreign('parent_word_id')->references('id')->on('words');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('creator_id')->references('id')->on('users');
         });
 
         Schema::table('arts', function (Blueprint $table) {
@@ -95,7 +95,7 @@ class ForeignTable extends Migration
         });
 
         Schema::table('signs', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('creator_id')->references('id')->on('users');
             $table->foreign('sign_language_id')->references('id')->on('sign_languages');
         });
 
@@ -143,7 +143,7 @@ class ForeignTable extends Migration
         Schema::table('aliases', function (Blueprint $table) {
             $table->dropForeign(['child_word_id']);
             $table->dropForeign(['parent_word_id']);
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['creator_id']);
         });
 
         Schema::table('arts', function (Blueprint $table) {
@@ -222,7 +222,7 @@ class ForeignTable extends Migration
         });
 
         Schema::table('signs', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['creator_id']);
             $table->dropForeign(['sign_language_id']);
         });
 
