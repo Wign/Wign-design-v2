@@ -19,7 +19,7 @@ class RequestsTableSeeder extends Seeder {
             $numUsers = $n1 < $n2 ? $n1 : $n2;
 
             if ($numUsers > 0) {
-                $users = User::random()->limit($numUsers)->get();
+                $users = User::all()->random($numUsers);
                 foreach ($users as $user) {
                     $user->requests()->attach($word);
                 }
