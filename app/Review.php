@@ -28,7 +28,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Review extends Model
-{
+class Review extends Model {
     //
 }

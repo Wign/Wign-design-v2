@@ -20,8 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SignLanguage whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SignLanguage whereText($value)
  */
-class SignLanguage extends Model
-{
+class SignLanguage extends Model {
     // MASS ASSIGNMENT ------------------------------------------
     protected $fillable = [
         'code',
@@ -32,8 +31,7 @@ class SignLanguage extends Model
 
     // DEFINING RELATIONSHIPS -----------------------------------
 
-    public function words()
-    {
+    public function words() {
         return $this->hasMany('App\Sign', 'sign_language_id');
     }
 

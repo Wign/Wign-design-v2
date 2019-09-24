@@ -28,7 +28,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Remotion whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Remotion extends Model
-{
+class Remotion extends Model {
     //
 }
