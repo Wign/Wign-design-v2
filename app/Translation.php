@@ -42,6 +42,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereSignId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereWordId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviewsFrom
+ * @property-read int|null $reviews_from_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviewsOnto
+ * @property-read int|null $reviews_onto_count
  */
 class Translation extends Model
 {
@@ -82,9 +86,12 @@ class Translation extends Model
         return $this->belongsTo('App\User', 'editor_id');
     }
 
-    public function ils()
-    {
-        return $this->hasMany('App\Il', 'translation_id');
+    public function reviewsFrom() {
+        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'old_il_id');
+    }
+
+    public function reviewsOnto() {
+        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'new_il_id');
     }
 /*
     public function glossaries()
