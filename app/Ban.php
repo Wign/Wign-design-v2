@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Ban query()
  * @mixin \Eloquent
  */
-class Ban extends Model
-{
+class Ban extends Model {
     //
 }

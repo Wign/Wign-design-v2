@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Tag whereTag($value)
  * @mixin \Eloquent
  */
-class Tag extends Model
-{
+class Tag extends Model {
     //
 }
