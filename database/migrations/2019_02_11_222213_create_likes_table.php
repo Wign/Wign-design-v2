@@ -15,10 +15,10 @@ class CreateLikesTable extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer( 'sign_id' )->unsigned(); // For nu beholder vi likes til signs. Men det kan overvejes om det skal flyttes over til translation.
+            $table->integer( 'translation_id' )->unsigned();
             $table->integer( 'user_id' )->unsigned();
             $table->timestamps();
-            $table->index(['sign_id', 'user_id']);
+            $table->index(['translation_id', 'user_id']);
         });
     }
 

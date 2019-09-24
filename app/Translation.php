@@ -81,25 +81,15 @@ class Translation extends Model
     {
         return $this->belongsTo('App\User', 'editor_id');
     }
-/*
-    public function next()
-    {
-        return $this->belongsToMany('App\Translation', 'edit_histories', 'old_translation_id', 'new_translation_id')->withTimestamps();
-    }
-
-    public function previous()
-    {
-        return $this->belongsToMany('App\Translation', 'edit_histories',  'new_translation_id', 'old_translation_id')->withTimestamps();
-    }
-
-    public function glossaries()
-    {
-        return $this->belongsToMany('App\Bucket', 'glossaries', 'translation_id', 'bucket_id')->withTimestamps();
-    }
 
     public function ils()
     {
-        return $this->hasMany('App\Il', 'object_id');
+        return $this->hasMany('App\Il', 'translation_id');
+    }
+/*
+    public function glossaries()
+    {
+        return $this->belongsToMany('App\Bucket', 'glossaries', 'translation_id', 'bucket_id')->withTimestamps();
     }
     */
 

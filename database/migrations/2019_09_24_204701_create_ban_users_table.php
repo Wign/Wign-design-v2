@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSignIlsTable extends Migration
+class CreateBanUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSignIlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sign_ils', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer( 'level_id' )->unsigned();
-            $table->integer('sign_id')->unsigned();
+        Schema::create('ban_users', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
+            $table->index(['user_id']);
         });
     }
 
@@ -29,6 +28,6 @@ class CreateSignIlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sign_ils');
+        Schema::dropIfExists('ban_users');
     }
 }

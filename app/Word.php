@@ -57,31 +57,33 @@ class Word extends Model {
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator () {
+    public function creator() {
         return $this->belongsTo('App\User', 'creator_id');
     }
 
-    public function editor () {
+    public function editor() {
         return $this->belongsTo('App\User', 'editor_id');
     }
 
-    public function language () {
+    public function language() {
         return $this->belongsTo('App\Language', 'language_id');
     }
 
-    public function alias_parents () {
+    public function alias_parents() {
         return $this->belongsToMany('App\Word', 'aliases', 'child_word_id', 'parent_word_id')->withTimestamps();
     }
 
-    public function alias_children () {
+    public function alias_children() {
         return $this->belongsToMany('App\Word', 'aliases', 'parent_word_id', 'child_word_id')->withTimestamps();
     }
 
-    public function translations () {
+    public function translations() {
         return $this->hasMany('App\Translation', 'translation_id');
     }
 
-    public function requests () {
+    public function requests() {
         return $this->belongsToMany('App\User', 'requests', 'word_id', 'user_id')->withTimestamps();
     }
+
+
 }
