@@ -44,6 +44,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereVideoUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereVideoUuid($value)
+ * @property int $creator_id
+ * @property-read \App\SignLanguage $signLanguage
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
+ * @property-read int|null $words_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereCreatorId($value)
  */
 class Sign extends Model {
     // MASS ASSIGNMENT ------------------------------------------

@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level whereRank($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translations
+ * @property-read int|null $translations_count
  */
 class Level extends Model {
     // MASS ASSIGNMENT ------------------------------------------
@@ -42,6 +44,6 @@ class Level extends Model {
     }
 
     public function translations() {
-        return $this->belongsToMany('App\Translations', 'ils', 'level_id', 'translation_id')->withTimestamps();
+        return $this->belongsToMany('App\Translation', 'ils', 'level_id', 'translation_id')->withTimestamps();
     }
 }
