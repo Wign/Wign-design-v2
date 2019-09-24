@@ -23,6 +23,10 @@ class ForeignTable extends Migration
             $table->foreign('artist_id')->references('id')->on('artists');
         });
 
+        Schema::table('ban_users', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
         Schema::table('buckets', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -32,11 +36,6 @@ class ForeignTable extends Migration
             $table->foreign('editor_id')->references('id')->on('users');
         });
 
-        Schema::table('edit_histories', function (Blueprint $table) {
-            $table->foreign('old_translation_id')->references('id')->on('translations');
-            $table->foreign('new_translation_id')->references('id')->on('translations');
-        });
-
         Schema::table('glossaries', function (Blueprint $table) {
             $table->foreign('translation_id')->references('id')->on('translations');
             $table->foreign('bucket_id')->references('id')->on('buckets');
@@ -44,7 +43,7 @@ class ForeignTable extends Migration
 
         Schema::table('likes', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('sign_id')->references('id')->on('signs');
+            $table->foreign('translation_id')->references('id')->on('signs');
         });
 
         Schema::table('meta_expressions', function (Blueprint $table) {
@@ -62,15 +61,9 @@ class ForeignTable extends Migration
             $table->foreign('level_id')->references('id')->on('levels');
         });
 
-        Schema::table('reference_ils', function (Blueprint $table)   {
-            $table->foreign('review_id')->references('id')->on('reviews');
-            $table->foreign('translation_il_id')->references('id')->on('translation_ils');
-            $table->foreign('sign_il_id')->references('id')->on('sign_ils');
-        });
-
         Schema::table('remotions', function (Blueprint $table) {
             $table->foreign('qcv_id')->references('id')->on('qcvs');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('creator_id')->references('id')->on('users');
         });
 
         Schema::table('remotion_votings', function (Blueprint $table) {
@@ -84,9 +77,9 @@ class ForeignTable extends Migration
         });
 
         Schema::table('reviews', function (Blueprint $table) {
-            $table->foreign('new_il_id')->references('id')->on('reference_ils');
-            $table->foreign('old_il_id')->references('id')->on('reference_ils');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('new_il_id')->references('id')->on('translations');
+            $table->foreign('old_il_id')->references('id')->on('translations');
+            $table->foreign('creator_id')->references('id')->on('users');
         });
 
         Schema::table('review_votings', function (Blueprint $table) {
@@ -99,9 +92,9 @@ class ForeignTable extends Migration
             $table->foreign('sign_language_id')->references('id')->on('sign_languages');
         });
 
-        Schema::table('sign_ils', function (Blueprint $table) {
+        Schema::table('ils', function (Blueprint $table) {
             $table->foreign('level_id')->references('id')->on('levels');
-            $table->foreign('sign_id')->references('id')->on('signs');
+            $table->foreign('translation_id')->references('id')->on('translations');
         });
 
         Schema::table('taggables', function (Blueprint $table) {
@@ -115,11 +108,6 @@ class ForeignTable extends Migration
             $table->foreign('description_id')->references('id')->on('descriptions');
             $table->foreign('creator_id')->references('id')->on('users');
             $table->foreign('editor_id')->references('id')->on('users');
-        });
-
-        Schema::table('translation_ils', function (Blueprint $table) {
-            $table->foreign('level_id')->references('id')->on('levels');
-            $table->foreign('translation_id')->references('id')->on('translations');
         });
 
         Schema::table('users', function (Blueprint $table) {
@@ -150,6 +138,10 @@ class ForeignTable extends Migration
             $table->dropForeign(['artist_id']);
         });
 
+        Schema::table('ban_users', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+
         Schema::table('buckets', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
@@ -159,11 +151,6 @@ class ForeignTable extends Migration
             $table->dropForeign(['editor_id']);
         });
 
-        Schema::table('edit_histories', function (Blueprint $table) {
-            $table->dropForeign(['old_translation_id']);
-            $table->dropForeign(['new_translation_id']);
-        });
-
         Schema::table('glossaries', function (Blueprint $table) {
             $table->dropForeign(['translation_id']);
             $table->dropForeign(['bucket_id']);
@@ -171,7 +158,7 @@ class ForeignTable extends Migration
 
         Schema::table('likes', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['sign_id']);
+            $table->dropForeign(['translation_id']);
         });
 
         Schema::table('meta_expressions', function (Blueprint $table) {
@@ -189,15 +176,9 @@ class ForeignTable extends Migration
             $table->dropForeign(['level_id']);
         });
 
-        Schema::table('reference_ils', function (Blueprint $table)  {
-            $table->dropForeign(['review_id']);
-            $table->dropForeign(['translation_il_id']);
-            $table->dropForeign(['sign_il_id']);
-        });
-
         Schema::table('remotions', function (Blueprint $table) {
             $table->dropForeign(['qcv_id']);
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['creator_id']);
         });
 
         Schema::table('remotion_votings', function (Blueprint $table) {
@@ -213,7 +194,7 @@ class ForeignTable extends Migration
         Schema::table('reviews', function (Blueprint $table) {
             $table->dropForeign(['new_il_id']);
             $table->dropForeign(['old_il_id']);
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['creator_id']);
         });
 
         Schema::table('review_votings', function (Blueprint $table) {
@@ -226,9 +207,9 @@ class ForeignTable extends Migration
             $table->dropForeign(['sign_language_id']);
         });
 
-        Schema::table('sign_ils', function (Blueprint $table) {
+        Schema::table('ils', function (Blueprint $table) {
             $table->dropForeign(['level_id']);
-            $table->dropForeign(['sign_id']);
+            $table->dropForeign(['translation_id']);
         });
 
         Schema::table('taggables', function (Blueprint $table) {
@@ -242,11 +223,6 @@ class ForeignTable extends Migration
             $table->dropForeign(['description_id']);
             $table->dropForeign(['creator_id']);
             $table->dropForeign(['editor_id']);
-        });
-
-        Schema::table('translation_ils', function (Blueprint $table) {
-            $table->dropForeign(['level_id']);
-            $table->dropForeign(['translation_id']);
         });
 
         Schema::table('users', function (Blueprint $table) {

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LanguagesTableSeeder::class);
         $this->call(SignLanguagesTableSeeder::class);
         $this->call(RequestsTableSeeder::class);
-        $this->call(TranslationsTableSeeder::class);
+        //$this->call(TranslationsTableSeeder::class);
 
         echo "Model: visible / trashed / total seeded\n";
         echo "Roles: " . \App\Role::count() . "\n";

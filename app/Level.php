@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level signs()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Level translations()
  * @mixin \Eloquent
  * @property int $id
  * @property int $rank
@@ -25,8 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level whereRank($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level whereUpdatedAt($value)
  */
-class Level extends Model
-{
+class Level extends Model {
     // MASS ASSIGNMENT ------------------------------------------
 
     /**
@@ -39,26 +37,11 @@ class Level extends Model
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function users()
-    {
+    public function users() {
         return $this->belongsToMany('App\User', 'qcvs', 'level_id', 'user_id')->withTimestamps();
     }
 
-    /*
-    public function ils()
-    {
-        return $this->hasMany('App\Il', 'level_id');
-    }
-    */
-
-    // CREATE SCOPES -----------------------------------------------
-    public function scopeTranslations()
-    {
-        // $this->ils()->type == TRANSLATION
-    }
-
-    public function scopeSigns()
-    {
-        // $this->ils()->type == SIGN
+    public function translations() {
+        return $this->belongsToMany('App\Translations', 'ils', 'level_id', 'translation_id')->withTimestamps();
     }
 }

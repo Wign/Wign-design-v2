@@ -1,5 +1,6 @@
 <?php
 
+use App\Level;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,6 +19,13 @@ class CreateLevelsTable extends Migration
             $table->smallinteger( 'rank' )->unsigned();
             $table->timestamps();
         });
+
+        if (Level::count() == 0) {
+            Artisan::call('db:seed', [
+                    '--class' => 'LevelsTableSeeder',
+                    '--force' => true]
+            );
+        }
     }
 
     /**

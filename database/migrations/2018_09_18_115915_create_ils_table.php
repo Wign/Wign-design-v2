@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEditHistoriesTable extends Migration
+class CreateIlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateEditHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('edit_histories', function (Blueprint $table) {
+        Schema::create('ils', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('old_translation_id')->unsigned();
-            $table->integer('new_translation_id')->unsigned();
+            $table->integer( 'level_id' )->unsigned();
+            $table->integer('translation_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateEditHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('edit_histories');
+        Schema::dropIfExists('ils');
     }
 }

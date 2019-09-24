@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
-{
+class Role extends Model {
     // MASS ASSIGNMENT ------------------------------------------
 
     /**
@@ -18,8 +17,7 @@ class Role extends Model
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function users()
-    {
-        return $this->hasMany('App\User', 'user_id')->withTimestamps();
+    public function users() {
+        return $this->hasMany('App\User', 'role_id');
     }
 }

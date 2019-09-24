@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->increments('id');
             $table->integer( 'new_il_id' )->unsigned();
             $table->integer( 'old_il_id' )->unsigned()->nullable();
-            $table->integer('user_id')->unsigned(); // Creator
+            $table->integer('creator_id')->unsigned();
             $table->boolean( 'decided' )->default(0);
             $table->timestamps();
             $table->softDeletes();
