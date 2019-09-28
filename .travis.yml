@@ -29,3 +29,8 @@ before_script:
 
 script:
   - vendor/bin/phpunit --coverage-text
+
+branches:
+  only:
+    - master
+    - develop
