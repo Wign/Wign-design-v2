@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Level
+ * App\Level.
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Level newModelQuery()
@@ -25,7 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translations
  * @property-read int|null $translations_count
  */
-class Level extends Model {
+class Level extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
 
     /**
@@ -34,15 +35,17 @@ class Level extends Model {
      * @var array
      */
     protected $fillable = [
-        'rank'
+        'rank',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany('App\User', 'qcvs', 'level_id', 'user_id')->withTimestamps();
     }
 
-    public function translations() {
+    public function translations()
+    {
         return $this->belongsToMany('App\Translation', 'ils', 'level_id', 'translation_id')->withTimestamps();
     }
 }

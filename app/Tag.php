@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Tag
+ * App\Tag.
  *
  * @property int $id
  * @property string $tag
@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Tag whereTag($value)
  * @mixin \Eloquent
  */
-class Tag extends Model {
+class Tag extends Model
+{
     //
 }

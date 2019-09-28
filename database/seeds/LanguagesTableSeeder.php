@@ -11,16 +11,16 @@ class LanguagesTableSeeder extends Seeder
      */
     public function run()
     {
-        $languages = array(
+        $languages = [
             collect(['code' => 'da_DK', 'text' => 'dansk']),
             collect(['code' => 'en_UK', 'text' => 'english']),
-            collect(['code' => 'en_US', 'text' => 'english'])
-        );
+            collect(['code' => 'en_US', 'text' => 'english']),
+        ];
 
-        foreach ($languages as $l)  {
+        foreach ($languages as $l) {
             \App\Language::create([
                 'code' => $l->get('code'),
-                'text' => $l->get('text')
+                'text' => $l->get('text'),
             ]);
         }
     }

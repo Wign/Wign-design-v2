@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRemotionVotingsTable extends Migration
 {
@@ -15,9 +15,9 @@ class CreateRemotionVotingsTable extends Migration
     {
         Schema::create('remotion_votings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer( 'remotion_id' )->unsigned();
-            $table->integer( 'qcv_id' )->unsigned();
-            $table->boolean( 'approve' )->nullable();
+            $table->integer('remotion_id')->unsigned();
+            $table->integer('qcv_id')->unsigned();
+            $table->boolean('approve')->nullable();
             $table->timestamps();
             $table->index(['remotion_id', 'qcv_id']);
         });

@@ -1,9 +1,9 @@
 <?php
 
 use App\Role;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRolesTable extends Migration
 {
@@ -23,7 +23,7 @@ class CreateRolesTable extends Migration
         if (Role::count() == 0) {
             Artisan::call('db:seed', [
                     '--class' => 'RolesTableSeeder',
-                    '--force' => true]
+                    '--force' => true, ]
             );
         }
     }

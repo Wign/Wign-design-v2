@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Language
+ * App\Language.
  *
  * @property int $id
  * @property string $code
@@ -20,7 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereText($value)
  * @mixin \Eloquent
  */
-class Language extends Model {
+class Language extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     protected $fillable = [
         'code',
@@ -31,8 +32,8 @@ class Language extends Model {
 
     // DEFINING RELATIONSHIPS -----------------------------------
 
-    public function words() {
+    public function words()
+    {
         return $this->hasMany('App\Word', 'language_id');
     }
-
 }

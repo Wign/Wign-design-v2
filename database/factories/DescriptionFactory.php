@@ -10,6 +10,6 @@ $factory->define(\App\Description::class, function (Faker $faker) {
     return [
         'text' =>   $faker->realText(),
         'creator_id' => $u1,
-        'editor_id' => $u2
+        'editor_id' => $u2,
     ];
 });
