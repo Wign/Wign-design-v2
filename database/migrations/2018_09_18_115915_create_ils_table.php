@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateIlsTable extends Migration
 {
@@ -15,7 +15,7 @@ class CreateIlsTable extends Migration
     {
         Schema::create('ils', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer( 'level_id' )->unsigned();
+            $table->integer('level_id')->unsigned();
             $table->integer('translation_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Review
+ * App\Review.
  *
  * @property int $id
  * @property int $new_il_id
@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Review extends Model {
+class Review extends Model
+{
     //
 }

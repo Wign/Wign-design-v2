@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\SignLanguage
+ * App\SignLanguage.
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sign[] $words
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SignLanguage newModelQuery()
@@ -20,19 +20,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SignLanguage whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SignLanguage whereText($value)
  */
-class SignLanguage extends Model {
+class SignLanguage extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     protected $fillable = [
         'code',
-        'text'
+        'text',
     ];
 
     public $timestamps = false;
 
     // DEFINING RELATIONSHIPS -----------------------------------
 
-    public function words() {
+    public function words()
+    {
         return $this->hasMany('App\Sign', 'sign_language_id');
     }
-
 }

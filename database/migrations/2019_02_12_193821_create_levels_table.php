@@ -1,9 +1,9 @@
 <?php
 
 use App\Level;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLevelsTable extends Migration
 {
@@ -16,14 +16,14 @@ class CreateLevelsTable extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->increments('id');
-            $table->smallinteger( 'rank' )->unsigned();
+            $table->smallinteger('rank')->unsigned();
             $table->timestamps();
         });
 
         if (Level::count() == 0) {
             Artisan::call('db:seed', [
                     '--class' => 'LevelsTableSeeder',
-                    '--force' => true]
+                    '--force' => true, ]
             );
         }
     }

@@ -11,16 +11,15 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $roles = array(
+        $roles = [
             'DEFAULT',
-            'ADMIN'
-        );
+            'ADMIN',
+        ];
 
-        foreach ($roles as $r)  {
+        foreach ($roles as $r) {
             \App\Role::create([
-                'type' => $r
+                'type' => $r,
             ]);
         }
-
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Sign
+ * App\Sign.
  *
  * @property-read \App\User $creator
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $likes
@@ -50,7 +50,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $words_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereCreatorId($value)
  */
-class Sign extends Model {
+class Sign extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     use SoftDeletes;
 
@@ -61,27 +62,32 @@ class Sign extends Model {
         'small_thumbnail_url',
         'playings',
         'sign_language_id',
-        'user_id'
+        'user_id',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo('App\User', 'creator_id');
     }
 
-    public function translations() {
+    public function translations()
+    {
         return $this->hasMany('App\Translation', 'sign_id');
     }
 
-    public function words() {
+    public function words()
+    {
         return $this->belongsToMany('App\Word', 'translations', 'sign_id', 'translation_id')->withTimestamps();
     }
 
-    public function likes() {
+    public function likes()
+    {
         return $this->belongsToMany('App\User', 'likes', 'sign_id', 'user_id')->withTimestamps();
     }
 
-    public function signLanguage() {
+    public function signLanguage()
+    {
         return $this->belongsTo('App\SignLanguage', 'sign_language_id');
     }
 }

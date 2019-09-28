@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTranslationsTable extends Migration
 {
@@ -18,8 +18,8 @@ class CreateTranslationsTable extends Migration
             $table->integer('word_id')->unsigned();
             $table->integer('sign_id')->unsigned();
             $table->integer('description_id')->unsigned();
-            $table->integer( 'creator_id')->unsigned();
-            $table->integer( 'editor_id')->unsigned();
+            $table->integer('creator_id')->unsigned();
+            $table->integer('editor_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
