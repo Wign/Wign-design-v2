@@ -1,0 +1,29 @@
+dist: bionic
+
+language: php
+
+cache:
+  directories:
+    - vendor
+
+php:
+  - 7.2
+  - 7.3
+
+services:
+  - mysql
+
+before_install:
+  - cp .env.travis .env
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS forge;'
+  - composer self-update
+
+install:
+  - composer install --no-interaction
+
+before_script:
+  - php artisan key:generate
+  - php artisan migrate --no-interaction
+
+script:
+  - vendor/bin/phpunit --coverage-text
