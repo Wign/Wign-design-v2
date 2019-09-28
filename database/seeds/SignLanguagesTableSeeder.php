@@ -11,7 +11,7 @@ class SignLanguagesTableSeeder extends Seeder
      */
     public function run()
     {
-        $languages = array(
+        $languages = [
             collect(['code' => 'dt_DK', 'text' => 'Dansk tegnsprog']),
             collect(['code' => 'bs_UK', 'text' => 'British sign language']),
             collect(['code' => 'as_US', 'text' => 'American sign language']),
@@ -25,12 +25,12 @@ class SignLanguagesTableSeeder extends Seeder
             collect(['code' => 'dg_CH', 'text' => 'Deutschschweizer Gebärdensprache']),
             collect(['code' => 'lf_CH', 'text' => 'Langue des Signes Francaise']),
             collect(['code' => 'li_CH', 'text' => 'Lingua dei Segni Italiana']),
-        );
+        ];
 
-        foreach ($languages as $l)  {
+        foreach ($languages as $l) {
             \App\SignLanguage::create([
                 'code' => $l->get('code'),
-                'text' => $l->get('text')
+                'text' => $l->get('text'),
             ]);
         }
     }

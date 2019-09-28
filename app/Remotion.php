@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Remotion
+ * App\Remotion.
  *
  * @property int $id
  * @property int $qcv_id
@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Remotion whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Remotion extends Model {
+class Remotion extends Model
+{
     //
 }

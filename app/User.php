@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * App\User
+ * App\User.
  *
  * @property int $id
  * @property string $name
@@ -48,7 +48,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|\App\User withoutTrashed()
  * @mixin \Eloquent
  */
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use Notifiable;
     use SoftDeletes;
 
@@ -84,15 +85,18 @@ class User extends Authenticatable {
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function ban() {
+    public function ban()
+    {
         return $this->hasMany('App\Ban', 'user_id');
     }
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo('App\Role', 'role_id');
     }
 
-    public function reviewCreator() {
+    public function reviewCreator()
+    {
         return $this->hasMany('App\Review', 'creator_id');
     }
 }

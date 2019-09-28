@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateDescriptionsTable extends Migration
 {
@@ -15,9 +15,9 @@ class CreateDescriptionsTable extends Migration
     {
         Schema::create('descriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->text( 'text' );
-            $table->integer( 'creator_id')->unsigned();
-            $table->integer( 'editor_id')->unsigned();
+            $table->text('text');
+            $table->integer('creator_id')->unsigned();
+            $table->integer('editor_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

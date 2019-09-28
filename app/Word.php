@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Word
+ * App\Word.
  *
  * @property int $id
  * @property string $literal
@@ -45,7 +45,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Word withoutTrashed()
  * @mixin \Eloquent
  */
-class Word extends Model {
+class Word extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     use SoftDeletes;
 
@@ -53,37 +54,42 @@ class Word extends Model {
         'creator_id',
         'editor_id',
         'language_id',
-        'literal'
+        'literal',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo('App\User', 'creator_id');
     }
 
-    public function editor() {
+    public function editor()
+    {
         return $this->belongsTo('App\User', 'editor_id');
     }
 
-    public function language() {
+    public function language()
+    {
         return $this->belongsTo('App\Language', 'language_id');
     }
 
-    public function alias_parents() {
+    public function alias_parents()
+    {
         return $this->belongsToMany('App\Word', 'aliases', 'child_word_id', 'parent_word_id')->withTimestamps();
     }
 
-    public function alias_children() {
+    public function alias_children()
+    {
         return $this->belongsToMany('App\Word', 'aliases', 'parent_word_id', 'child_word_id')->withTimestamps();
     }
 
-    public function translations() {
+    public function translations()
+    {
         return $this->hasMany('App\Translation', 'translation_id');
     }
 
-    public function requests() {
+    public function requests()
+    {
         return $this->belongsToMany('App\User', 'requests', 'word_id', 'user_id')->withTimestamps();
     }
-
-
 }

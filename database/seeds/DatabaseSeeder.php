@@ -20,15 +20,14 @@ class DatabaseSeeder extends Seeder
         //$this->call(TranslationsTableSeeder::class);
 
         echo "Model: visible / trashed / total seeded\n";
-        echo "Roles: " . \App\Role::count() . "\n";
-        echo "Levels: " . \App\Level::count() . "\n";
-        echo "Languages: " . \App\Language::count() . "\n";
-        echo "SignLanguages: " . \App\SignLanguage::count() . "\n";
-        echo "Words: " . \App\Word::count() . " / " . \App\Word::onlyTrashed()->count() . " / " .\App\Word::withTrashed()->count() . "\n";
-        echo "Signs: " . \App\Sign::count() . " / " . \App\Sign::onlyTrashed()->count() . " / " .\App\Sign::withTrashed()->count() . "\n";
-        echo "Descriptions: " . \App\Description::count() . " / " . \App\Description::onlyTrashed()->count() . " / " .\App\Description::withTrashed()->count() . "\n";
-        echo "Translations: " . \App\Translation::count() . " / " . \App\Translation::onlyTrashed()->count() . " / " .\App\Translation::withTrashed()->count() . "\n";
-        echo "Users: " . \App\User::count() . " / " . \App\User::onlyTrashed()->count() . " / " .\App\User::withTrashed()->count() . "\n";
-
+        echo 'Roles: '.\App\Role::count()."\n";
+        echo 'Levels: '.\App\Level::count()."\n";
+        echo 'Languages: '.\App\Language::count()."\n";
+        echo 'SignLanguages: '.\App\SignLanguage::count()."\n";
+        echo 'Words: '.\App\Word::count().' / '.\App\Word::onlyTrashed()->count().' / '.\App\Word::withTrashed()->count()."\n";
+        echo 'Signs: '.\App\Sign::count().' / '.\App\Sign::onlyTrashed()->count().' / '.\App\Sign::withTrashed()->count()."\n";
+        echo 'Descriptions: '.\App\Description::count().' / '.\App\Description::onlyTrashed()->count().' / '.\App\Description::withTrashed()->count()."\n";
+        echo 'Translations: '.\App\Translation::count().' / '.\App\Translation::onlyTrashed()->count().' / '.\App\Translation::withTrashed()->count()."\n";
+        echo 'Users: '.\App\User::count().' / '.\App\User::onlyTrashed()->count().' / '.\App\User::withTrashed()->count()."\n";
     }
 }

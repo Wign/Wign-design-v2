@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Translation
+ * App\Translation.
  *
  * @property-read \App\User $creator
  * @property-read \App\Description $description
@@ -47,7 +47,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviewsOnto
  * @property-read int|null $reviews_onto_count
  */
-class Translation extends Model {
+class Translation extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     use SoftDeletes;
 
@@ -56,42 +57,49 @@ class Translation extends Model {
         'sign_id',
         'description_id',
         'creator_id',
-        'editor_id'
+        'editor_id',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function word() {
+    public function word()
+    {
         return $this->belongsTo('App\Word', 'word_id');
     }
 
-    public function sign() {
+    public function sign()
+    {
         return $this->belongsTo('App\Sign', 'sign_id');
     }
 
-    public function description() {
+    public function description()
+    {
         return $this->belongsTo('App\Description', 'description_id');
     }
 
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo('App\User', 'creator_id');
     }
 
-    public function editor() {
+    public function editor()
+    {
         return $this->belongsTo('App\User', 'editor_id');
     }
 
-    public function reviewsFrom() {
+    public function reviewsFrom()
+    {
         return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'old_il_id');
     }
 
-    public function reviewsOnto() {
+    public function reviewsOnto()
+    {
         return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'new_il_id');
     }
+
     /*
         public function glossaries()
         {
             return $this->belongsToMany('App\Bucket', 'glossaries', 'translation_id', 'bucket_id')->withTimestamps();
         }
         */
-
 }

@@ -14,7 +14,7 @@ class LevelsTableSeeder extends Seeder
     {
         for ($i = 0; $i <= 5; $i++) {
             Level::create([
-                'rank' => $i
+                'rank' => $i,
             ]);
         }
     }

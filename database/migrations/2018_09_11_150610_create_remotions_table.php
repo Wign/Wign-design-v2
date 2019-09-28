@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRemotionsTable extends Migration
 {
@@ -15,10 +15,10 @@ class CreateRemotionsTable extends Migration
     {
         Schema::create('remotions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer( 'qcv_id' )->unsigned();    // Target user
+            $table->integer('qcv_id')->unsigned();    // Target user
             $table->integer('creator_id')->unsigned();     // Creator
-            $table->boolean( 'promotion' );
-            $table->boolean( 'decided' )->default(0);
+            $table->boolean('promotion');
+            $table->boolean('decided')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

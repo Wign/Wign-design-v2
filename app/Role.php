@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Role
+ * App\Role.
  *
  * @property int $id
  * @property string $type
@@ -22,7 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Role extends Model {
+class Role extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
 
     /**
@@ -31,11 +32,12 @@ class Role extends Model {
      * @var array
      */
     protected $fillable = [
-        'type'
+        'type',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function users() {
+    public function users()
+    {
         return $this->hasMany('App\User', 'role_id');
     }
 }
