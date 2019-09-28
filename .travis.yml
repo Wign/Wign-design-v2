@@ -6,8 +6,10 @@ cache:
   directories:
     - vendor
 
+git:
+  submodules: false
+
 php:
-  - 7.2
   - 7.3
 
 services:
