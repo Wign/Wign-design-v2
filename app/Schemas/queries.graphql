@@ -1,0 +1,32 @@
+# The main query method - in which we can query it for data
+type Query {
+    ### WORDS ###
+    words: [Word!]! # All word ordered by created time
+    word(literal: String!): Word
+    randomWord: Word # A random existing word
+    requestedWords: [requestedWord]!
+    requestedWord(literal: String!): requestedWord
+    signedWords: [signedWord]!
+    signedWord(literal: String!): signedWord
+
+    ### SIGNS ###
+    signs: [Sign]!
+    signById(signId: ID!): Sign
+    signByWord(literal: String!): [Sign!]
+    randomSign: Sign!
+
+    ### USER ###
+    user(id: ID!): User
+
+    ### BUCKET ###
+    # Later...
+
+    ### LANGUAGE ###
+    # Later...
+
+    ### TAG ###
+    # Later...
+
+    ### ART / ARTIST ###
+    # Later...
+}

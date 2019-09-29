@@ -29,5 +29,5 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class Remotion extends Model {
-    //
+
 }

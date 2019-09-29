@@ -1,0 +1,19 @@
+# The mutation type, that can make any mutations of the data in database
+type Mutation {
+    ### WORD ###
+    requestWord(input: WordInput!): requestedWord
+    deleteWord(wordId: ID!): Word
+    editWord(wordId: ID!, input: WordInput): Word
+    addAlias(wordId: ID!, input: WordInput): Word
+
+    ### SIGN ###
+    signPlayed(signId: ID!): Int! # Added one click to "play" in the video
+    createSign(input: SignInput!): Sign
+    editDescription(input: DescriptionInput): Sign
+    flagSign(input: FlagInput): Sign
+    deleteSign(signId: ID!): Sign
+
+    ### LIKE ###
+    like(userId: ID!, signId: ID!): Boolean! # Returns true if liked
+    unlike(userId: ID!, signId: ID!): Boolean! # Returns false if is unliked
+}

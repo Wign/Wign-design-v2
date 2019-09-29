@@ -1,0 +1,144 @@
+scalar Date # Date kan evt være i integer timestamp format, så det kan konverteres
+scalar Year # YYYY - bare Integer er nok
+
+input WordInput {
+    # Must have EITHER wordId OR word !
+    wordId: ID
+    word: String
+    writtenLanguage: String! # Code of the written language!
+    userId: ID!
+}
+
+input SignInput {
+    userId: ID!
+    videoUuid: String!
+    signLanguage: String! # Code of the sign language!
+}
+
+input DescriptionInput {
+    userId: ID! # creator/editor
+    text: String # full text of description
+}
+
+input TranslationInput {
+    word: WordInput!
+    sign: SignInput!
+    description: DescriptionInput!
+    userId: ID
+}
+
+input FlagInput {
+    signId: ID!
+    userId: ID!
+    Reason: String! # One of the hardcoded possibilities
+    IP: String!
+    Description: String # Opt: Extra descirption of the reason
+}
+
+interface Word {
+    id: ID!
+    literal: String!
+    writtenLanguage: WrittenLanguage!
+}
+
+# Words with at least one sign
+type signedWord implements Word {
+    id: ID!
+    literal: String!
+    writtenLanguage: WrittenLanguage!
+    signs: [Sign!]!
+    aliases: [Word!]! # Liste over alle relateret orde
+}
+
+# Words which has been requested upon
+type requestedWord implements Word {
+    id: ID!
+    literal: String!
+    writtenLanguage: WrittenLanguage!
+    requests: [Request!]!
+}
+
+type Sign {
+    id: ID!
+    videoUuid: String!
+    playings: Int!
+    signLanguage: SignLanguage!
+    creator: User!
+    created: Date!
+    countLikes: Int!
+    isLiked(userId: ID!): Boolean!
+}
+
+type Description {
+    id: ID!
+    text: String!
+}
+
+type User {
+    id: ID!
+    name: String!
+    signs: [Sign!] # All signs created by this user
+    requests: [Request!] # All requests created by this user
+    buckets: [Bucket!] # All the buckets of the user
+}
+
+type Like {
+    id: ID!
+    sign: Sign!
+    user: User!
+}
+
+interface Language {
+    id: ID!
+    code: String!
+    name: String!
+}
+
+type SignLanguage implements Language{
+    id: ID!
+    code: String!
+    name: String!
+}
+
+type WrittenLanguage implements Language{
+    id: ID!
+    code: String!
+    name: String!
+}
+
+## Disse nedenfor kan du implementere senere hvis?
+type Request {
+    id: ID!
+    word: Word!
+    creator: User!
+    created: Date!
+}
+
+type Tag {
+    id: ID!
+    tag: String!
+    signs: [Sign!]! # Evt. kun/også liste af descriptions?
+}
+
+type Bucket {
+    id: ID! # Bruge uuid her!
+    title: String!
+    owner: User!
+    created: Date!
+}
+
+type Art {
+    id: ID!
+    name: String!
+    filename: String!
+    url: String!
+    artist: Artist!
+    year: Year!
+}
+
+type Artist {
+    id: ID!
+    name: String!
+    externalUrl: String! # Url til deres hjemmeside eller lignende
+    internalUrl: String! # Url til vores egen profilering-side af dem
+}

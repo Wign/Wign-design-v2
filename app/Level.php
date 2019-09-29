@@ -39,10 +39,10 @@ class Level extends Model {
 
     // DEFINING RELATIONSHIPS -----------------------------------
     public function users() {
-        return $this->belongsToMany('App\User', 'qcvs', 'level_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'qcvs', 'level_id', 'user_id')->withTimestamps();
     }
 
     public function translations() {
-        return $this->belongsToMany('App\Translation', 'ils', 'level_id', 'translation_id')->withTimestamps();
+        return $this->belongsToMany(Translation::class, 'ils', 'level_id', 'translation_id')->withTimestamps();
     }
 }

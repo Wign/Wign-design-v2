@@ -61,31 +61,31 @@ class Translation extends Model {
 
     // DEFINING RELATIONSHIPS -----------------------------------
     public function word() {
-        return $this->belongsTo('App\Word', 'word_id');
+        return $this->belongsTo(Word::class, 'word_id');
     }
 
     public function sign() {
-        return $this->belongsTo('App\Sign', 'sign_id');
+        return $this->belongsTo(Sign::class, 'sign_id');
     }
 
     public function description() {
-        return $this->belongsTo('App\Description', 'description_id');
+        return $this->belongsTo(Description::class, 'description_id');
     }
 
     public function creator() {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     public function editor() {
-        return $this->belongsTo('App\User', 'editor_id');
+        return $this->belongsTo(User::class, 'editor_id');
     }
 
     public function reviewsFrom() {
-        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'old_il_id');
+        return $this->belongsToMany(Review::class, 'ils', 'translation_id', 'old_il_id');
     }
 
     public function reviewsOnto() {
-        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'new_il_id');
+        return $this->belongsToMany(Review::class, 'ils', 'translation_id', 'new_il_id');
     }
     /*
         public function glossaries()

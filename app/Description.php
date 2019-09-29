@@ -49,20 +49,19 @@ class Description extends Model {
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-
-    public function tags() {
-        return $this->belongsToMany('App\Tag', 'taggables', 'description_id', 'tag_id')->withTimestamps();
-    }
-
-    public function translations() {
-        return $this->hasMany('App\Translation', 'description_id');
-    }
-
     public function creator() {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     public function editor() {
-        return $this->belongsTo('App\User', 'editor_id');
+        return $this->belongsTo(User::class, 'editor_id');
+    }
+
+    public function translations() {
+        return $this->hasMany(Translation::class);
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class, 'taggables', 'description_id', 'tag_id')->withTimestamps();
     }
 }

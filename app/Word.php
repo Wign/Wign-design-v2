@@ -58,31 +58,31 @@ class Word extends Model {
 
     // DEFINING RELATIONSHIPS -----------------------------------
     public function creator() {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     public function editor() {
-        return $this->belongsTo('App\User', 'editor_id');
+        return $this->belongsTo(User::class, 'editor_id');
     }
 
     public function language() {
-        return $this->belongsTo('App\Language', 'language_id');
-    }
-
-    public function alias_parents() {
-        return $this->belongsToMany('App\Word', 'aliases', 'child_word_id', 'parent_word_id')->withTimestamps();
-    }
-
-    public function alias_children() {
-        return $this->belongsToMany('App\Word', 'aliases', 'parent_word_id', 'child_word_id')->withTimestamps();
+        return $this->belongsTo(Language::class, 'language_id');
     }
 
     public function translations() {
-        return $this->hasMany('App\Translation', 'translation_id');
+        return $this->hasMany(Translation::class, 'translation_id');
+    }
+
+    public function alias_parents() {
+        return $this->belongsToMany(Word::class, 'aliases', 'child_word_id', 'parent_word_id')->withTimestamps();
+    }
+
+    public function alias_children() {
+        return $this->belongsToMany(Word::class, 'aliases', 'parent_word_id', 'child_word_id')->withTimestamps();
     }
 
     public function requests() {
-        return $this->belongsToMany('App\User', 'requests', 'word_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'requests', 'word_id', 'user_id')->withTimestamps();
     }
 
 

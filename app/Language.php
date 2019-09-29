@@ -32,7 +32,7 @@ class Language extends Model {
     // DEFINING RELATIONSHIPS -----------------------------------
 
     public function words() {
-        return $this->hasMany('App\Word', 'language_id');
+        return $this->hasMany(Word::class, 'language_id');
     }
 
 }

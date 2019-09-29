@@ -84,15 +84,15 @@ class User extends Authenticatable {
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function ban() {
-        return $this->hasMany('App\Ban', 'user_id');
+    public function role() {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
-    public function role() {
-        return $this->belongsTo('App\Role', 'role_id');
+    public function ban() {
+        return $this->hasMany(Ban::class, 'user_id');
     }
 
     public function reviewCreator() {
-        return $this->hasMany('App\Review', 'creator_id');
+        return $this->hasMany(Review::class, 'creator_id');
     }
 }
