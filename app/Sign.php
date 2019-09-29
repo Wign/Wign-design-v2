@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Sign
+ * App\Sign.
  *
  * @property int $id
  * @property string $video_uuid

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\SignLanguage
+ * App\SignLanguage.
  *
  * @property int $id
  * @property string $code
