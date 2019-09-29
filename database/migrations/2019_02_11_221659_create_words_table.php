@@ -22,6 +22,7 @@ class CreateWordsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->unique(['literal', 'language_id']);
+            $table->index('literal');
         });
     }
 

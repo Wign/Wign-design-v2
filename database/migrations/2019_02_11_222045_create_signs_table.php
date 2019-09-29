@@ -24,6 +24,7 @@ class CreateSignsTable extends Migration
             $table->integer('creator_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->index('sign_language_id');
         });
     }
 

@@ -18,7 +18,6 @@ class CreateTaggablesTable extends Migration
             $table->integer('tag_id')->unsigned();
             $table->integer('description_id')->unsigned();
             $table->timestamp('created_at')->nullable();
-            $table->index(['tag_id', 'description_id']);
         });
     }
 

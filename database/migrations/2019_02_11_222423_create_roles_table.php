@@ -17,15 +17,7 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type')->unique();
-            $table->timestamps();
         });
-
-        if (Role::count() == 0) {
-            Artisan::call('db:seed', [
-                    '--class' => 'RolesTableSeeder',
-                    '--force' => true, ]
-            );
-        }
     }
 
     /**

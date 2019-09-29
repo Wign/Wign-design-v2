@@ -17,8 +17,10 @@ class CreateLikesTable extends Migration
             $table->increments('id');
             $table->integer('translation_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->timestamps();
-            $table->index(['translation_id', 'user_id']);
+            $table->timestamp('created_at')->nullable();
+            $table->index(['user_id', 'translation_id']);
+            $table->index('translation_id');
+            $table->index('user_id');
         });
     }
 

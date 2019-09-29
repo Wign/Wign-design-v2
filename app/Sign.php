@@ -6,20 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Sign.
+ * App\Sign
  *
- * @property-read \App\User $creator
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $likes
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translations
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Sign onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign query()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Query\Builder|\App\Sign withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Sign withoutTrashed()
- * @mixin \Eloquent
  * @property int $id
  * @property string $video_uuid
  * @property string $video_url
@@ -27,13 +15,28 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $small_thumbnail_url
  * @property int $playings
  * @property int $sign_language_id
- * @property int $user_id
+ * @property int $creator_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\User $creator
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Description[] $descriptions
+ * @property-read int|null $descriptions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $likes
  * @property-read int|null $likes_count
+ * @property-read \App\SignLanguage $signLanguage
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translations
  * @property-read int|null $translations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
+ * @property-read int|null $words_count
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Sign onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign query()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereCreatorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign wherePlayings($value)
@@ -41,14 +44,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereSmallThumbnailUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereThumbnailUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereVideoUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereVideoUuid($value)
- * @property int $creator_id
- * @property-read \App\SignLanguage $signLanguage
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
- * @property-read int|null $words_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereCreatorId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Sign withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Sign withoutTrashed()
+ * @mixin \Eloquent
  */
 class Sign extends Model
 {
@@ -62,32 +62,37 @@ class Sign extends Model
         'small_thumbnail_url',
         'playings',
         'sign_language_id',
-        'user_id',
+        'creator_id',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
     public function creator()
     {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo('App\User');
     }
 
     public function translations()
     {
-        return $this->hasMany('App\Translation', 'sign_id');
+        return $this->hasMany('App\Translation');
     }
 
     public function words()
     {
-        return $this->belongsToMany('App\Word', 'translations', 'sign_id', 'translation_id')->withTimestamps();
+        return $this->belongsToMany('App\Word', 'translations')->withTimestamps();
+    }
+
+    public function descriptions()
+    {
+        return $this->belongsToMany('App\Description', 'translations')->withTimestamps();
     }
 
     public function likes()
     {
-        return $this->belongsToMany('App\User', 'likes', 'sign_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany('App\User', 'likes')->withTimestamps(true, false);
     }
 
     public function signLanguage()
     {
-        return $this->belongsTo('App\SignLanguage', 'sign_language_id');
+        return $this->belongsTo('App\SignLanguage');
     }
 }
