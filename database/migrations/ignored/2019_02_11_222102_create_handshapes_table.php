@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateArtsTable extends Migration
+class CreateHandshapesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateArtsTable extends Migration
      */
     public function up()
     {
-        Schema::create('arts', function (Blueprint $table) {
+        Schema::create('handshapes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('artist_id')->unsigned();
-            //TODO TM!!!!!!!!!!!!
+            // Something here ( TODO KA!)
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateArtsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('arts');
+        Schema::dropIfExists('handshapes');
     }
 }

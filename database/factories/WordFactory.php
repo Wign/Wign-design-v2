@@ -12,6 +12,6 @@ $factory->define(App\Word::class, function (Faker $faker) {
         'literal' => $faker->unique()->word,
         'language_id' => $l,
         'creator_id' => $u1->id,
-        'editor_id' => $u2->id
+        'editor_id' => $u2->id,
     ];
 });

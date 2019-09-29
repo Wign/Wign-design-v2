@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Review
+ * App\Review.
  *
  * @property int $id
  * @property int $new_il_id
@@ -28,17 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Review extends Model {
-    
-    public function creator() {
-        return $this->belongsTo(User::class, 'creator_id');
-    }
-
-    public function oldTranslation() {
-        return $this->belongsToMany(Translation::class, 'ils', 'review_id', 'old_il_id')->withTimestamps();
-    }
-
-    public function newTranslation() {
-        return $this->belongsToMany(Translation::class, 'ils', 'review_id', 'new_il_id')->withTimestamps();
-    }
+class Review extends Model
+{
+    //
 }

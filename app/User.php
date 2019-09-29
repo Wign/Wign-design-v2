@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * App\User
+ * App\User.
  *
  * @property int $id
  * @property string $name
@@ -20,13 +20,27 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Ban[] $ban
- * @property-read int|null $ban_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Description[] $descriptionsCreated
+ * @property-read int|null $descriptions_created_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Description[] $descriptionsEdited
+ * @property-read int|null $descriptions_edited_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sign[] $likes
+ * @property-read int|null $likes_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviewCreator
- * @property-read int|null $review_creator_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $requests
+ * @property-read int|null $requests_count
  * @property-read \App\Role $role
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sign[] $signsCreated
+ * @property-read int|null $signs_created_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translationsCreated
+ * @property-read int|null $translations_created_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translationsEdited
+ * @property-read int|null $translations_edited_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $wordsCreated
+ * @property-read int|null $words_created_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $wordsEdited
+ * @property-read int|null $words_edited_count
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
@@ -70,7 +84,8 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -80,19 +95,68 @@ class User extends Authenticatable {
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'last_login' => 'datetime',
+        'last_login'        => 'datetime',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function role() {
-        return $this->belongsTo(Role::class, 'role_id');
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
-    public function ban() {
+    public function requests()
+    {
+        return $this->belongsToMany(Word::class, 'requests')->withTimestamps(true, false);
+    }
+
+    public function wordsCreated()
+    {
+        return $this->hasMany(Word::class, 'creator_id');
+    }
+
+    public function wordsEdited()
+    {
+        return $this->hasMany(Word::class, 'editor_id');
+    }
+
+    public function translationsCreated()
+    {
+        return $this->hasMany(Translation::class, 'creator_id');
+    }
+
+    public function translationsEdited()
+    {
+        return $this->hasMany(Translation::class, 'editor_id');
+    }
+
+    public function descriptionsCreated()
+    {
+        return $this->hasMany(Description::class, 'creator_id');
+    }
+
+    public function descriptionsEdited()
+    {
+        return $this->hasMany(Description::class, 'editor_id');
+    }
+
+    public function signsCreated()
+    {
+        return $this->hasMany(Sign::class, 'creator_id');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Sign::class, 'likes')->withTimestamps(true, false);
+    }
+
+    /* Leaving those out for now
+     public function ban()
+    {
         return $this->hasMany(Ban::class, 'user_id');
     }
 
-    public function reviewCreator() {
+    public function reviewCreator()
+    {
         return $this->hasMany(Review::class, 'creator_id');
-    }
+    } */
 }

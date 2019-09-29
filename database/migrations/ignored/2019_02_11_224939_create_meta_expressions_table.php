@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMetaExpressionsTable extends Migration
 {
@@ -15,13 +15,13 @@ class CreateMetaExpressionsTable extends Migration
     {
         Schema::create('meta_expressions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer( 'sign_id' )->unsigned();
+            $table->integer('sign_id')->unsigned();
             $table->integer('expression_id')->unsigned();
-            $table->integer( 'handshape_id' )->unsigned()->nullable();
-            $table->integer( 'mouthing_id' )->unsigned()->nullable();
+            $table->integer('handshape_id')->unsigned()->nullable();
+            $table->integer('mouthing_id')->unsigned()->nullable();
             //$table->integer('next_expr_id')->unsigned()->nullable();    //TODO: skal genovervejes
-            $table->integer( 'creator_id' )->unsigned();
-            $table->integer( 'editor_id' )->unsigned();
+            $table->integer('creator_id')->unsigned();
+            $table->integer('editor_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateExpressionsTable extends Migration
+class CreateMouthingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateExpressionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('expressions', function (Blueprint $table) {
+        Schema::create('mouthings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
+            $table->string('expression');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateExpressionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expressions');
+        Schema::dropIfExists('mouthings');
     }
 }

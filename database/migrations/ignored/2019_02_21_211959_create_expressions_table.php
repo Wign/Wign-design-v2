@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateHandshapesTable extends Migration
+class CreateExpressionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateHandshapesTable extends Migration
      */
     public function up()
     {
-        Schema::create('handshapes', function (Blueprint $table) {
+        Schema::create('expressions', function (Blueprint $table) {
             $table->increments('id');
-            // Something here ( TODO KA!)
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateHandshapesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('handshapes');
+        Schema::dropIfExists('expressions');
     }
 }

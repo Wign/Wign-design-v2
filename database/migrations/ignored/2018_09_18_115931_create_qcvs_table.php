@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateIlsTable extends Migration
+class CreateQCVsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateIlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ils', function (Blueprint $table) {
+        Schema::create('qcvs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer( 'level_id' )->unsigned();
-            $table->integer('translation_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('level_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ class CreateIlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ils');
+        Schema::dropIfExists('qcvs');
     }
 }

@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Level;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateMouthingsTable extends Migration
+class CreateLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +14,9 @@ class CreateMouthingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mouthings', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
-            $table->string('expression');
+            $table->smallinteger('rank')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateMouthingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mouthings');
+        Schema::dropIfExists('levels');
     }
 }

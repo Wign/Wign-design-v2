@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateBucketsTable extends Migration
+class CreateBanUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBucketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('buckets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->unique();
-            $table->string('title');
+        Schema::create('ban_users', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->index(['user_id']);
         });
     }
 
@@ -29,6 +28,6 @@ class CreateBucketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buckets');
+        Schema::dropIfExists('ban_users');
     }
 }

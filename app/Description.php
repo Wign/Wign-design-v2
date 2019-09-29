@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Description
+ * App\Description.
  *
  * @property int $id
  * @property string $text
@@ -17,10 +17,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $creator
  * @property-read \App\User $editor
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sign[] $signs
+ * @property-read int|null $signs_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translations
  * @property-read int|null $translations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
+ * @property-read int|null $words_count
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Description newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Description newQuery()
@@ -45,7 +49,7 @@ class Description extends Model {
     protected $fillable = [
         'text',
         'creator_id',
-        'editor_id'
+        'editor_id',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
@@ -55,6 +59,14 @@ class Description extends Model {
 
     public function editor() {
         return $this->belongsTo(User::class, 'editor_id');
+    }
+
+    public function words() {
+        return $this->belongsToMany(Word::class, 'translations')->withTimestamps();
+    }
+
+    public function signs() {
+        return $this->belongsToMany(Sign::class, 'translations')->withTimestamps();
     }
 
     public function translations() {

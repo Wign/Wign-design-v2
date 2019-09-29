@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAliasesTable extends Migration
 {
@@ -17,7 +17,7 @@ class CreateAliasesTable extends Migration
             $table->increments('id');
             $table->integer('child_word_id')->unsigned();
             $table->integer('parent_word_id')->unsigned();
-            $table->integer( 'creator_id')->unsigned();
+            $table->integer('creator_id')->unsigned();
             $table->timestamps();
             $table->index('child_word_id', 'parent_word_id');
         });

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Language
+ * App\Language.
  *
  * @property int $id
  * @property string $code
@@ -21,18 +21,14 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class Language extends Model {
-    // MASS ASSIGNMENT ------------------------------------------
-    protected $fillable = [
-        'code',
-        'text',
-    ];
-
     public $timestamps = false;
+
+    // MASS ASSIGNMENT ------------------------------------------
+    protected $fillable = []; // It must not be mass assigment, as it is a static list of languages
 
     // DEFINING RELATIONSHIPS -----------------------------------
 
     public function words() {
         return $this->hasMany(Word::class, 'language_id');
     }
-
 }

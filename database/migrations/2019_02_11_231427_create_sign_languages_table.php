@@ -1,9 +1,9 @@
 <?php
 
 use App\SignLanguage;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSignLanguagesTable extends Migration
 {
@@ -19,13 +19,6 @@ class CreateSignLanguagesTable extends Migration
             $table->string('code')->unique();
             $table->string('text');
         });
-
-        if (SignLanguage::count() == 0) {
-            Artisan::call('db:seed', [
-                    '--class' => 'SignLanguagesTableSeeder',
-                    '--force' => true]
-            );
-        }
     }
 
     /**

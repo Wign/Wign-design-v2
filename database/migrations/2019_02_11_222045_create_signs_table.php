@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSignsTable extends Migration
 {
@@ -15,15 +15,16 @@ class CreateSignsTable extends Migration
     {
         Schema::create('signs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string( 'video_uuid' )->unique();
-            $table->string( 'video_url' );
-            $table->string( 'thumbnail_url' );
-            $table->string( 'small_thumbnail_url' );
-            $table->integer( 'playings' )->default(0);
+            $table->string('video_uuid')->unique();
+            $table->string('video_url');
+            $table->string('thumbnail_url');
+            $table->string('small_thumbnail_url');
+            $table->integer('playings')->default(0);
             $table->integer('sign_language_id')->unsigned();
-            $table->integer( 'creator_id' )->unsigned();
+            $table->integer('creator_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->index('sign_language_id');
         });
     }
 

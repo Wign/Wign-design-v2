@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class ForeignTable extends Migration
+class ForeignKeysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -31,19 +31,9 @@ class ForeignTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::table('descriptions', function (Blueprint $table) {
-            $table->foreign('creator_id')->references('id')->on('users');
-            $table->foreign('editor_id')->references('id')->on('users');
-        });
-
         Schema::table('glossaries', function (Blueprint $table) {
             $table->foreign('translation_id')->references('id')->on('translations');
             $table->foreign('bucket_id')->references('id')->on('buckets');
-        });
-
-        Schema::table('likes', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('translation_id')->references('id')->on('signs');
         });
 
         Schema::table('meta_expressions', function (Blueprint $table) {
@@ -71,11 +61,6 @@ class ForeignTable extends Migration
             $table->foreign('remotion_id')->references('id')->on('remotions');
         });
 
-        Schema::table('requests', function (Blueprint $table) {
-            $table->foreign('word_id')->references('id')->on('words');
-            $table->foreign('user_id')->references('id')->on('users');
-        });
-
         Schema::table('reviews', function (Blueprint $table) {
             $table->foreign('new_il_id')->references('id')->on('translations');
             $table->foreign('old_il_id')->references('id')->on('translations');
@@ -87,37 +72,9 @@ class ForeignTable extends Migration
             $table->foreign('review_id')->references('id')->on('reviews');
         });
 
-        Schema::table('signs', function (Blueprint $table) {
-            $table->foreign('creator_id')->references('id')->on('users');
-            $table->foreign('sign_language_id')->references('id')->on('sign_languages');
-        });
-
         Schema::table('ils', function (Blueprint $table) {
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('translation_id')->references('id')->on('translations');
-        });
-
-        Schema::table('taggables', function (Blueprint $table) {
-            $table->foreign('tag_id')->references('id')->on('tags');
-            $table->foreign('description_id')->references('id')->on('descriptions');
-        });
-
-        Schema::table('translations', function (Blueprint $table) {
-            $table->foreign('word_id')->references('id')->on('words');
-            $table->foreign('sign_id')->references('id')->on('signs');
-            $table->foreign('description_id')->references('id')->on('descriptions');
-            $table->foreign('creator_id')->references('id')->on('users');
-            $table->foreign('editor_id')->references('id')->on('users');
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('role_id')->references('id')->on('roles');
-        });
-
-        Schema::table('words', function (Blueprint $table) {
-            $table->foreign('language_id')->references('id')->on('languages');
-            $table->foreign('creator_id')->references('id')->on('users');
-            $table->foreign('editor_id')->references('id')->on('users');
         });
     }
 
@@ -146,19 +103,9 @@ class ForeignTable extends Migration
             $table->dropForeign(['user_id']);
         });
 
-        Schema::table('descriptions', function (Blueprint $table) {
-            $table->dropForeign(['creator_id']);
-            $table->dropForeign(['editor_id']);
-        });
-
         Schema::table('glossaries', function (Blueprint $table) {
             $table->dropForeign(['translation_id']);
             $table->dropForeign(['bucket_id']);
-        });
-
-        Schema::table('likes', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropForeign(['translation_id']);
         });
 
         Schema::table('meta_expressions', function (Blueprint $table) {
@@ -186,11 +133,6 @@ class ForeignTable extends Migration
             $table->dropForeign(['qcv_id']);
         });
 
-        Schema::table('requests', function (Blueprint $table) {
-            $table->dropForeign(['word_id']);
-            $table->dropForeign(['user_id']);
-        });
-
         Schema::table('reviews', function (Blueprint $table) {
             $table->dropForeign(['new_il_id']);
             $table->dropForeign(['old_il_id']);
@@ -202,37 +144,9 @@ class ForeignTable extends Migration
             $table->dropForeign(['qcv_id']);
         });
 
-        Schema::table('signs', function (Blueprint $table) {
-            $table->dropForeign(['creator_id']);
-            $table->dropForeign(['sign_language_id']);
-        });
-
         Schema::table('ils', function (Blueprint $table) {
             $table->dropForeign(['level_id']);
             $table->dropForeign(['translation_id']);
-        });
-
-        Schema::table('taggables', function (Blueprint $table) {
-            $table->dropForeign(['tag_id']);
-            $table->dropForeign(['description_id']);
-        });
-
-        Schema::table('translations', function (Blueprint $table) {
-            $table->dropForeign(['word_id']);
-            $table->dropForeign(['sign_id']);
-            $table->dropForeign(['description_id']);
-            $table->dropForeign(['creator_id']);
-            $table->dropForeign(['editor_id']);
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['role_id']);
-        });
-
-        Schema::table('words', function (Blueprint $table) {
-            $table->dropForeign(['language_id']);
-            $table->dropForeign(['creator_id']);
-            $table->dropForeign(['editor_id']);
         });
     }
 }
