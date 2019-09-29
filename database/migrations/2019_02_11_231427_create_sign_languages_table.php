@@ -19,13 +19,6 @@ class CreateSignLanguagesTable extends Migration
             $table->string('code')->unique();
             $table->string('text');
         });
-
-        if (SignLanguage::count() == 0) {
-            Artisan::call('db:seed', [
-                    '--class' => 'SignLanguagesTableSeeder',
-                    '--force' => true, ]
-            );
-        }
     }
 
     /**

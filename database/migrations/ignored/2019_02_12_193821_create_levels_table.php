@@ -19,13 +19,6 @@ class CreateLevelsTable extends Migration
             $table->smallinteger('rank')->unsigned();
             $table->timestamps();
         });
-
-        if (Level::count() == 0) {
-            Artisan::call('db:seed', [
-                    '--class' => 'LevelsTableSeeder',
-                    '--force' => true, ]
-            );
-        }
     }
 
     /**

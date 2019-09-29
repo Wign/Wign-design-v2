@@ -1,5 +1,6 @@
 <?php
 
+use App\Language;
 use Illuminate\Database\Seeder;
 
 class LanguagesTableSeeder extends Seeder
@@ -13,12 +14,12 @@ class LanguagesTableSeeder extends Seeder
     {
         $languages = [
             collect(['code' => 'da_DK', 'text' => 'dansk']),
-            collect(['code' => 'en_UK', 'text' => 'english']),
-            collect(['code' => 'en_US', 'text' => 'english']),
+            //collect(['code' => 'en_UK', 'text' => 'english']),
+            //collect(['code' => 'en_US', 'text' => 'english']),
         ];
 
         foreach ($languages as $l) {
-            \App\Language::create([
+            Language::create([
                 'code' => $l->get('code'),
                 'text' => $l->get('text'),
             ]);
