@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Language
+ * App\Language.
  *
  * @property int $id
  * @property string $code

@@ -76,7 +76,6 @@ class ForeignKeysTable extends Migration
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('translation_id')->references('id')->on('translations');
         });
-
     }
 
     /**
@@ -150,5 +149,4 @@ class ForeignKeysTable extends Migration
             $table->dropForeign(['translation_id']);
         });
     }
-
 }

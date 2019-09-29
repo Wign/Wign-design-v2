@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * App\User
+ * App\User.
  *
  * @property int $id
  * @property string $name
@@ -110,38 +110,45 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Word', 'requests')->withTimestamps(true, false);
     }
 
-    public function wordsCreated() {
+    public function wordsCreated()
+    {
         return $this->hasMany('App\Word', 'creator_id');
     }
 
-    public function wordsEdited() {
+    public function wordsEdited()
+    {
         return $this->hasMany('App\Word', 'editor_id');
     }
 
-    public function translationsCreated() {
+    public function translationsCreated()
+    {
         return $this->hasMany('App\Translation', 'creator_id');
     }
 
-    public function translationsEdited() {
+    public function translationsEdited()
+    {
         return $this->hasMany('App\Translation', 'editor_id');
     }
 
-    public function descriptionsCreated() {
+    public function descriptionsCreated()
+    {
         return $this->hasMany('App\Description', 'creator_id');
     }
 
-    public function descriptionsEdited() {
+    public function descriptionsEdited()
+    {
         return $this->hasMany('App\Description', 'editor_id');
     }
 
-    public function signsCreated() {
+    public function signsCreated()
+    {
         return $this->hasMany('App\Sign', 'creator_id');
     }
 
-    public function likes() {
+    public function likes()
+    {
         return $this->belongsToMany('App\Sign', 'likes')->withTimestamps(true, false);
     }
-
 
     /* Leaving those out for now
      public function ban()

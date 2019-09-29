@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Translation
+ * App\Translation.
  *
  * @property-read \App\User $creator
  * @property-read \App\Description $description
