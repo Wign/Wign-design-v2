@@ -74,6 +74,6 @@ class Description extends Model {
     }
 
     public function tags() {
-        return $this->belongsToMany(Tag::class, 'taggables', 'description_id', 'tag_id')->withTimestamps();
+        return $this->belongsToMany(Tag::class, 'taggables', )->withTimestamps();
     }
 }

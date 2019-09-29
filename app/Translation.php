@@ -47,7 +47,7 @@ class Translation extends Pivot
     }
 
     public function description() {
-        return $this->belongsTo(Descriptio::class);
+        return $this->belongsTo(Description::class);
     }
 
     public function creator() {
