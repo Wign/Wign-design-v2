@@ -45,7 +45,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Word withoutTrashed()
  * @mixin \Eloquent
  */
-class Word extends Model {
+class Word extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     use SoftDeletes;
 

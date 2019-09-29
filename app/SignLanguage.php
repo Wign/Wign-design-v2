@@ -28,7 +28,8 @@ class SignLanguage extends Model
     protected $fillable = []; // It must not be mass assigment, as it is a static list of languages
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function signs() {
+    public function signs()
+    {
         return $this->hasMany(Sign::class);
     }
 }

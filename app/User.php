@@ -62,7 +62,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|\App\User withoutTrashed()
  * @mixin \Eloquent
  */
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use Notifiable;
     use SoftDeletes;
 

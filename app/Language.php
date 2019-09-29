@@ -20,7 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereText($value)
  * @mixin \Eloquent
  */
-class Language extends Model {
+class Language extends Model
+{
     public $timestamps = false;
 
     // MASS ASSIGNMENT ------------------------------------------
@@ -28,7 +29,8 @@ class Language extends Model {
 
     // DEFINING RELATIONSHIPS -----------------------------------
 
-    public function words() {
+    public function words()
+    {
         return $this->hasMany(Word::class);
     }
 }

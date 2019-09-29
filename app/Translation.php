@@ -38,23 +38,28 @@ class Translation extends Pivot
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function word() {
+    public function word()
+    {
         return $this->belongsTo(Word::class);
     }
 
-    public function sign() {
+    public function sign()
+    {
         return $this->belongsTo(Sign::class);
     }
 
-    public function description() {
+    public function description()
+    {
         return $this->belongsTo(Description::class);
     }
 
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function editor() {
+    public function editor()
+    {
         return $this->belongsTo(User::class);
     }
 

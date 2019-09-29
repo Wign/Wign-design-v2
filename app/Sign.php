@@ -50,7 +50,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Sign withoutTrashed()
  * @mixin \Eloquent
  */
-class Sign extends Model {
+class Sign extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     use SoftDeletes;
 
@@ -65,27 +66,33 @@ class Sign extends Model {
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function translations() {
+    public function translations()
+    {
         return $this->hasMany(Translation::class);
     }
 
-    public function words() {
+    public function words()
+    {
         return $this->belongsToMany(Word::class, 'translations')->withTimestamps();
     }
 
-    public function descriptions() {
+    public function descriptions()
+    {
         return $this->belongsToMany(Description::class, 'translations')->withTimestamps();
     }
 
-    public function likes() {
+    public function likes()
+    {
         return $this->belongsToMany(User::class, 'likes')->withTimestamps(true, false);
     }
 
-    public function signLanguage() {
+    public function signLanguage()
+    {
         return $this->belongsTo(SignLanguage::class);
     }
 }

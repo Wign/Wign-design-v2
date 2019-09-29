@@ -42,7 +42,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Description withoutTrashed()
  * @mixin \Eloquent
  */
-class Description extends Model {
+class Description extends Model
+{
     // MASS ASSIGNMENT ------------------------------------------
     use SoftDeletes;
 
@@ -53,27 +54,33 @@ class Description extends Model {
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(User::class, 'creator_id');
     }
 
-    public function editor() {
+    public function editor()
+    {
         return $this->belongsTo(User::class, 'editor_id');
     }
 
-    public function words() {
+    public function words()
+    {
         return $this->belongsToMany(Word::class, 'translations')->withTimestamps();
     }
 
-    public function signs() {
+    public function signs()
+    {
         return $this->belongsToMany(Sign::class, 'translations')->withTimestamps();
     }
 
-    public function translations() {
+    public function translations()
+    {
         return $this->hasMany(Translation::class);
     }
 
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class, 'taggables', )->withTimestamps();
     }
 }

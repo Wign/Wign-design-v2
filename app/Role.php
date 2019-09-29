@@ -18,7 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereType($value)
  * @mixin \Eloquent
  */
-class Role extends Model {
+class Role extends Model
+{
     public $timestamps = false;
     // MASS ASSIGNMENT ------------------------------------------
 
@@ -32,7 +33,8 @@ class Role extends Model {
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function users() {
+    public function users()
+    {
         return $this->hasMany(User::class);
     }
 }
