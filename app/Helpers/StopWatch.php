@@ -59,6 +59,5 @@ class StopWatch
     {
         unset(self::$startTimes[$timerName]);
         unset(self::$roundTimes[$timerName]);
-        info('Stopwatch cleared');
     }
 }
