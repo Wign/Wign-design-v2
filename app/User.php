@@ -107,7 +107,7 @@ class User extends Authenticatable
 
     public function requests()
     {
-        return $this->belongsToMany('App\Word', 'requests')->withTimestamps(true, false);
+        return $this->belongsToMany('App\Word', 'requests');
     }
 
     public function wordsCreated()
@@ -147,7 +147,7 @@ class User extends Authenticatable
 
     public function likes()
     {
-        return $this->belongsToMany('App\Sign', 'likes')->withTimestamps(true, false);
+        return $this->belongsToMany('App\Translation', 'likes');
     }
 
     /* Leaving those out for now

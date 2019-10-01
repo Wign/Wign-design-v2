@@ -33,6 +33,6 @@ class Tag extends Model
 
     public function descriptions()
     {
-        return $this->belongsToMany('App\Description', 'taggables')->withTimestamps(true, false);
+        return $this->belongsToMany('App\Description', 'taggables');
     }
 }

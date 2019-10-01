@@ -1,15 +1,19 @@
 <?php
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\Description;
+use App\User;
 use Faker\Generator as Faker;
 
-$factory->define(\App\Description::class, function (Faker $faker) {
-    $users = App\User::withTrashed()->random();
-    $u1 = $users->first();
-    $u2 = rand(0, 4) == 0 ? $users->skip(1)->first() : $u1;
+
+$factory->define(Description::class, function (Faker $faker) {
+    //$faker->addProvider(new App\Providers\FakerProvider($faker)); Later...
 
     return [
-        'text' =>   $faker->realText(),
-        'creator_id' => $u1,
-        'editor_id' => $u2,
+        //'text'     => $faker->textWithHashtag(), Later...
+        'text'       => $faker->realText(),
+        'creator_id' => factory(User::class),
+        'editor_id'  => factory(User::class),
     ];
 });

@@ -57,7 +57,7 @@ class Description extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\Tag', 'taggable')->withTimestamps(true, false);
+        return $this->belongsToMany('App\Tag', 'taggable');
     }
 
     public function translations()

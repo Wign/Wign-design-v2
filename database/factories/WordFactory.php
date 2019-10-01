@@ -1,17 +1,18 @@
 <?php
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\User;
+use App\Word;
 use Faker\Generator as Faker;
 
-$factory->define(App\Word::class, function (Faker $faker) {
-    $users = App\User::withTrashed()->random();
-    $u1 = $users->first();
-    $u2 = rand(0, 4) == 0 ? $users->skip(1)->first() : $u1;
-    $l = rand(0, 100) > 0 ? \App\Language::whereCode('da_DK')->first() : \App\SignLanguage::random()->first();
+$factory->define(Word::class, function (Faker $faker) {
+    $faker->addProvider(new App\Providers\FakerProvider($faker));
 
     return [
-        'literal' => $faker->unique()->word,
-        'language_id' => $l,
-        'creator_id' => $u1->id,
-        'editor_id' => $u2->id,
+        'literal'     => $faker->unique()->wignWords(),
+        'language_id' => 1,
+        'creator_id'  => factory(User::class),
+        'editor_id'   => factory(User::class),
     ];
 });

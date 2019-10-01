@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Translation withoutTrashed()
  * @mixin \Eloquent
  */
-class Translation extends Pivot
+class Translation extends Model
 {
     // MASS ASSIGNMENT ------------------------------------------
     use SoftDeletes;
@@ -60,6 +60,11 @@ class Translation extends Pivot
     public function editor()
     {
         return $this->belongsTo('App\User', 'editor_id');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany('App\User', 'likes');
     }
 
     /*public function reviewsFrom()

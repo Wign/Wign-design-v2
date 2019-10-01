@@ -68,7 +68,7 @@ class Sign extends Model
     // DEFINING RELATIONSHIPS -----------------------------------
     public function creator()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'creator_id');
     }
 
     public function translations()
@@ -84,11 +84,6 @@ class Sign extends Model
     public function descriptions()
     {
         return $this->belongsToMany('App\Description', 'translations')->withTimestamps();
-    }
-
-    public function likes()
-    {
-        return $this->belongsToMany('App\User', 'likes')->withTimestamps(true, false);
     }
 
     public function signLanguage()

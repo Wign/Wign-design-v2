@@ -90,7 +90,7 @@ class Word extends Model
 
     public function requesters()
     {
-        return $this->belongsToMany('App\User', 'requests')->withTimestamps(true, false);
+        return $this->belongsToMany('App\User', 'requests');
     }
 
     /* LEAVING THIS OUT FOR NOW

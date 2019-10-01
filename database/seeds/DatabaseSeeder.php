@@ -1,5 +1,7 @@
 <?php
 
+use App\Helpers\StopWatch;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,16 +13,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        StopWatch::start();
         $this->call(InitSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(RequestsTableSeeder::class);
-        //$this->call(TranslationsTableSeeder::class);
+        echo "InitSeeder completed! It took ".StopWatch::round()." seconds\n";
 
-        echo "Model: visible / trashed / total seeded\n";
-        echo 'Words: '.\App\Word::count().' / '.\App\Word::onlyTrashed()->count().' / '.\App\Word::withTrashed()->count()."\n";
-        echo 'Signs: '.\App\Sign::count().' / '.\App\Sign::onlyTrashed()->count().' / '.\App\Sign::withTrashed()->count()."\n";
-        echo 'Descriptions: '.\App\Description::count().' / '.\App\Description::onlyTrashed()->count().' / '.\App\Description::withTrashed()->count()."\n";
-        echo 'Translations: '.\App\Translation::count().' / '.\App\Translation::onlyTrashed()->count().' / '.\App\Translation::withTrashed()->count()."\n";
-        echo 'Users: '.\App\User::count().' / '.\App\User::onlyTrashed()->count().' / '.\App\User::withTrashed()->count()."\n";
+        $this->call(UsersTableSeeder::class);
+        echo "UserTableSeeder completed! It took ".StopWatch::round()." seconds\n";
+
+        $this->call(LikeSeeder::class);
+        echo "LikeSeeder completed! It took ".StopWatch::round()." seconds\n";
+
+        $this->call(RequestsTableSeeder::class);
+        echo "RequestsTableSeeder completed! It took ".StopWatch::round()." seconds\n\n";
+
+        //echo "Model: visible / trashed / total seeded\n";
+        echo "Model: total seeded\n";
+        echo $this->output("Words", \App\Word::getModel());
+        echo $this->output("Signs", \App\Sign::getModel());
+        echo $this->output("Descriptions", \App\Description::getModel());
+        echo $this->output("Translations", \App\Translation::getModel());
+        echo $this->output("Users", \App\User::getModel());
     }
+
+    private function output(string $name, Model $model)
+    {
+        //$visible = $model::all()->count();
+        //$trashed = $model::onlyTrashed()->count();
+        $total = $model::withTrashed()->count();
+
+        //return $name.": ".$visible." / ".$trashed." / ".$total."\n";
+        return $name.": ".$total."\n";
+    }
+
+
 }
