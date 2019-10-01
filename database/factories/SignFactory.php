@@ -1,13 +1,12 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 use App\Sign;
 use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Sign::class, function (Faker $faker) {
-    $url       = '//www.cameratag.com/';
+    $url = '//www.cameratag.com/';
     $videoUUID = 'v-'.$faker->uuid;
 
     return [

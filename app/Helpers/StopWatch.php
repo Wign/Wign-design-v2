@@ -1,19 +1,17 @@
 <?php
 
-
 namespace App\Helpers;
-
 
 class StopWatch
 {
     /**
-     * @var $startTimes array The start times of the StopWatches
+     * @var array The start times of the StopWatches
      */
-    private static $startTimes = array();
-    private static $roundTimes = array();
+    private static $startTimes = [];
+    private static $roundTimes = [];
 
     /**
-     * Start the timer
+     * Start the timer.
      *
      * @param $timerName string The name of the timer
      *
@@ -21,13 +19,13 @@ class StopWatch
      */
     public static function start($timerName = 'default')
     {
-        $time                         = microtime(true);
+        $time = microtime(true);
         self::$startTimes[$timerName] = $time;
         self::$roundTimes[$timerName] = $time;
     }
 
     /**
-     * Get the elapsed time in seconds, in formatted string with two decimals
+     * Get the elapsed time in seconds, in formatted string with two decimals.
      *
      * @param $timerName string The name of the timer to start
      *
@@ -41,7 +39,7 @@ class StopWatch
     }
 
     /**
-     * Get the round time in seconds, in formatted string with two decimals
+     * Get the round time in seconds, in formatted string with two decimals.
      *
      * @param $timerName string The name of the timer to start
      *
@@ -51,14 +49,16 @@ class StopWatch
     public static function round($timerName = 'default')
     {
         $now = microtime(true);
-        $round =  $now - self::$roundTimes[$timerName];
+        $round = $now - self::$roundTimes[$timerName];
         self::$roundTimes[$timerName] = $now;
+
         return number_format($round, 2, ',', '.');
     }
 
-    public static function clear($timerName = 'default') {
+    public static function clear($timerName = 'default')
+    {
         unset(self::$startTimes[$timerName]);
         unset(self::$roundTimes[$timerName]);
-        info("Stopwatch cleared");
+        info('Stopwatch cleared');
     }
 }

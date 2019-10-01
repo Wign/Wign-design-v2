@@ -1,7 +1,6 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 use App\User;
 use Faker\Generator as Faker;
 
@@ -26,5 +25,5 @@ $factory->state(User::class, 'verified', function (Faker $faker) {
 });
 
 $factory->state(User::class, 'admin', [
-    'role_id' => 2
+    'role_id' => 2,
 ]);

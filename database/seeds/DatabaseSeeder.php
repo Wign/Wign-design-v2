@@ -15,24 +15,24 @@ class DatabaseSeeder extends Seeder
     {
         StopWatch::start();
         $this->call(InitSeeder::class);
-        echo "InitSeeder completed! It took ".StopWatch::round()." seconds\n";
+        echo 'InitSeeder completed! It took '.StopWatch::round()." seconds\n";
 
         $this->call(UsersTableSeeder::class);
-        echo "UserTableSeeder completed! It took ".StopWatch::round()." seconds\n";
+        echo 'UserTableSeeder completed! It took '.StopWatch::round()." seconds\n";
 
         $this->call(LikeSeeder::class);
-        echo "LikeSeeder completed! It took ".StopWatch::round()." seconds\n";
+        echo 'LikeSeeder completed! It took '.StopWatch::round()." seconds\n";
 
         $this->call(RequestsTableSeeder::class);
-        echo "RequestsTableSeeder completed! It took ".StopWatch::round()." seconds\n\n";
+        echo 'RequestsTableSeeder completed! It took '.StopWatch::round()." seconds\n\n";
 
         //echo "Model: visible / trashed / total seeded\n";
         echo "Model: total seeded\n";
-        echo $this->output("Words", \App\Word::getModel());
-        echo $this->output("Signs", \App\Sign::getModel());
-        echo $this->output("Descriptions", \App\Description::getModel());
-        echo $this->output("Translations", \App\Translation::getModel());
-        echo $this->output("Users", \App\User::getModel());
+        echo $this->output('Words', \App\Word::getModel());
+        echo $this->output('Signs', \App\Sign::getModel());
+        echo $this->output('Descriptions', \App\Description::getModel());
+        echo $this->output('Translations', \App\Translation::getModel());
+        echo $this->output('Users', \App\User::getModel());
     }
 
     private function output(string $name, Model $model)
@@ -42,8 +42,6 @@ class DatabaseSeeder extends Seeder
         $total = $model::withTrashed()->count();
 
         //return $name.": ".$visible." / ".$trashed." / ".$total."\n";
-        return $name.": ".$total."\n";
+        return $name.': '.$total."\n";
     }
-
-
 }

@@ -6,8 +6,7 @@ use Faker\Provider\Base;
 
 class FakerProvider extends Base
 {
-
-    protected static $wordList = array(
+    protected static $wordList = [
         'vr', 'texture', 'barbiedukke', 'kardanled', 'post', 'konklusion', 'peugeot', 'elvis', 'policy', 'exit',
         'basra', 'legende', 'teamtegn', 'flakkende', 'inertia', 'flueknepper', 'karat', 'manipulator', 'william',
         'opfør', 'ørn', 'transmongolske', 'kreditor', 'translokation', 'veganer', 'headset', 'marijuana', 'foreningen',
@@ -68,17 +67,17 @@ class FakerProvider extends Base
         'domæne', 'register', 'islamisk', 'underretning', 'laminat', 'gondol', 'acidinorange', 'paradis', 'pjerrot',
         'servostyring', 'intuitiv', 'hood', 'mesh', 'kantarel', 'logaritme', 'impressionisme', 'koralrev',
         'loppemarked', 'kork', 'vedtægter', 'disc', 'von', 'entreprise', 'danse', 'of', 'borgerlig', 'cfd', 'ly',
-        'fraktal', 'migration', 'sæson', 'medie', 'backpacker', 'spreadthesign', 'stamcelle', 'oman', 'galilei'
-    );
-    protected static $hashList = array(
+        'fraktal', 'migration', 'sæson', 'medie', 'backpacker', 'spreadthesign', 'stamcelle', 'oman', 'galilei',
+    ];
+    protected static $hashList = [
         'matematik', 'tegning', 'video', 'by', 'fodbold', 'kunst', 'land', 'design', 'grafik', 'form', 'brand',
         'matematisk', 'overflade', 'gamletegn', 'kørsel', 'film', 'køretøj', 'program', 'redigering', 'tidsalder',
         'kunster', 'spil', 'programmering', 'mad', 'tidsperiode', 'grønsager', 'forbund', 'religion', 'bjergkæde', 'it',
         'pægagogik', 'materiale', 'computervidenskab', 'nordkorea', 'animation', 'skuespiller', 'computer', 'cv',
         'teknologi', 'biolog', 'stil', 'software', 'person', 'hovedstad', 'formgiving', 'bil', 'butik',
         'programmeringssprog', 'cafe', 'socialmedier', 'pokemon', 'instruktion', 'brands', 'karrier', 'fysik', 'udland',
-        'fotografi', 'biologi', 'lande', 'farve', 'teknik', 'logik', 'figur', 'hovedstaed', 'danmark'
-    );
+        'fotografi', 'biologi', 'lande', 'farve', 'teknik', 'logik', 'figur', 'hovedstaed', 'danmark',
+    ];
 
     /**
      * Creates a word or sentence for the word of the sign.
@@ -96,21 +95,21 @@ class FakerProvider extends Base
      */
     public function wignWords(int $min = null, int $max = null)
     {
-        if ( ! $min && ! $max) {
+        if (! $min && ! $max) {
             $number = $this->biasedRandom([50, 30, 20]);
         } else {
             $number = rand($min, $max);
         }
 
-        return ucfirst(implode(" ", $this::randomElements(static::$wordList, $number, true)));
+        return ucfirst(implode(' ', $this::randomElements(static::$wordList, $number, true)));
     }
 
     public function hashtag(int $numHash = 1)
     {
         $tmpHash = $this::randomElements(static::$hashList, $numHash);
-        $hashtag = array();
+        $hashtag = [];
         foreach ($tmpHash as $hash) {
-            $hashtag[] = "#".$hash;
+            $hashtag[] = '#'.$hash;
         }
 
         return $hashtag;
@@ -118,15 +117,15 @@ class FakerProvider extends Base
 
     public function textWithHashtag(int $numWord = 10, int $numHash = 3)
     {
-        $words  = $this::randomElements(static::$wordList, $numWord, true);
+        $words = $this::randomElements(static::$wordList, $numWord, true);
         $hashes = $this->hashtag($numHash);
 
-        return implode(" ", self::shuffle(array_merge($words, $hashes)));
+        return implode(' ', self::shuffle(array_merge($words, $hashes)));
     }
 
     private function biasedRandom(array $bias): int
     {
-        $count  = rand(0, 99);
+        $count = rand(0, 99);
         $number = 0;
         while ($count >= 0) {
             $count -= array_shift($bias);
@@ -135,5 +134,4 @@ class FakerProvider extends Base
 
         return $number;
     }
-
 }

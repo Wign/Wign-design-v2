@@ -51,14 +51,14 @@ class UsersTableSeeder extends Seeder
                 factory(Translation::class)->create([
                     'description_id' => factory(Description::class)->create([
                         'creator_id' => $user->id,
-                        'editor_id'  => $user->id
+                        'editor_id'  => $user->id,
                     ])->id,
                     'word_id'        => factory(Word::class)->create([
                         'creator_id' => $user->id,
-                        'editor_id'  => $user->id
+                        'editor_id'  => $user->id,
                     ])->id,
                     'sign_id'        => factory(Sign::class)->create([
-                        'creator_id' => $user->id
+                        'creator_id' => $user->id,
                     ])->id,
                     'creator_id'     => $user->id,
                     'editor_id'      => $user->id,
