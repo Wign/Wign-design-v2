@@ -196,3 +196,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Ide-helpers
+schema-directives.graphql
+_ide_helper.php
