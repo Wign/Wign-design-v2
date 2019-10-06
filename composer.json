@@ -14,7 +14,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "nuwave/lighthouse": "^4.3"
+        "nuwave/lighthouse": "^4.3",
+        "laravel/nova": "~2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -28,6 +29,12 @@
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -59,6 +66,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan ide-helper:generate",
             "@php artisan lighthouse:ide-helper",
+            "@php artisan nova:publish",
             "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [

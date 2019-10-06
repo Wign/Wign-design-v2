@@ -30,7 +30,7 @@ class ForeignTable extends Migration
 
         Schema::table('signs', function (Blueprint $table) {
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->foreign('sign_language_id')->references('id')->on('sign_languages');
+            $table->foreign('language_id')->references('id')->on('languages');
         });
 
         Schema::table('taggables', function (Blueprint $table) {
@@ -81,7 +81,7 @@ class ForeignTable extends Migration
 
         Schema::table('signs', function (Blueprint $table) {
             $table->dropForeign(['creator_id']);
-            $table->dropForeign(['sign_language_id']);
+            $table->dropForeign(['language_id']);
         });
 
         Schema::table('taggables', function (Blueprint $table) {

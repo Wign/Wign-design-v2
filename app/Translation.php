@@ -22,6 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Translation withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Translation withoutTrashed()
  * @mixin \Eloquent
+ * @property int $id
+ * @property int $word_id
+ * @property int $sign_id
+ * @property int $description_id
+ * @property int $creator_id
+ * @property int $editor_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $likes
+ * @property-read int|null $likes_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereCreatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereDescriptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereEditorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereSignId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereWordId($value)
  */
 class Translation extends Model
 {

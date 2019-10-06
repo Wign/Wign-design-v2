@@ -89,6 +89,7 @@ type Language {
     id: ID!
     code: String!
     text: String!
+    type: String!
     words: [Word]! @hasMany
 }
 
@@ -98,19 +99,12 @@ type Sign {
     video_url: String!
     thumbnail_url: String!
     small_thumbnail_url: String!
-    sign_language: SignLanguage! @belongsTo
+    language: Language! @belongsTo
     playings: Int!
     creator: User! @belongsTo
     translation: Translation! @hasMany
     created_at: DateTime!
     updated_at: DateTime!
-}
-
-type SignLanguage {
-    id: ID!
-    code: String!
-    text: String!
-    signs: [Sign]! @hasMany
 }
 
 type Translation {

@@ -160,4 +160,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Review', 'creator_id');
     } */
+
+    /**
+     * FUNCTIONS
+     */
+
+    public function isAdministrator()
+    {
+        return $this->role()->where('type', '=', 'ADMIN')->exists();
+    }
 }

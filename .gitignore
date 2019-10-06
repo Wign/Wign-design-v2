@@ -200,3 +200,6 @@ typings/
 # Ide-helpers
 schema-directives.graphql
 _ide_helper.php
+
+# composer credentials
+auth.json

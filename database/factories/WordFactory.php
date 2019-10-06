@@ -1,6 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\Language;
 use App\User;
 use App\Word;
 use Faker\Generator as Faker;
