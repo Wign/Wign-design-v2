@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Couchbase\Bucket;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -142,7 +142,7 @@ class User extends Authenticatable
 
     public function signsCreated()
     {
-        return $this->hasMany(Sign::class);
+        return $this->hasMany(Sign::class, 'creator_id');
     }
 
     public function likes()
