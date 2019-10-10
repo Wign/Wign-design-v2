@@ -18,14 +18,14 @@ class UsersTableSeeder extends Seeder
     {
         // First create some default users:
         factory(User::class)->states('verified', 'admin')->create([
-                'name'     => 'admin',
+                'name'     => 'Admin',
                 'email'    => 'admin@wign.dk',
                 'password' => Hash::make('pass'),
             ]
         );
 
         factory(User::class)->state('verified')->create([
-                'name'     => 'user',
+                'name'     => 'User',
                 'email'    => 'user@wign.dk',
                 'password' => Hash::make('pass'),
             ]
