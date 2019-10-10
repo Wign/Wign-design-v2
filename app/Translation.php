@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Translation
+ * App\Translation.
  *
  * @property int $id
  * @property int $word_id
