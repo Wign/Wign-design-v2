@@ -22,10 +22,6 @@ class InitSeeder extends Seeder
             $this->call(LanguagesTableSeeder::class);
         }
 
-        if (SignLanguage::count() == 0) {
-            $this->call(SignLanguagesTableSeeder::class);
-        }
-
         /* THOSE BELOW IS IGNORED FOR NOW!
          * Uncomment those as they become active
 

@@ -102,62 +102,63 @@ class User extends Authenticatable
     // DEFINING RELATIONSHIPS -----------------------------------
     public function role()
     {
-        return $this->belongsTo('App\Role');
+        return $this->belongsTo(Role::class);
     }
 
     public function requests()
     {
-        return $this->belongsToMany('App\Word', 'requests')->withTimestamps(true, false);
+        return $this->belongsToMany(Word::class, 'requests');
     }
 
     public function wordsCreated()
     {
-        return $this->hasMany('App\Word', 'creator_id');
+        return $this->hasMany(Word::class, 'creator_id');
     }
 
     public function wordsEdited()
     {
-        return $this->hasMany('App\Word', 'editor_id');
+        return $this->hasMany(Word::class, 'editor_id');
     }
 
     public function translationsCreated()
     {
-        return $this->hasMany('App\Translation', 'creator_id');
+        return $this->hasMany(Translation::class, 'creator_id');
     }
 
     public function translationsEdited()
     {
-        return $this->hasMany('App\Translation', 'editor_id');
+        return $this->hasMany(Translation::class, 'editor_id');
     }
 
     public function descriptionsCreated()
     {
-        return $this->hasMany('App\Description', 'creator_id');
+        return $this->hasMany(Description::class, 'creator_id');
     }
 
     public function descriptionsEdited()
     {
-        return $this->hasMany('App\Description', 'editor_id');
+        return $this->hasMany(Description::class, 'editor_id');
     }
 
     public function signsCreated()
     {
-        return $this->hasMany('App\Sign', 'creator_id');
+        return $this->hasMany(Sign::class, 'creator_id');
     }
 
     public function likes()
     {
-        return $this->belongsToMany('App\Sign', 'likes')->withTimestamps(true, false);
+        return $this->belongsToMany(Sign::class, 'likes');
     }
 
     /* Leaving those out for now
-     public function ban()
+    public function ban()
     {
-        return $this->hasMany('App\Ban', 'user_id');
+        return $this->hasMany(Ban::class, 'user_id');
     }
 
     public function reviewCreator()
     {
-        return $this->hasMany('App\Review', 'creator_id');
-    } */
+        return $this->hasMany(Review::class, 'creator_id');
+    }
+    */
 }

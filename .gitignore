@@ -196,3 +196,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+/_ide_helper.php

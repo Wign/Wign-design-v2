@@ -54,34 +54,33 @@ class Description extends Model
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-
-    public function tags()
-    {
-        return $this->belongsToMany('App\Tag', 'taggable')->withTimestamps(true, false);
-    }
-
     public function translations()
     {
-        return $this->hasMany('App\Translation');
+        return $this->hasMany(Translation::class);
     }
 
     public function words()
     {
-        return $this->belongsToMany('App\Word', 'translations')->withTimestamps();
+        return $this->belongsToMany(Word::class, 'translations')->withTimestamps();
     }
 
     public function signs()
     {
-        return $this->belongsToMany('App\Sign', 'translations')->withTimestamps();
+        return $this->belongsToMany(Sign::class, 'translations')->withTimestamps();
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'taggables');
     }
 
     public function creator()
     {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     public function editor()
     {
-        return $this->belongsTo('App\User', 'editor_id');
+        return $this->belongsTo(User::class, 'editor_id');
     }
 }

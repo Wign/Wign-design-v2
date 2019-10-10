@@ -17,7 +17,7 @@ class CreateRequestsTable extends Migration
             $table->increments('id');
             $table->integer('word_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
