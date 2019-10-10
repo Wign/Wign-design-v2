@@ -16,7 +16,10 @@ class RequestsTableSeeder extends Seeder
         $users = User::all()->random(40);
 
         $users->each(function (User $user) {
-            $user->requests()->attach(factory(Word::class)->create());
+            $user->requests()->attach(factory(Word::class)->create([
+                'creator_id' => $user->id,
+                'editor_id'  => $user->id,
+            ]));
         });
     }
 }

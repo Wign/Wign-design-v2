@@ -22,7 +22,7 @@ class WordController extends Controller
         $words = $this->wordRepository->all();
 
         // En eksempel på returnering af view med alle ord
-        //return view('something')->with($words);
+        //return view("something", compact("words"));
 
         // Eller returner alle ord som json object (API kald, selvom vi bruger graphQL nu)
         return $words;
