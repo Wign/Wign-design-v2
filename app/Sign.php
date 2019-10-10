@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $descriptions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $likes
  * @property-read int|null $likes_count
- * @property-read \App\SignLanguage $signLanguage
+ * @property-read \App\Language $signLanguage
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translations
  * @property-read int|null $translations_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
@@ -39,8 +39,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereCreatorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereLanguageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign wherePlayings($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereSignLanguageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereSmallThumbnailUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereThumbnailUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereUpdatedAt($value)

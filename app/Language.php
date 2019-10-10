@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $code
  * @property string $text
+ * @property string $type
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sign[] $signs
+ * @property-read int|null $signs_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
  * @property-read int|null $words_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language newModelQuery()
@@ -18,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereType($value)
  * @mixin \Eloquent
  */
 class Language extends Model
