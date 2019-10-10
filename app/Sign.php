@@ -66,28 +66,33 @@ class Sign extends Model
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator()
-    {
-        return $this->belongsTo('App\User', 'creator_id');
-    }
-
     public function translations()
     {
-        return $this->hasMany('App\Translation');
+        return $this->hasMany(Translation::class);
     }
 
     public function words()
     {
-        return $this->belongsToMany('App\Word', 'translations')->withTimestamps();
+        return $this->belongsToMany(Word::class, 'translations')->withTimestamps();
     }
 
     public function descriptions()
     {
-        return $this->belongsToMany('App\Description', 'translations')->withTimestamps();
+        return $this->belongsToMany(Description::class, 'translations')->withTimestamps();
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps(true, false);
     }
 
     public function signLanguage()
     {
-        return $this->belongsTo('App\SignLanguage');
+        return $this->belongsTo(SignLanguage::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
     }
 }

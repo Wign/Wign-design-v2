@@ -39,27 +39,27 @@ class Translation extends Model
     // DEFINING RELATIONSHIPS -----------------------------------
     public function word()
     {
-        return $this->belongsTo('App\Word');
+        return $this->belongsTo(Word::class);
     }
 
     public function sign()
     {
-        return $this->belongsTo('App\Sign');
+        return $this->belongsTo(Sign::class);
     }
 
     public function description()
     {
-        return $this->belongsTo('App\Description');
+        return $this->belongsTo(Description::class);
     }
 
     public function creator()
     {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     public function editor()
     {
-        return $this->belongsTo('App\User', 'editor_id');
+        return $this->belongsTo(User::class, 'editor_id');
     }
 
     public function likes()
@@ -67,18 +67,18 @@ class Translation extends Model
         return $this->belongsToMany('App\User', 'likes');
     }
 
-    /*public function reviewsFrom()
-    {
-        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'old_il_id');
+    /*
+    public function reviewsFrom() {
+        return $this->belongsToMany(Review::class, 'ils', 'translation_id', 'old_il_id');
     }
 
-    public function reviewsOnto()
-    {
-        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'new_il_id');
+    public function reviewsOnto() {
+        return $this->belongsToMany(Review::class, 'ils', 'translation_id', 'new_il_id');
     }
 
     public function glossaries()
     {
-        return $this->belongsToMany('App\Bucket', 'glossaries', 'translation_id', 'bucket_id')->withTimestamps();
-    }*/
+        return $this->belongsToMany(Bucket::class, 'glossaries', 'translation_id', 'bucket_id')->withTimestamps();
+    }
+    */
 }
