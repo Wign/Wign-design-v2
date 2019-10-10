@@ -110,6 +110,10 @@
       <path value="$PROJECT_DIR$/vendor/illuminate/console" />
       <path value="$PROJECT_DIR$/vendor/illuminate/filesystem" />
       <path value="$PROJECT_DIR$/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/vendor/nuwave/lighthouse" />
+      <path value="$PROJECT_DIR$/vendor/webonyx/graphql-php" />
+      <path value="$PROJECT_DIR$/vendor/mll-lab/laravel-graphql-playground" />
+      <path value="$PROJECT_DIR$/vendor/haydenpierce/class-finder" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

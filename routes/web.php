@@ -23,9 +23,11 @@ Route::get('/about', function () {
 Route::get('/signs', function () {
     return view('pages.recent');
 })->name('signs');
+
 Route::get('/sign/Hjerte', function () {
     return view('pages.sign');
 })->name('sign');
+Route::get('/words', 'WordController@index');
 
 Auth::routes();
 
