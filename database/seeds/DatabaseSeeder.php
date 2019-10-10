@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         //$trashed = $model::onlyTrashed()->count();
         $total = $model::withTrashed()->count();
 
-        //return $name.": ".$visible." / ".$trashed." / ".$total."\n";
-        return $name.': '.$total."\n";
+        //return "$name: $visible / $trashed / $total\n";
+        return "$name: $total\n";
     }
 }

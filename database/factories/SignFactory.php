@@ -15,7 +15,7 @@ $factory->define(Sign::class, function (Faker $faker) {
         'thumbnail_url'       => $url.'assets/'.$videoUUID.'/vga_thumb.png',
         'small_thumbnail_url' => $url.'assets/'.$videoUUID.'/qvga_thumb.jpg',
         'playings'            => $faker->numberBetween(0, 10000),
-        'sign_language_id'    => 1,
+        'language_id'         => 2,
         'creator_id'          => factory(User::class),
     ];
 });
