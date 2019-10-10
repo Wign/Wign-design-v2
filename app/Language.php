@@ -28,8 +28,9 @@ class Language extends Model
     protected $fillable = []; // It must not be mass assigment, as it is a static list of languages
 
     // DEFINING RELATIONSHIPS -----------------------------------
+
     public function words()
     {
-        return $this->hasMany('App\Word');
+        return $this->hasMany(Word::class);
     }
 }
