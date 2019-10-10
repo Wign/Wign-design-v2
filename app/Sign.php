@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $thumbnail_url
  * @property string $small_thumbnail_url
  * @property int $playings
- * @property int $sign_language_id
+ * @property int $language_id
  * @property int $creator_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -61,7 +61,7 @@ class Sign extends Model
         'thumbnail_url',
         'small_thumbnail_url',
         'playings',
-        'sign_language_id',
+        'language_id',
         'creator_id',
     ];
 
@@ -83,12 +83,12 @@ class Sign extends Model
 
     public function likes()
     {
-        return $this->belongsToMany(User::class, 'likes')->withTimestamps(true, false);
+        return $this->belongsToMany(User::class, 'likes');
     }
 
     public function signLanguage()
     {
-        return $this->belongsTo(SignLanguage::class);
+        return $this->belongsTo(Language::class);
     }
 
     public function creator()

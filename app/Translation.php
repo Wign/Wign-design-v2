@@ -62,11 +62,6 @@ class Translation extends Model
         return $this->belongsTo(User::class, 'editor_id');
     }
 
-    public function likes()
-    {
-        return $this->belongsToMany('App\User', 'likes');
-    }
-
     /*
     public function reviewsFrom() {
         return $this->belongsToMany(Review::class, 'ils', 'translation_id', 'old_il_id');

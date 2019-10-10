@@ -31,6 +31,11 @@ class Language extends Model
 
     public function words()
     {
-        return $this->hasMany(Word::class);
+        return $this->hasMany(Word::class)->where('type', '=', 'WRITE');
+    }
+
+    public function signs()
+    {
+        return $this->hasMany(Sign::class)->where('type', '=', 'SIGN');
     }
 }

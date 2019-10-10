@@ -54,6 +54,11 @@ class Description extends Model
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
+    public function translations()
+    {
+        return $this->hasMany(Translation::class);
+    }
+
     public function words()
     {
         return $this->belongsToMany(Word::class, 'translations')->withTimestamps();
@@ -62,11 +67,6 @@ class Description extends Model
     public function signs()
     {
         return $this->belongsToMany(Sign::class, 'translations')->withTimestamps();
-    }
-
-    public function translations()
-    {
-        return $this->hasMany(Translation::class);
     }
 
     public function tags()

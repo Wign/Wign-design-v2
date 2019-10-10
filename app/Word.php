@@ -58,21 +58,6 @@ class Word extends Model
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator()
-    {
-        return $this->belongsTo(User::class, 'creator_id');
-    }
-
-    public function editor()
-    {
-        return $this->belongsTo(User::class, 'editor_id');
-    }
-
-    public function language()
-    {
-        return $this->belongsTo(Language::class);
-    }
-
     public function translations()
     {
         return $this->hasMany(Translation::class);
@@ -88,9 +73,24 @@ class Word extends Model
         return $this->belongsToMany(Description::class, 'translations')->withTimestamps();
     }
 
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
+    }
+
     public function requesters()
     {
         return $this->belongsToMany(User::class, 'requests');
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function editor()
+    {
+        return $this->belongsTo(User::class, 'editor_id');
     }
 
     /* LEAVING THIS OUT FOR NOW
