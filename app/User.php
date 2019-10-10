@@ -162,9 +162,8 @@ class User extends Authenticatable
     } */
 
     /**
-     * FUNCTIONS
+     * FUNCTIONS.
      */
-
     public function isAdministrator()
     {
         return $this->role()->where('type', '=', 'ADMIN')->exists();

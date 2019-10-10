@@ -30,7 +30,7 @@ class Role extends Resource
      */
     public static $search = [
         'id',
-        'type'
+        'type',
     ];
 
     /**
@@ -43,7 +43,7 @@ class Role extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('type')->sortable()->rules('required', 'max:255')
+            Text::make('type')->sortable()->rules('required', 'max:255'),
         ];
     }
 

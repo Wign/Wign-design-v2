@@ -40,7 +40,7 @@ class LanguagesTableSeeder extends Seeder
             Language::create([
                 'code' => $l->get('code'),
                 'text' => $l->get('text'),
-                'type' => $l->get('type')
+                'type' => $l->get('type'),
             ]);
         }
     }

@@ -32,7 +32,7 @@ class Language extends Resource
     public static $search = [
         'id',
         'code',
-        'text'
+        'text',
     ];
 
     /**

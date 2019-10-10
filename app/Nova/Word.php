@@ -33,7 +33,7 @@ class Word extends Resource
      */
     public static $search = [
         'id',
-        'literal'
+        'literal',
     ];
 
     /**
