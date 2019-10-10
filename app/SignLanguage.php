@@ -30,6 +30,6 @@ class SignLanguage extends Model
     // DEFINING RELATIONSHIPS -----------------------------------
     public function signs()
     {
-        return $this->hasMany('App\Sign');
+        return $this->hasMany(Sign::class);
     }
 }
