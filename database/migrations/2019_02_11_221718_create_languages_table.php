@@ -18,7 +18,7 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
             $table->string('code')->unique();
             $table->string('text');
-            $table->enum('type', ['WRITE', 'SIGN'])->index();
+            $table->enum('type', ['TEXT', 'SIGN'])->index();
         });
     }
 

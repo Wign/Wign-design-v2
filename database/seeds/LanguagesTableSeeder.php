@@ -12,14 +12,14 @@ class LanguagesTableSeeder extends Seeder
      */
     public function run()
     {
-        // TEXT LANGUAGES
+        // WRITTEN LANGUAGES
         $languages = [
             collect(['code' => 'da_DK', 'text' => 'Dansk', 'type' => 'TEXT']),
             //collect(['code' => 'en_UK', 'text' => 'English', 'type' => 'TEXT']),
             //collect(['code' => 'en_US', 'text' => 'English', 'type' => 'TEXT']),
         ];
 
-        // SIGNED LANGUAGES
+        // SIGN LANGUAGES
         $languages = array_merge($languages, [
             collect(['code' => 'dt_DK', 'text' => 'Dansk tegnsprog', 'type' => 'SIGN']),
 //            collect(['code' => 'bs_UK', 'text' => 'British sign language', 'type' => 'SIGN']),
