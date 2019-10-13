@@ -10,7 +10,7 @@ $factory->define(Word::class, function (Faker $faker) {
     $faker->addProvider(new App\Providers\FakerProvider($faker));
 
     return [
-        'literal'     => $faker->unique()->wignWords(),
+        'literal'     => $faker->unique()->wignLiterals,
         'language_id' => 1,
         'creator_id'  => factory(User::class),
         'editor_id'   => factory(User::class),

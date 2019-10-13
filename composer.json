@@ -13,9 +13,10 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
+        "laravel/nova": "~2.0",
         "laravel/tinker": "^1.0",
         "nuwave/lighthouse": "^4.3",
-        "laravel/nova": "~2.0"
+        "wign/video": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -33,6 +34,10 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Video"
         }
     ],
     "config": {

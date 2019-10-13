@@ -34,11 +34,11 @@ class Language extends Model
     // DEFINING RELATIONSHIPS -----------------------------------
     public function words()
     {
-        return $this->hasMany(Word::class)->where('type', '=', 'TEXT');
+        return $this->hasMany(Word::class);
     }
 
     public function signs()
     {
-        return $this->hasMany(Sign::class)->where('type', '=', 'SIGN');
+        return $this->hasMany(Sign::class);
     }
 }

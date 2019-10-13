@@ -37,6 +37,13 @@ class Word extends Resource
     ];
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Translation';
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,15 +55,12 @@ class Word extends Resource
             ID::make()->sortable(),
             Text::make('Literal')->sortable(),
 
-            BelongsTo::make('Creator', 'creator', '\App\Nova\User')->searchable(),
-            BelongsTo::make('Editor', 'editor', '\App\Nova\User')->searchable()->hideFromIndex(function () {
-                return $this->creator == $this->editor;
-            }),
+            BelongsTo::make('Language')->sortable(),
 
-            DateTime::make('created_at')->readonly(),
-            DateTime::make('updated_at')->readonly()->hideFromIndex(function () {
-                return $this->created_at == $this->updated_at;
-            }),
+            BelongsTo::make('Creator', 'creator', '\App\Nova\User')->searchable(),
+            BelongsTo::make('Editor', 'editor', '\App\Nova\User')->hideFromIndex()->searchable(),
+            DateTime::make('Created at')->readonly()->hideFromIndex(),
+            DateTime::make('Updated at')->readonly()->hideFromIndex(),
         ];
     }
 

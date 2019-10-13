@@ -3,27 +3,25 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Language extends Resource
+class Translation extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Language';
+    public static $model = 'App\Translation';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'text';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -32,8 +30,6 @@ class Language extends Resource
      */
     public static $search = [
         'id',
-        'code',
-        'text',
     ];
 
     /**
@@ -41,7 +37,7 @@ class Language extends Resource
      *
      * @var string
      */
-    public static $group = 'Meta';
+    public static $group = 'Translation';
 
     /**
      * Get the fields displayed by the resource.
@@ -53,12 +49,15 @@ class Language extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Code')->sortable()->rules('required', 'max:5', 'regex:/[a-z]{2}_[A-Z]{2}/', 'unique:languages,code'),
-            Text::make('Text')->sortable()->rules('required', 'max:255'),
-            Select::make('Type')->options(['SIGN' => 'Sign language', 'TEXT' => 'Text language'])->sortable()->rules('required', 'in:TEXT,SIGN'),
 
-            HasMany::make('Signs'),
-            HasMany::make('Words'),
+            BelongsTo::make('Creator', 'creator', '\App\Nova\User')->searchable(),
+
+            DateTime::make('created_at')->readonly()->hideFromIndex(function () {
+                return $this->created_at != $this->updated_at;
+            }),
+            DateTime::make('updated_at')->readonly()->hideFromIndex(function () {
+                return $this->created_at == $this->updated_at;
+            }),
         ];
     }
 
