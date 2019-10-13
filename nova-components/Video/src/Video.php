@@ -14,7 +14,7 @@ class Video extends Field
     public $component = 'video';
 
     /**
-     * Set the width of the image
+     * Set the width of the image.
      *
      * @param int $width
      * @return $this
@@ -25,7 +25,7 @@ class Video extends Field
     }
 
     /**
-     * Set the height of the image
+     * Set the height of the image.
      *
      * @param int $height
      * @return $this

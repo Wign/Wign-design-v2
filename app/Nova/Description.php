@@ -52,10 +52,11 @@ class Description extends Resource
             ID::make()->sortable(),
             Textarea::make('Text', 'text')->alwaysShow()->rules('required')->hideFromIndex(),
 
-            Textarea::make('Text', 'text')->alwaysShow()->rules('required')->onlyOnIndex()->displayUsing(function($text) {
-                if(strlen($text) > 100) {
+            Textarea::make('Text', 'text')->alwaysShow()->rules('required')->onlyOnIndex()->displayUsing(function ($text) {
+                if (strlen($text) > 100) {
                     return substr($text, 0, 100).'...';
                 }
+
                 return $text;
             }),
 
