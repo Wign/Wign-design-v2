@@ -36,6 +36,6 @@ class Role extends Model
     // DEFINING RELATIONSHIPS -----------------------------------
     public function users()
     {
-        return $this->hasMany('App\User', 'role_id');
+        return $this->hasMany(User::class);
     }
 }

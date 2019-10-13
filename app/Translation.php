@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * App\Translation.
  *
+ * @property int $id
+ * @property int $word_id
+ * @property int $sign_id
+ * @property int $description_id
+ * @property int $creator_id
+ * @property int $editor_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $creator
  * @property-read \App\Description $description
  * @property-read \App\User $editor
@@ -19,6 +28,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Translation onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation query()
  * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereCreatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereDescriptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereEditorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereSignId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Translation whereWordId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Translation withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Translation withoutTrashed()
  * @mixin \Eloquent
@@ -59,46 +77,41 @@ class Translation extends Model
     // DEFINING RELATIONSHIPS -----------------------------------
     public function word()
     {
-        return $this->belongsTo('App\Word');
+        return $this->belongsTo(Word::class);
     }
 
     public function sign()
     {
-        return $this->belongsTo('App\Sign');
+        return $this->belongsTo(Sign::class);
     }
 
     public function description()
     {
-        return $this->belongsTo('App\Description');
+        return $this->belongsTo(Description::class);
     }
 
     public function creator()
     {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     public function editor()
     {
-        return $this->belongsTo('App\User', 'editor_id');
+        return $this->belongsTo(User::class, 'editor_id');
     }
 
-    public function likes()
-    {
-        return $this->belongsToMany('App\User', 'likes');
+    /*
+    public function reviewsFrom() {
+        return $this->belongsToMany(Review::class, 'ils', 'translation_id', 'old_il_id');
     }
 
-    /*public function reviewsFrom()
-    {
-        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'old_il_id');
-    }
-
-    public function reviewsOnto()
-    {
-        return $this->belongsToMany('App\Review', 'ils', 'translation_id', 'new_il_id');
+    public function reviewsOnto() {
+        return $this->belongsToMany(Review::class, 'ils', 'translation_id', 'new_il_id');
     }
 
     public function glossaries()
     {
-        return $this->belongsToMany('App\Bucket', 'glossaries', 'translation_id', 'bucket_id')->withTimestamps();
-    }*/
+        return $this->belongsToMany(Bucket::class, 'glossaries', 'translation_id', 'bucket_id')->withTimestamps();
+    }
+    */
 }

@@ -20,7 +20,7 @@ class ForeignTable extends Migration
 
         Schema::table('likes', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
-            $table->foreign('translation_id')->references('id')->on('signs')->onDelete('CASCADE');
+            $table->foreign('sign_id')->references('id')->on('signs')->onDelete('CASCADE');
         });
 
         Schema::table('requests', function (Blueprint $table) {
@@ -71,7 +71,7 @@ class ForeignTable extends Migration
 
         Schema::table('likes', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['translation_id']);
+            $table->dropForeign(['sign_id']);
         });
 
         Schema::table('requests', function (Blueprint $table) {

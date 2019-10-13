@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $descriptions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $likes
  * @property-read int|null $likes_count
- * @property-read \App\SignLanguage $signLanguage
+ * @property-read \App\Language $signLanguage
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Translation[] $translations
  * @property-read int|null $translations_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
@@ -39,8 +39,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereCreatorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereLanguageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign wherePlayings($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereSignLanguageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereSmallThumbnailUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereThumbnailUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sign whereUpdatedAt($value)
@@ -66,28 +66,33 @@ class Sign extends Model
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
-    public function creator()
-    {
-        return $this->belongsTo('App\User', 'creator_id');
-    }
-
     public function translations()
     {
-        return $this->hasMany('App\Translation');
+        return $this->hasMany(Translation::class);
     }
 
     public function words()
     {
-        return $this->belongsToMany('App\Word', 'translations')->withTimestamps();
+        return $this->belongsToMany(Word::class, 'translations')->withTimestamps();
     }
 
     public function descriptions()
     {
-        return $this->belongsToMany('App\Description', 'translations')->withTimestamps();
+        return $this->belongsToMany(Description::class, 'translations')->withTimestamps();
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes');
     }
 
     public function signLanguage()
     {
-        return $this->belongsTo('App\Language');
+        return $this->belongsTo(Language::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
     }
 }

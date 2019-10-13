@@ -1,6 +1,6 @@
 <?php
 
-use App\Translation;
+use App\Sign;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -14,14 +14,14 @@ class LikeSeeder extends Seeder
      */
     public function run()
     {
-        $translations = Translation::all()->random(50);
+        $signs = Sign::all()->random(50);
         $users = User::all()->random(40);
 
-        $translations->each(function (Translation $translation) use ($users) {
+        $signs->each(function (Sign $sign) use ($users) {
             $numLikes = rand(1, 6);
             $selectedUsers = $users->random($numLikes)->pluck('id');
 
-            $translation->likes()->attach($selectedUsers);
+            $sign->likes()->attach($selectedUsers);
         });
     }
 }
