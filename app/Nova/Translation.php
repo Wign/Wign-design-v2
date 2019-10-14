@@ -21,7 +21,7 @@ class Translation extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'word.literal';
 
     /**
      * The columns that should be searched.
@@ -31,6 +31,13 @@ class Translation extends Resource
     public static $search = [
         'id',
     ];
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['word', 'sign', 'description'];
 
     /**
      * The logical group associated with the resource.
@@ -49,15 +56,14 @@ class Translation extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make('Word')->searchable(),
+            BelongsTo::make('Sign'),
+            BelongsTo::make('Description'),
 
             BelongsTo::make('Creator', 'creator', '\App\Nova\User')->searchable(),
-
-            DateTime::make('created_at')->readonly()->hideFromIndex(function () {
-                return $this->created_at != $this->updated_at;
-            }),
-            DateTime::make('updated_at')->readonly()->hideFromIndex(function () {
-                return $this->created_at == $this->updated_at;
-            }),
+            BelongsTo::make('Editor', 'editor', '\App\Nova\User')->hideFromIndex()->searchable(),
+            DateTime::make('Created at')->readonly()->hideFromIndex(),
+            DateTime::make('Updated at')->readonly()->hideFromIndex(),
         ];
     }
 

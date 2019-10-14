@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 
 class Description extends Resource
@@ -30,8 +31,15 @@ class Description extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id','text'
     ];
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['words'];
 
     /**
      * The logical group associated with the resource.
@@ -50,6 +58,9 @@ class Description extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Word', function () {
+                return $this->words()->orderBy('updated_at')->firstOrFail()->literal;
+            })->onlyOnIndex(),
             Textarea::make('Text', 'text')->alwaysShow()->rules('required')->hideFromIndex(),
 
             Textarea::make('Text', 'text')->alwaysShow()->rules('required')->onlyOnIndex()->displayUsing(function ($text) {

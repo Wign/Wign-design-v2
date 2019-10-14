@@ -6,8 +6,10 @@ use Chaseconey\ExternalImage\ExternalImage;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Text;
 use Wign\Video\Video;
 
 class Sign extends Resource
@@ -24,7 +26,7 @@ class Sign extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'video_uuid';
 
     /**
      * The columns that should be searched.
@@ -32,7 +34,7 @@ class Sign extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id','video_uuid'
     ];
 
     /**
@@ -40,7 +42,7 @@ class Sign extends Resource
      *
      * @var array
      */
-    public static $with = ['SignLanguage', 'Creator'];
+    public static $with = ['signLanguage', 'creator', 'words'];
 
     /**
      * The logical group associated with the resource.
@@ -53,12 +55,16 @@ class Sign extends Resource
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return array
      */
     public function fields(Request $request)
     {
         return [
             ID::make()->sortable(),
+            Text::make('Word', function () {
+                return $this->words()->orderBy('updated_at')->firstOrFail()->literal;
+            })->onlyOnIndex(),
             Video::make('Video', 'video_uuid')->rules('required', 'regex:/v-[0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12}/'),
             Number::make('Playings'),
             BelongsTo::make('Language', 'signLanguage')->sortable(),
@@ -66,6 +72,8 @@ class Sign extends Resource
             BelongsTo::make('Creator', 'creator', '\App\Nova\User')->searchable(),
             DateTime::make('Created at')->readonly()->hideFromIndex(),
             DateTime::make('Updated at')->readonly()->hideFromIndex(),
+
+            HasMany::make('Words'),
         ];
     }
 
@@ -73,6 +81,7 @@ class Sign extends Resource
      * Get the cards available for the request.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return array
      */
     public function cards(Request $request)
@@ -84,6 +93,7 @@ class Sign extends Resource
      * Get the filters available for the resource.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return array
      */
     public function filters(Request $request)
@@ -95,6 +105,7 @@ class Sign extends Resource
      * Get the lenses available for the resource.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return array
      */
     public function lenses(Request $request)
@@ -106,6 +117,7 @@ class Sign extends Resource
      * Get the actions available for the resource.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return array
      */
     public function actions(Request $request)
