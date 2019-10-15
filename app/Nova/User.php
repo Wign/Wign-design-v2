@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\NewUsers;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
@@ -78,7 +79,7 @@ class User extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [new NewUsers];
     }
 
     /**

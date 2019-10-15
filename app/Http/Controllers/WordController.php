@@ -11,6 +11,8 @@ class WordController extends Controller
 
     /**
      * WordController constructor.
+     *
+     * @param  WordRepository  $wordRepository
      */
     public function __construct(WordRepository $wordRepository)
     {

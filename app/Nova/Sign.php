@@ -2,6 +2,9 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\PlayingsPerWeek;
+use App\Nova\Metrics\TotalPlayings;
+use App\Nova\Metrics\TotalSigns;
 use Chaseconey\ExternalImage\ExternalImage;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -34,7 +37,7 @@ class Sign extends Resource
      * @var array
      */
     public static $search = [
-        'id','video_uuid'
+        'id', 'video_uuid'
     ];
 
     /**
@@ -65,7 +68,8 @@ class Sign extends Resource
             Text::make('Word', function () {
                 return $this->words()->orderBy('updated_at')->firstOrFail()->literal;
             })->onlyOnIndex(),
-            Video::make('Video', 'video_uuid')->rules('required', 'regex:/v-[0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12}/'),
+            Video::make('Video', 'video_uuid')->rules('required',
+                'regex:/v-[0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12}/'),
             Number::make('Playings'),
             BelongsTo::make('Language', 'signLanguage')->sortable(),
 
@@ -86,7 +90,11 @@ class Sign extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new TotalSigns,
+            new TotalPlayings,
+            new PlayingsPerWeek
+        ];
     }
 
     /**

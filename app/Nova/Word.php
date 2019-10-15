@@ -2,13 +2,12 @@
 
 namespace App\Nova;
 
-use Auth;
+use App\Nova\Metrics\WordsPartition;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Word extends Resource
 {
@@ -72,7 +71,7 @@ class Word extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [resolve(WordsPartition::class)];
     }
 
     /**

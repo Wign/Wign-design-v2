@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Nova\Metrics\PlayingsPerWeek;
+use App\Nova\Metrics\TotalSigns;
+use App\Nova\Metrics\WordsPartition;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
@@ -54,7 +57,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function cards()
     {
-        return [];
+        return [
+            new Help,
+            resolve(WordsPartition::class),
+            new PlayingsPerWeek,
+            new TotalSigns
+        ];
     }
 
     /**
