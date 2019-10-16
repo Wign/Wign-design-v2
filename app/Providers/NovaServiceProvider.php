@@ -61,7 +61,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new Help,
             resolve(WordsPartition::class),
             new PlayingsPerWeek,
-            new TotalSigns
+            new TotalSigns,
         ];
     }
 

@@ -37,7 +37,7 @@ class Sign extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'video_uuid'
+        'id', 'video_uuid',
     ];
 
     /**
@@ -93,7 +93,7 @@ class Sign extends Resource
         return [
             new TotalSigns,
             new TotalPlayings,
-            new PlayingsPerWeek
+            new PlayingsPerWeek,
         ];
     }
 

@@ -21,7 +21,6 @@ class WordsPartition extends Partition
         $this->wordRepository = $wordRepository;
     }
 
-
     /**
      * Calculate the value of the metric.
      *
@@ -32,9 +31,9 @@ class WordsPartition extends Partition
     public function calculate(Request $request)
     {
         $requestedWord = $this->wordRepository->allRequested()->count();
-        $signedWord    = $this->wordRepository->allSigned()->count();
-        $vacantWord    = $this->wordRepository->allVacant()->count();
-        $trashedWord   = $this->wordRepository->onlyTrashed()->count();
+        $signedWord = $this->wordRepository->allSigned()->count();
+        $vacantWord = $this->wordRepository->allVacant()->count();
+        $trashedWord = $this->wordRepository->onlyTrashed()->count();
 
         return $this->result([
             'Requested' => $requestedWord,
