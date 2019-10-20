@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Visit GraphQL Playground" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="laravel" start_url="/graphql-playground">
+    <method v="2" />
+  </configuration>
+</component>

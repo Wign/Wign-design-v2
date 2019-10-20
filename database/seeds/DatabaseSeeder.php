@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
         echo 'LikeSeeder completed! It took '.StopWatch::round()." seconds\n";
 
         $this->call(RequestsTableSeeder::class);
-        echo 'RequestsTableSeeder completed! It took '.StopWatch::round()." seconds\n\n";
+        echo 'RequestsTableSeeder completed! It took '.StopWatch::round()." seconds\n";
+        echo 'Database seed completed! It took '.StopWatch::elapsed()." seconds in total!\n\n";
 
         //echo "Model: visible / trashed / total seeded\n";
         echo "Model: total seeded\n";

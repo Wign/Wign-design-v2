@@ -38,6 +38,16 @@ class WordRepository implements RespositoryInterface
         return $this->word->has('signs')->get();
     }
 
+    public function allVacant()
+    {
+        return $this->word->doesntHave('signs')->doesntHave('requesters')->get();
+    }
+
+    public function onlyTrashed()
+    {
+        return $this->word->onlyTrashed()->get();
+    }
+
     public function find($id)
     {
         return $this->word->find($id);

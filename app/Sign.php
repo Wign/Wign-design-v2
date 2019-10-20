@@ -88,7 +88,7 @@ class Sign extends Model
 
     public function signLanguage()
     {
-        return $this->belongsTo(Language::class);
+        return $this->belongsTo(Language::class, 'language_id');
     }
 
     public function creator()

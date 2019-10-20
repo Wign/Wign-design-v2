@@ -29,17 +29,16 @@ class Language extends Model
     public $timestamps = false;
 
     // MASS ASSIGNMENT ------------------------------------------
-    protected $fillable = []; // It must not be mass assigment, as it is a static list of languages
+    protected $fillable = ['code', 'text', 'type']; // It must not be mass assigment, as it is a static list of languages
 
     // DEFINING RELATIONSHIPS -----------------------------------
-
     public function words()
     {
-        return $this->hasMany(Word::class)->where('type', '=', 'TEXT');
+        return $this->hasMany(Word::class);
     }
 
     public function signs()
     {
-        return $this->hasMany(Sign::class)->where('type', '=', 'SIGN');
+        return $this->hasMany(Sign::class);
     }
 }
