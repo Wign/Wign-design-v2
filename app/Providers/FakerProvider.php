@@ -147,7 +147,7 @@ class FakerProvider extends Base
      */
     public function wignLiterals(int $min = null, int $max = null)
     {
-        if ( ! $min && ! $max) {
+        if (! $min && ! $max) {
             $number = $this->biasedRandom([50, 30, 20]);
         } else {
             $number = rand($min, $max);
@@ -174,7 +174,7 @@ class FakerProvider extends Base
 
     public function textWithHashtag(int $numWord = 10, int $numHash = 3)
     {
-        $words  = $this::randomElements(static::$wordList, $numWord, true);
+        $words = $this::randomElements(static::$wordList, $numWord, true);
         $hashes = $this->hashtag($numHash);
 
         return implode(' ', self::shuffle(array_merge($words, $hashes)));
@@ -182,7 +182,7 @@ class FakerProvider extends Base
 
     private function biasedRandom(array $bias): int
     {
-        $count  = rand(0, 99);
+        $count = rand(0, 99);
         $number = 0;
         while ($count >= 0) {
             $count -= array_shift($bias);
