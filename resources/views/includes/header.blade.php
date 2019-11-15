@@ -11,24 +11,25 @@
         <div class="collapse flex-grow-0" id="navbarSupportedContent">
             <!-- Right Side Of Navbar -->
             <ul class="flex flex-wrap text-xs">
-                <li><a class="p-2 no-underline" href="{{ Route::has('new') ? route('new') : '#' }}">@lang("nav.upload")</a></li>
-                <li><a class="p-2 no-underline" href="{{ Route::has('ask') ? route('ask') : '#' }}">@lang("nav.requested")</a></li>
-                <li><a class="p-2 no-underline" href="{{ Route::has('signs') ? route('signs') : '#' }}">@lang("nav.recent")</a></li>
-                <li><a class="p-2 no-underline" href="{{ Route::has('sign') ? route('sign') : '#' }}">HJERTE (temp)</a></li>
-                <li><a class="p-2 no-underline" href="{{ Route::has('about') ? route('about') : '#' }}">@lang("nav.about")</a></li>
+                <li><a class="p-2 header-link" href="{{ Route::has('new') ? route('new') : '#' }}">@lang("nav.upload")</a></li>
+                <li><a class="p-2 header-link" href="{{ Route::has('ask') ? route('ask') : '#' }}">@lang("nav.requested")</a></li>
+                <li><a class="p-2 header-link" href="{{ Route::has('signs') ? route('signs') : '#' }}">@lang("nav.recent")</a></li>
+                <li><a class="p-2 header-link" href="{{ Route::has('sign') ? route('sign') : '#' }}">HJERTE (temp)</a></li>
+                <li><a class="p-2 header-link" href="{{ Route::has('about') ? route('about') : '#' }}">@lang("nav.about")</a></li>
 
                 <!-- Authentication Links -->
                 @guest
-                    <li><a class="p-2 no-underline" href="{{ route('login') }}">@lang("nav.login")</a></li>
-                    <!--<li><a class="inline-block py-2 px-4 no-underline" href="{{ route('register') }}">{{ __('Register') }}</a></li>-->
+                    <li><a class="p-2 header-link" href="{{ route('login') }}">{{ __('nav.login') }})</a></li>
+                    <li><a class="p-2 header-link" href="{{ route('register') }}">{{ __('nav.register') }}</a></li>
                 @else
-                    <li class=" relative">
-                        <a id="navbarDropdown" class="p-2 no-underline inline-block w-0 h-0 ml-1 border-b-0 border-t border-r border-l" href="#" role="button" data-toggle="relative" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li class="relative group">
+                        <a class="p-2 header-link" href="#" role="button" data-toggle="relative" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }} <fa-icon :icon="['fas', 'angle-left']" class="group-hover:rotate-90ccw"></fa-icon>
                         </a>
 
-                        <div class="absolute z-50 float-left hidden py-2 mt-1 text-base bg-white border border-gray-400 rounded" aria-labelledby="navbarDropdown">
-                            <a class="block w-full py-1 px-6 font-normal text-gray-900 whitespace-no-wrap border-0" href="{{ route('logout') }}"
+                        <div class="invisible group-hover:visible absolute z-50 pt-1 mt-2 bg-white shadow-md" aria-labelledby="navbarDropdown" role="navigation">
+                            <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('register') }}">{{ __('nav.profile') }}</a>
+                            <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>

@@ -21,12 +21,12 @@ Vue.config.productionTip = false;
  * Adding fontawesome svg icons to our code
  */
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faHome, faPlusCircle, faThumbsUp as fasThumbsUp, faEllipsisH} from '@fortawesome/free-solid-svg-icons';
+import {faHome, faPlusCircle, faThumbsUp as fasThumbsUp, faEllipsisH, faAngleDown, faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import {faThumbsUp as farThumbsUp} from '@fortawesome/free-regular-svg-icons';
 import {faFacebook, faGithub, faGoogle} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faFacebook, faGoogle, faGithub, faHome, faPlusCircle, fasThumbsUp, farThumbsUp, faEllipsisH);
+library.add(faFacebook, faGoogle, faGithub, faHome, faPlusCircle, fasThumbsUp, farThumbsUp, faEllipsisH, faAngleDown, faAngleLeft);
 //dom.watch();
 
 Vue.component('fa-icon', FontAwesomeIcon);

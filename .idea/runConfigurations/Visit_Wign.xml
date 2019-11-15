@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Visit Wign" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="laravel">
+    <method v="2" />
+  </configuration>
+</component>

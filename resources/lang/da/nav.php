@@ -7,5 +7,7 @@ return [
     'all'       => 'Alle tegn',
     'about'     => 'Om Wign',
     'login'     => 'Login',
+    'register'  => 'Opret',
+    'profile'   => 'Profil',
     'logo'      => 'Wign logo',
 ];

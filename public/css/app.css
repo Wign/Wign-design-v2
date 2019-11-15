@@ -718,6 +718,17 @@ body {
   border-color: #f56565;
 }
 
+/** LINKS **/
+
+.header-link {
+  text-decoration: none;
+}
+
+.header-link:hover {
+  color: #2d3748;
+  text-decoration: underline;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -12041,6 +12052,14 @@ body {
   visibility: hidden;
 }
 
+.group:hover .group-hover\:visible {
+  visibility: visible;
+}
+
+.group:hover .group-hover\:invisible {
+  visibility: hidden;
+}
+
 .whitespace-normal {
   white-space: normal;
 }
@@ -12333,6 +12352,16 @@ body {
 
 .text-shadow {
   text-shadow: 0 0 2px #000000;
+}
+
+.rotate-90ccw {
+  transform: rotate(-90deg);
+  transition: transform 0.1s;
+}
+
+.group:hover .group-hover\:rotate-90ccw {
+  transform: rotate(-90deg);
+  transition: transform 0.1s;
 }
 
 @media (min-width: 640px) {
@@ -23656,6 +23685,14 @@ body {
   }
 
   .sm\:invisible {
+    visibility: hidden;
+  }
+
+  .group:hover .sm\:group-hover\:visible {
+    visibility: visible;
+  }
+
+  .group:hover .sm\:group-hover\:invisible {
     visibility: hidden;
   }
 
@@ -35251,6 +35288,14 @@ body {
     visibility: hidden;
   }
 
+  .group:hover .md\:group-hover\:visible {
+    visibility: visible;
+  }
+
+  .group:hover .md\:group-hover\:invisible {
+    visibility: hidden;
+  }
+
   .md\:whitespace-normal {
     white-space: normal;
   }
@@ -46843,6 +46888,14 @@ body {
     visibility: hidden;
   }
 
+  .group:hover .lg\:group-hover\:visible {
+    visibility: visible;
+  }
+
+  .group:hover .lg\:group-hover\:invisible {
+    visibility: hidden;
+  }
+
   .lg\:whitespace-normal {
     white-space: normal;
   }
@@ -58432,6 +58485,14 @@ body {
   }
 
   .xl\:invisible {
+    visibility: hidden;
+  }
+
+  .group:hover .xl\:group-hover\:visible {
+    visibility: visible;
+  }
+
+  .group:hover .xl\:group-hover\:invisible {
     visibility: hidden;
   }
 

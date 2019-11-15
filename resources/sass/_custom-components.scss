@@ -39,3 +39,12 @@
 .input-error {
   @apply border-b-2 border-red-500
 }
+
+/** LINKS **/
+.header-link {
+    @apply no-underline
+}
+
+.header-link:hover {
+    @apply text-gray-800 underline
+}

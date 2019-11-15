@@ -37,7 +37,7 @@ module.exports = {
     }
   },
   variants: {
-    // Some useful comment
+      visibility: ['responsive', 'group-hover'],
   },
   plugins: [
     // Some useful comment
