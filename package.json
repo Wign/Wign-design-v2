@@ -17,14 +17,17 @@
         "@fortawesome/free-regular-svg-icons": "^5.10.2",
         "@fortawesome/free-solid-svg-icons": "^5.10.1",
         "@fortawesome/vue-fontawesome": "^0.1.6",
+        "apollo-boost": "^0.4.4",
         "axios": "^0.19",
         "cross-env": "^5.1",
+        "graphql": "^14.5.8",
         "laravel-mix": "^4.1.2",
         "resolve-url-loader": "2.3.2",
         "sass": "^1.20.1",
         "sass-loader": "7.*",
         "tailwindcss": "^1.1.2",
         "vue": "^2.5.17",
+        "vue-apollo": "^3.0.0",
         "vue-template-compiler": "^2.6.10"
     }
 }

@@ -4,17 +4,7 @@
 </div>
 
 <div class="flex flex-wrap justify-start items-center content-start">
-    <!-- HERE A LOT REQUESTS! -->
-    <request-component>Elefant</request-component>
-    <request-component>Storbritannien</request-component>
-    <request-component>Antennemodtager</request-component>
-    <request-component>Humlebi</request-component>
-    <request-component>Gris</request-component>
-    <request-component>Ligning</request-component>
-    <request-component>Vulkan</request-component>
-    <request-component>Hjulspænde</request-component>
-    <request-component>Fodbold</request-component>
-    <request-component>Hello World</request-component>
+    <request-list num-words="10" class="m-auto"></request-list>
 </div>
 <div class="flex flex-wrap">
     <div class="w-full sm:w-2/3 md:w-full xl:w-2/3 px-4 my-2">
