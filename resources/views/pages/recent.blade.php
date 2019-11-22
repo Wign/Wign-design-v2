@@ -1,4 +1,4 @@
-@extends('layouts.plain')
+@extends('templates.plain')
 
 @section('plainContent')
     <div class="flex flex-wrap">
@@ -12,5 +12,4 @@
     <div class="flex flex-wrap">
         <overview-component></overview-component>
     </div>
-
 @endsection

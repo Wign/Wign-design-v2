@@ -1,4 +1,4 @@
-@extends('layouts.box')
+@extends('templates.box')
 
 @push('styles')
     @include('temp.backgroundImage')
@@ -11,5 +11,5 @@
 @endsection
 
 @section('rightSide')
-    @include('components.auth.registerUser')
+    @include('organisms.auth.registerUser')
 @endsection

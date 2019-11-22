@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.master')
 
 @section('content')
     <div class="container mt-16 flex flex-wrap pb-6">
@@ -9,5 +9,5 @@
             @yield('rightSide')
         </div>
     </div>
-    @include('includes.artist')
+    @include('atoms.artist')
 @endsection

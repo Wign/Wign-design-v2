@@ -1,13 +1,13 @@
-@extends('layouts.box')
+@extends('templates.box')
 
 @push('styles')
     @include('temp.backgroundImage')
 @endpush
 
 @section('leftSide')
-    @include('components.auth.login')
+    @include('organisms.auth.login')
 @endsection
 
 @section('rightSide')
-    @include('components.auth.createUser')
+    @include('organisms.auth.createUser')
 @endsection

@@ -1,11 +1,11 @@
-@extends('layouts.box', ['inverted' => true])
+@extends('templates.box', ['inverted' => true])
 
 @push('styles')
     @include('temp.backgroundImage')
 @endpush
 
 @section('leftSide')
-    @include('components.auth.email')
+    @include('organisms.auth.email')
 @endsection
 
 @section('rightSide')

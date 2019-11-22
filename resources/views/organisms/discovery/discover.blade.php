@@ -14,9 +14,9 @@
     <sign-component></sign-component>
     <sign-component></sign-component>
 </div>
+
 <div class="flex flex-wrap">
-    <div class="w-full sm:w-2/3 lg:w-1/2 my-2">
-        <button type="button"
-                class="btn btn-tyrisk w-full">@lang('text.sign.see.random')</button>
-    </div>
+    @component('atoms.btn_tyrisk', ['class' => 'sm:w-2/3 lg:w-1/2'])
+        @lang('text.sign.see.random')
+    @endcomponent
 </div>

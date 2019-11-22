@@ -19,7 +19,7 @@
 
                 <!-- Authentication Links -->
                 @guest
-                    <li><a class="p-2 header-link" href="{{ route('login') }}">{{ __('nav.login') }})</a></li>
+                    <li><a class="p-2 header-link" href="{{ route('login') }}">{{ __('nav.login') }}</a></li>
                     <li><a class="p-2 header-link" href="{{ route('register') }}">{{ __('nav.register') }}</a></li>
                 @else
                     <li class="relative group">
@@ -28,7 +28,7 @@
                         </a>
 
                         <div class="invisible group-hover:visible absolute z-50 pt-1 mt-2 bg-white shadow-md" aria-labelledby="navbarDropdown" role="navigation">
-                            <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('register') }}">{{ __('nav.profile') }}</a>
+                            <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('index') }}">{{ __('nav.profile') }}</a>
                             <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

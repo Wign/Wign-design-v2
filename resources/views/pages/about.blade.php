@@ -1,4 +1,4 @@
-@extends('layouts.plain')
+@extends('templates.plain')
 
 @section('plainContent')
     <div class="flex flex-wrap mb-5">

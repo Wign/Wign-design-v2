@@ -12,7 +12,7 @@
     <!-- Fonts?? Awesome?? -->
 
     <!-- Styles -->
-    @include('includes.style')
+    @include('templates.style')
 
     @hasSection('title')
         <title>@yield('title') | Wign</title>
@@ -22,7 +22,7 @@
 </head>
 <body class="mb-16 bg-summergreen-translucent-5">
 <div id="app">
-@include('includes.header')
+@include('organisms.header')
 
 <main>
     <div>
@@ -30,9 +30,9 @@
     </div>
 </main> <!-- #main -->
 
-@include('includes.footer')
+@include('organisms.footer')
 </div>
 <!-- Scripts -->
-@include('includes.scripts')
+@include('templates.scripts')
 </body>
 </html>
