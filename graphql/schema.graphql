@@ -36,13 +36,13 @@ type Query {
 
 }
 
-# The mutation type, that can make any mutations of the data in database.
-# We need to look at those, but later...
-#type Mutation {
+type Mutation {
+### TRANSLATION ###
+#createTranslation(input: WordInput!, SignInput, DescriptionInput): Translation! @create
+
 #    ### WORD ###
 #    requestWord(input: WordInput!): requestedWord
 #    deleteWord(wordId: ID!): Word
-#    editWord(wordId: ID!, input: WordInput): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
 #
 #    ### SIGN ###
@@ -55,7 +55,7 @@ type Query {
 #    ### LIKE ###
 #    like(userId: ID!, signId: ID!): Boolean! # Returns true if liked
 #    unlike(userId: ID!, signId: ID!): Boolean! # Returns false if is unliked
-#}
+}
 
 type User {
     id: ID!
@@ -167,28 +167,20 @@ type Role {
 #}
 
 # INPUTS TO MUTATION. LATER!
-#input WordInput {
-#    # Must have EITHER wordId OR word !
-#    wordId: ID
-#    word: String
-#    language: String! # Code of the text language!
-#    userId: ID!
-#}
-#
-#input SignInput {
-#    word: WordInput
-#    userId: ID!
-#    videoUuid: String!
-#    signLanguage: String! # Code of the sign language!
-#    description: String
-#}
-#
-#input DescriptionInput {
-#    signId: ID!
-#    userId: ID! # creator/editor
-#    description: String
-#}
-#
+input WordInput {
+    literal: String
+}
+
+input SignInput {
+    videoUuid: String!
+}
+
+input DescriptionInput {
+    text: String
+}
+
+
+
 #input FlagInput {
 #    signId: ID!
 #    userId: ID!
