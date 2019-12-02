@@ -23,5 +23,9 @@ class TranslationEndpoints {
         return $this->controller->editTranslation($context->request());
     }
 
+    public function deleteTranslation($rootValue, array $args, \Nuwave\Lighthouse\Support\Contracts\GraphQLContext $context, \GraphQL\Type\Definition\ResolveInfo $resolveInfo) {
+        return $this->controller->deleteTranslation($context->request());
+    }
+
 
 }

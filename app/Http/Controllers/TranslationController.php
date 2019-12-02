@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Translation;
 use Auth;
 use mysql_xdevapi\Exception;
+use Nuwave\Lighthouse\Execution\Utils\Subscription;
 use Request;
 
 class TranslationController extends Controller {
@@ -39,6 +40,7 @@ class TranslationController extends Controller {
                 'creator_id' => $user->id,
                 'editor_id' => $user->id,
             ]);
+            Subscription::broadcast('traceTranslations', $translation);
 
             return response()->json($translation);
         } else {
@@ -80,5 +82,26 @@ class TranslationController extends Controller {
         }
 
         return redirect()->back()->withErrors(__('error.noChanges'));
+    }
+
+    public function deleteTranslation(\Illuminate\Http\Request $request): bool {
+        $translation = Translation::findOrFail($request->input('ID'));
+
+        try {
+            $translation->delete();
+        } catch (\Exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+    public function restoreTranslation(\Illuminate\Http\Request $request): bool {
+        $translation = Translation::withTrashed()->find($request->input(['ID']));
+
+        if ($translation != null) {
+            $translation->restore();
+            return true;
+        }
+        return false;
     }
 }
