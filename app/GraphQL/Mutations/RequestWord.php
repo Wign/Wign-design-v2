@@ -1,12 +1,11 @@
 <?php
 
-namespace App\GraphQL\Queries;
+namespace App\GraphQL\Mutations;
 
-use App\Repositories\WordRepository;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class RequestedWords
+class RequestWord
 {
     protected $endpoints;
 
@@ -32,6 +31,6 @@ class RequestedWords
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->endpoints->requestedWords($rootValue, $args, $context, $resolveInfo);
+        return $this->endpoints->requestWord();
     }
 }

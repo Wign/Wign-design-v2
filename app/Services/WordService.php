@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Translation;
 use App\Word;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class WordService {
 
@@ -32,9 +32,6 @@ class WordService {
                 'creator_id' => $user->id,
                 'editor_id' => $user->id,
             ]);
-        }
-        else {
-            $word->editor->save($user);
         }
 
         return $word;

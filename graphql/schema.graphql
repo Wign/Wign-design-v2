@@ -41,7 +41,7 @@ type Mutation {
 #createTranslation(input: WordInput!, SignInput, DescriptionInput): Translation! @create
 
 #    ### WORD ###
-#    requestWord(input: WordInput!): requestedWord
+    requestWord(input: WordInput!): [Word]
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
 #
