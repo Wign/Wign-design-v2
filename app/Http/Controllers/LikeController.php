@@ -2,14 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Translation;
+use App\Sign;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
+
+    private $userService;
+
+    /**
+     * LikeController constructor.
+     * @param UserService $userService
+     */
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
+
     public function toggleLike(Request $request) {
-        $user = \Auth::user();
-        $sign = Translation::find($request->input('id'))->sign;
+        $user = $this->userService->getUser($request);
+        $sign = Sign::find($request->input('signId'));
 
         return $user->likes()->toggle($sign);
     }
