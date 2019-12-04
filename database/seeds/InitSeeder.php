@@ -2,7 +2,6 @@
 
 use App\Language;
 use App\Role;
-use App\SignLanguage;
 use Illuminate\Database\Seeder;
 
 class InitSeeder extends Seeder
@@ -20,6 +19,10 @@ class InitSeeder extends Seeder
 
         if (Language::count() == 0) {
             $this->call(LanguagesTableSeeder::class);
+        }
+
+        if (\App\Systemparameter::count() == 0) {
+            $this->call(SystemparameterTableSeeder::class);
         }
 
         /* THOSE BELOW IS IGNORED FOR NOW!
