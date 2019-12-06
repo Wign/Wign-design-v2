@@ -32,6 +32,19 @@ class RequestedWords
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->wordRepository->allRequested();
+        $requested = $this->wordRepository->allRequested();
+        if (isset($args['first'])) {
+            $requested->limit($args['first']);
+        }
+        $sort = $args['sort'];
+        if(isset($sort)) {
+            if(isset($sort['sortColumn'])) {
+                $requested->orderBy($sort['sortColumn'], $sort['sortOrder'] ?? 'ASC');
+            }
+            if(isset($sort['whereColumn']) && isset($sort['whereValue'])) {
+                $requested->where($sort['whereColumn'], $sort['whereOperator'] ?? '=', $sort['whereValue']);
+            }
+        }
+        return $requested->withCount('requesters')->get();
     }
 }

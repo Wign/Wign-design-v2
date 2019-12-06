@@ -14,7 +14,7 @@ type Query {
     wordByLiteral(literal: String! @eq): Word @find # later use @search
     wordById(id: ID! @eq): Word @find
     #randomWord: Word # A random existing word
-    requestedWords: [Word]! @paginate(type: "paginator" model: "Word")
+    requestedWords(first: Int, sort: SortInput): [Word]!
     #signedWords: [signedWord]! @paginate(type: "paginator" model: "Word")
 
     ### SIGNS ###
@@ -85,6 +85,8 @@ type Word {
     editor: User! @belongsTo
     created_at: DateTime!
     updated_at: DateTime!
+    requesters_count: Int!
+    user_requested: Boolean!
 }
 
 type Language {
@@ -199,3 +201,11 @@ type Role {
 #    IP: String!
 #    Description: String # Opt: Extra descirption of the reason
 #}
+
+input SortInput {
+    sortColumn: String
+    sortOrder: String
+    whereColumn: String
+    whereOperator: String
+    whereValue: String
+}

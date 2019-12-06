@@ -14,7 +14,7 @@
 Route::view('/', 'pages.index')->name('index');
 
 //Route::get('/new', function () { return view(''); })->name('createSign');
-//Route::get('/ask', function () { return view('layouts.index'); })->name('seeRequest');
+Route::view('/ask', 'pages.request')->name('ask');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/signs', 'pages.recent')->name('signs');
 

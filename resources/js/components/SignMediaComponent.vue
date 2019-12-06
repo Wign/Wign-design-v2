@@ -1,8 +1,8 @@
 <template>
     <div class="md:flex my-6">
-        <div class="md:flex-shrink-0">
+        <div class="md:flex-shrink-0 md:w-2/5">
             <slot>
-                <video class="md:w-60" controls muted :poster="sign.thumb">
+                <video class="w-full" controls muted :poster="sign.thumb">
                     <source :src="sign.video" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -12,7 +12,7 @@
             <div>
                 <h1 class="font-bold">{{ sign.word }}</h1>
                 <p class="mt-2 italic text-xs">Uploadet {{ uploaded }}</p>
-                <p class="mt-2" :hidden="description === false">{{ description }} &hellip;<a :href="link" class="font-bold italic">LÆS MERE</a>
+                <p class="mt-2" :hidden="description === false">{{ description }}&hellip;<a :href="link" class="font-bold italic">LÆS&nbsp;MERE</a>
                 </p>
             </div>
             <div class="flex-grow-0">

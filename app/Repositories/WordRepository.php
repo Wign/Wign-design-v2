@@ -21,11 +21,11 @@ class WordRepository implements RespositoryInterface
     /**
      * Get all requested words.
      *
-     * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @return Word|\Illuminate\Database\Eloquent\Builder
      */
     public function allRequested()
     {
-        return $this->word->has('requesters')->get();
+        return $this->word->has('requesters');
     }
 
     /**

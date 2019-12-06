@@ -1,7 +1,7 @@
 <template>
     <div class="md:flex my-6">
-        <div class="md:flex-shrink-0">
-            <div class="w-220 h-140 bg-summergreen-translucent-20">
+        <div class="md:flex-shrink-0 md:w-1/3">
+            <div class="w-full h-310 bg-summergreen-translucent-20">
                 <a href="#" class="hover:scaleBig">
                     <fa-icon icon="plus-circle" size="4x" class="mx-auto h-full block transition"></fa-icon>
                 </a>

@@ -1,17 +1,15 @@
 <template>
     <div>
-        <LoadingComponent v-if="$apollo.loading" class="m-5" size="double"/>
-        <RequestComponent v-for="request in requestedWords.data" :key="request.id" :literal="request.literal" />
+        <LoadingComponent v-if="$apollo.loading" class="m-5" size="double"></LoadingComponent>
+        <RequestButton v-for="request in requestedWords" :key="request.id" :literal="request.literal" class="mx-1"></RequestButton>
     </div>
 </template>
 
 <script>
-    import RequestComponent from "../atoms/RequestComponent";
-    import gql from 'graphql-tag'
+    import gql from 'graphql-tag';
     export default {
         name: "RequestList.vue",
         props: ['numWords'],
-        components: {RequestComponent},
         data: function () {
             return {
                 requestedWords: [],
@@ -19,7 +17,7 @@
         },
         apollo: {
             requestedWords: {
-                query: gql`query requestedWords($first: Int!) {requestedWords(first: $first){data{literal,id}}}`,
+                query: gql`query requestedWords($first: Int!) {requestedWords(first: $first){literal,id}}`,
                 variables () {
                     return {
                         first: parseInt(this.numWords)

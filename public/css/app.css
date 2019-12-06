@@ -674,8 +674,8 @@ body {
   border-width: 1px;
   border-color: #5CC4C4;
   color: #2d3748;
-  background-color: #f7fafc;
-  border-radius: 9999px;
+  background-color: #fff;
+  border-radius: 2rem;
 }
 
 .btn-tyrisk-outline:hover {
@@ -3378,7 +3378,7 @@ body {
 }
 
 .rounded {
-  border-radius: 0.25rem;
+  border-radius: 2rem;
 }
 
 .rounded-lg {
@@ -3430,23 +3430,23 @@ body {
 }
 
 .rounded-t {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
 }
 
 .rounded-r {
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
 }
 
 .rounded-b {
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
 }
 
 .rounded-l {
-  border-top-left-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
 }
 
 .rounded-t-lg {
@@ -3522,19 +3522,19 @@ body {
 }
 
 .rounded-tl {
-  border-top-left-radius: 0.25rem;
+  border-top-left-radius: 2rem;
 }
 
 .rounded-tr {
-  border-top-right-radius: 0.25rem;
+  border-top-right-radius: 2rem;
 }
 
 .rounded-br {
-  border-bottom-right-radius: 0.25rem;
+  border-bottom-right-radius: 2rem;
 }
 
 .rounded-bl {
-  border-bottom-left-radius: 0.25rem;
+  border-bottom-left-radius: 2rem;
 }
 
 .rounded-tl-lg {
@@ -4157,6 +4157,10 @@ body {
 
 .h-140 {
   height: 140px;
+}
+
+.h-310 {
+  height: 310px;
 }
 
 .h-auto {
@@ -5413,6 +5417,14 @@ body {
 
 .min-h-0 {
   min-height: 0;
+}
+
+.min-h-32 {
+  min-height: 8rem;
+}
+
+.min-h-64 {
+  min-height: 16rem;
 }
 
 .min-h-500 {
@@ -15014,7 +15026,7 @@ body {
   }
 
   .sm\:rounded {
-    border-radius: 0.25rem;
+    border-radius: 2rem;
   }
 
   .sm\:rounded-lg {
@@ -15066,23 +15078,23 @@ body {
   }
 
   .sm\:rounded-t {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
   }
 
   .sm\:rounded-r {
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .sm\:rounded-b {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .sm\:rounded-l {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .sm\:rounded-t-lg {
@@ -15158,19 +15170,19 @@ body {
   }
 
   .sm\:rounded-tl {
-    border-top-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
   }
 
   .sm\:rounded-tr {
-    border-top-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
   }
 
   .sm\:rounded-br {
-    border-bottom-right-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .sm\:rounded-bl {
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .sm\:rounded-tl-lg {
@@ -15793,6 +15805,10 @@ body {
 
   .sm\:h-140 {
     height: 140px;
+  }
+
+  .sm\:h-310 {
+    height: 310px;
   }
 
   .sm\:h-auto {
@@ -17049,6 +17065,14 @@ body {
 
   .sm\:min-h-0 {
     min-height: 0;
+  }
+
+  .sm\:min-h-32 {
+    min-height: 8rem;
+  }
+
+  .sm\:min-h-64 {
+    min-height: 16rem;
   }
 
   .sm\:min-h-500 {
@@ -26614,7 +26638,7 @@ body {
   }
 
   .md\:rounded {
-    border-radius: 0.25rem;
+    border-radius: 2rem;
   }
 
   .md\:rounded-lg {
@@ -26666,23 +26690,23 @@ body {
   }
 
   .md\:rounded-t {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
   }
 
   .md\:rounded-r {
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .md\:rounded-b {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .md\:rounded-l {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .md\:rounded-t-lg {
@@ -26758,19 +26782,19 @@ body {
   }
 
   .md\:rounded-tl {
-    border-top-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
   }
 
   .md\:rounded-tr {
-    border-top-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
   }
 
   .md\:rounded-br {
-    border-bottom-right-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .md\:rounded-bl {
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .md\:rounded-tl-lg {
@@ -27393,6 +27417,10 @@ body {
 
   .md\:h-140 {
     height: 140px;
+  }
+
+  .md\:h-310 {
+    height: 310px;
   }
 
   .md\:h-auto {
@@ -28649,6 +28677,14 @@ body {
 
   .md\:min-h-0 {
     min-height: 0;
+  }
+
+  .md\:min-h-32 {
+    min-height: 8rem;
+  }
+
+  .md\:min-h-64 {
+    min-height: 16rem;
   }
 
   .md\:min-h-500 {
@@ -38214,7 +38250,7 @@ body {
   }
 
   .lg\:rounded {
-    border-radius: 0.25rem;
+    border-radius: 2rem;
   }
 
   .lg\:rounded-lg {
@@ -38266,23 +38302,23 @@ body {
   }
 
   .lg\:rounded-t {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
   }
 
   .lg\:rounded-r {
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .lg\:rounded-b {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .lg\:rounded-l {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .lg\:rounded-t-lg {
@@ -38358,19 +38394,19 @@ body {
   }
 
   .lg\:rounded-tl {
-    border-top-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
   }
 
   .lg\:rounded-tr {
-    border-top-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
   }
 
   .lg\:rounded-br {
-    border-bottom-right-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .lg\:rounded-bl {
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .lg\:rounded-tl-lg {
@@ -38993,6 +39029,10 @@ body {
 
   .lg\:h-140 {
     height: 140px;
+  }
+
+  .lg\:h-310 {
+    height: 310px;
   }
 
   .lg\:h-auto {
@@ -40249,6 +40289,14 @@ body {
 
   .lg\:min-h-0 {
     min-height: 0;
+  }
+
+  .lg\:min-h-32 {
+    min-height: 8rem;
+  }
+
+  .lg\:min-h-64 {
+    min-height: 16rem;
   }
 
   .lg\:min-h-500 {
@@ -49814,7 +49862,7 @@ body {
   }
 
   .xl\:rounded {
-    border-radius: 0.25rem;
+    border-radius: 2rem;
   }
 
   .xl\:rounded-lg {
@@ -49866,23 +49914,23 @@ body {
   }
 
   .xl\:rounded-t {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
   }
 
   .xl\:rounded-r {
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .xl\:rounded-b {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .xl\:rounded-l {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .xl\:rounded-t-lg {
@@ -49958,19 +50006,19 @@ body {
   }
 
   .xl\:rounded-tl {
-    border-top-left-radius: 0.25rem;
+    border-top-left-radius: 2rem;
   }
 
   .xl\:rounded-tr {
-    border-top-right-radius: 0.25rem;
+    border-top-right-radius: 2rem;
   }
 
   .xl\:rounded-br {
-    border-bottom-right-radius: 0.25rem;
+    border-bottom-right-radius: 2rem;
   }
 
   .xl\:rounded-bl {
-    border-bottom-left-radius: 0.25rem;
+    border-bottom-left-radius: 2rem;
   }
 
   .xl\:rounded-tl-lg {
@@ -50593,6 +50641,10 @@ body {
 
   .xl\:h-140 {
     height: 140px;
+  }
+
+  .xl\:h-310 {
+    height: 310px;
   }
 
   .xl\:h-auto {
@@ -51849,6 +51901,14 @@ body {
 
   .xl\:min-h-0 {
     min-height: 0;
+  }
+
+  .xl\:min-h-32 {
+    min-height: 8rem;
+  }
+
+  .xl\:min-h-64 {
+    min-height: 16rem;
   }
 
   .xl\:min-h-500 {

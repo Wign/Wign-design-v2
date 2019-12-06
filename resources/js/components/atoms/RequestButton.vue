@@ -1,5 +1,5 @@
 <template>
-    <a class="btn btn-tyrisk-outline mx-1 my-2" :href="link" v-text="literal"></a>
+    <a class="btn btn-tyrisk-outline my-2 relative" :href="link"><slot>{{literal}}</slot></a>
 </template>
 
 <script>

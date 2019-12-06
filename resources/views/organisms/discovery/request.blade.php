@@ -8,7 +8,9 @@
 </div>
 
 <div class="flex flex-wrap">
-    @component('atoms.btn_tyrisk', ['class' => 'sm:w-2/3 md:w-full xl:w-2/3'])
+    <a href="{{@route('ask')}}" class="sm:w-2/3 md:w-full xl:w-2/3">
+    @component('atoms.btn_tyrisk')
         @lang('text.requested.see.all')
     @endcomponent
+    </a>
 </div>

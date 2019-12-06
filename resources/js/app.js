@@ -39,13 +39,14 @@ import {
     faThumbsUp as fasThumbsUp,
     faEllipsisH,
     faAngleDown,
-    faAngleLeft
+    faAngleLeft,
+    faHandPointUp as fasHandPointUp
 } from '@fortawesome/free-solid-svg-icons';
-import {faThumbsUp as farThumbsUp} from '@fortawesome/free-regular-svg-icons';
+import {faThumbsUp as farThumbsUp, faHandPointUp as farHandPointUp} from '@fortawesome/free-regular-svg-icons';
 import {faFacebook, faGithub, faGoogle} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
-library.add(faFacebook, faGoogle, faGithub, faHome, faPlusCircle, fasThumbsUp, farThumbsUp, faEllipsisH, faAngleDown, faAngleLeft);
+library.add(faFacebook, faGoogle, faGithub, faHome, faPlusCircle, fasThumbsUp, farThumbsUp, faEllipsisH, faAngleDown, faAngleLeft, fasHandPointUp, farHandPointUp);
 //dom.watch();
 
 Vue.component('fa-icon', FontAwesomeIcon);
