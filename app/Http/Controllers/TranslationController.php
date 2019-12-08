@@ -4,23 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Translation;
 use Auth;
-use mysql_xdevapi\Exception;
-use Request;
+use Illuminate\Http\Request;
+use Nuwave\Lighthouse\Execution\Utils\Subscription;
 
-class TranslationController extends Controller {
-
+class TranslationController extends Controller
+{
     private $wordService;
     private $signService;
     private $descriptionService;
 
-    private function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService)
+    public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService)
     {
         $this->wordService = $wordService;
         $this->signService = $signService;
         $this->descriptionService = $descriptionService;
     }
 
-    public function createTranslation(Request $request) {
+    public function createTranslation(Request $request)
+    {
         $user = Auth::user();
 
         $word = $this->wordService->findOrMakeWord($request, $user);
@@ -39,15 +40,16 @@ class TranslationController extends Controller {
                 'creator_id' => $user->id,
                 'editor_id' => $user->id,
             ]);
+            Subscription::broadcast('traceTranslations', $translation);
 
             return response()->json($translation);
         } else {
             return redirect()->back()->withErrors(__('error.creationFailed'));
         }
-
     }
 
-    public function editTranslation(Request $request, $translationId) {
+    public function editTranslation(Request $request, $translationId)
+    {
         $user = Auth::user();
 
         $translation = Translation::findOrFail($translationId);
@@ -71,14 +73,46 @@ class TranslationController extends Controller {
                 return response($e, 500);
             }
 
-            if ($newWord != null) { $newWord->save(); }
-            if ($newSign != null) { $newSign->save(); }
-            if ($newDesc != null) { $newDesc->save(); }
+            if ($newWord != null) {
+                $newWord->save();
+            }
+            if ($newSign != null) {
+                $newSign->save();
+            }
+            if ($newDesc != null) {
+                $newDesc->save();
+            }
             $newTranslation->save();
 
             return response()->json($newTranslation);
         }
 
         return redirect()->back()->withErrors(__('error.noChanges'));
+    }
+
+    public function deleteTranslation(Request $request): bool
+    {
+        $translation = Translation::findOrFail($request->input('ID'));
+
+        try {
+            $translation->delete();
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function restoreTranslation(Request $request): bool
+    {
+        $translation = Translation::withTrashed()->find($request->input(['ID']));
+
+        if ($translation != null) {
+            $translation->restore();
+
+            return true;
+        }
+
+        return false;
     }
 }
