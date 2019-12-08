@@ -17,9 +17,11 @@ class ToogleLike
      * CreateTranslation constructor.
      * @param \TranslationEndpoints $translationEndpoints
      */
-    public function __construct(LikeEndpoints $endpoints) {
+    public function __construct(LikeEndpoints $endpoints)
+    {
         $this->endpoints = $endpoints;
     }
+
     /**
      * Return a value for the field.
      *
