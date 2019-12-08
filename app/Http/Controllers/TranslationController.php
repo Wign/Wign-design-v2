@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Translation;
@@ -6,8 +7,8 @@ use Auth;
 use Illuminate\Http\Request;
 use Nuwave\Lighthouse\Execution\Utils\Subscription;
 
-class TranslationController extends Controller {
-
+class TranslationController extends Controller
+{
     private $wordService;
     private $signService;
     private $descriptionService;
@@ -19,7 +20,8 @@ class TranslationController extends Controller {
         $this->descriptionService = $descriptionService;
     }
 
-    public function createTranslation(Request $request) {
+    public function createTranslation(Request $request)
+    {
         $user = Auth::user();
 
         $word = $this->wordService->findOrMakeWord($request, $user);
@@ -44,10 +46,10 @@ class TranslationController extends Controller {
         } else {
             return redirect()->back()->withErrors(__('error.creationFailed'));
         }
-
     }
 
-    public function editTranslation(Request $request, $translationId) {
+    public function editTranslation(Request $request, $translationId)
+    {
         $user = Auth::user();
 
         $translation = Translation::findOrFail($translationId);
@@ -71,9 +73,15 @@ class TranslationController extends Controller {
                 return response($e, 500);
             }
 
-            if ($newWord != null) { $newWord->save(); }
-            if ($newSign != null) { $newSign->save(); }
-            if ($newDesc != null) { $newDesc->save(); }
+            if ($newWord != null) {
+                $newWord->save();
+            }
+            if ($newSign != null) {
+                $newSign->save();
+            }
+            if ($newDesc != null) {
+                $newDesc->save();
+            }
             $newTranslation->save();
 
             return response()->json($newTranslation);
@@ -82,7 +90,8 @@ class TranslationController extends Controller {
         return redirect()->back()->withErrors(__('error.noChanges'));
     }
 
-    public function deleteTranslation(Request $request): bool {
+    public function deleteTranslation(Request $request): bool
+    {
         $translation = Translation::findOrFail($request->input('ID'));
 
         try {
@@ -90,16 +99,20 @@ class TranslationController extends Controller {
         } catch (\Exception $e) {
             return false;
         }
+
         return true;
     }
 
-    public function restoreTranslation(Request $request): bool {
+    public function restoreTranslation(Request $request): bool
+    {
         $translation = Translation::withTrashed()->find($request->input(['ID']));
 
         if ($translation != null) {
             $translation->restore();
+
             return true;
         }
+
         return false;
     }
 }

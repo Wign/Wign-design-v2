@@ -1,32 +1,33 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Sign;
 use App\Translation;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 
-class SignService {
-
+class SignService
+{
     /**
      * @var LanguageService
      */
     private $languageService;
 
-    public function __construct(LanguageService $languageService) {
+    public function __construct(LanguageService $languageService)
+    {
         $this->languageService = $languageService;
     }
 
-    public function makeSign(Request $request, $user): Sign {
+    public function makeSign(Request $request, $user): Sign
+    {
         $sign = $this->newSign($request, $user);
 
         return $sign;
     }
 
-    public function editSign(Request $request, Translation $translation, ?Authenticatable $user): Sign {
+    public function editSign(Request $request, Translation $translation, ?Authenticatable $user): Sign
+    {
         if ($request->input('video_uuid') == null) {
             return null;
         }
@@ -41,7 +42,8 @@ class SignService {
      * @param $user
      * @return Sign|\Illuminate\Database\Eloquent\Model
      */
-    private function newSign(Request $request, $user): Sign {
+    private function newSign(Request $request, $user): Sign
+    {
         $this->validate($request, [
             'video_uuid' => 'required',
             'video_url' => 'required',
@@ -55,7 +57,7 @@ class SignService {
             'language_id' => $this->languageService->getSigned()->id,
             'creator_id' => $user->id,
         ]);
+
         return $sign;
     }
-
 }

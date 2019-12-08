@@ -2,9 +2,9 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\GraphQL\TranslationEndpoints;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
-use App\GraphQL\TranslationEndpoints;
 
 class CreateTranslation
 {
@@ -17,7 +17,8 @@ class CreateTranslation
      * CreateTranslation constructor.
      * @param TranslationEndpoints $translationEndpoints
      */
-    public function __construct(TranslationEndpoints $translationEndpoints) {
+    public function __construct(TranslationEndpoints $translationEndpoints)
+    {
         $this->translationEndpoints = $translationEndpoints;
     }
 

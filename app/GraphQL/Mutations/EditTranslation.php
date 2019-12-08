@@ -18,7 +18,8 @@ class EditTranslation
      *
      * @param  TranslationEndpoints  $translationEndpoints
      */
-    public function __construct(TranslationEndpoints $translationEndpoints) {
+    public function __construct(TranslationEndpoints $translationEndpoints)
+    {
         $this->translationEndpoints = $translationEndpoints;
     }
 
