@@ -6,7 +6,7 @@ use App\GraphQL\TranslationEndpoints;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class EditTranslation
+class DeleteTranslation
 {
     /**
      * @var TranslationEndpoints
@@ -34,6 +34,6 @@ class EditTranslation
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->translationEndpoints->editTranslation($rootValue, $args, $context, $resolveInfo);
+        return $this->translationEndpoints->deleteTranslation($rootValue, $args, $context, $resolveInfo);
     }
 }

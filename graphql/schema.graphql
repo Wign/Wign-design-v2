@@ -38,10 +38,13 @@ type Query {
 
 type Mutation {
 ### TRANSLATION ###
-#createTranslation(input: WordInput!, SignInput, DescriptionInput): Translation! @create
+    createTranslation(word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation!
+        @broadcast(subscription: "traceTranslations")
+    editTranslation(id: ID!, word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation
+    deleteTranslation(id: ID!): Translation
 
 #    ### WORD ###
-    requestWord(input: WordInput!): [Word]
+#    requestWord(input: WordInput!): requestedWord
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
 #
@@ -55,6 +58,10 @@ type Mutation {
 #    ### LIKE ###
 #    like(userId: ID!, signId: ID!): Boolean! # Returns true if liked
 #    unlike(userId: ID!, signId: ID!): Boolean! # Returns false if is unliked
+}
+
+type Subscription {
+    traceTranslations(literal: String): [Translation]
 }
 
 type User {
