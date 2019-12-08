@@ -3,11 +3,10 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Translation;
 use App\Word;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class WordService {
 
@@ -16,7 +15,7 @@ class WordService {
      */
     private $languageService;
 
-    private function __construct(LanguageService $languageService) {
+    public function __construct(LanguageService $languageService) {
         $this->languageService = $languageService;
     }
 
@@ -49,7 +48,7 @@ class WordService {
         return $word;
     }
 
-    public function editWordSoftly(\Request $request, Translation $translation, ?Authenticatable $user): Word {
+    public function editWordSoftly(Request $request, Translation $translation, ?Authenticatable $user): Word {
         if ($this->isUnchanged($request, $translation->word)) {
             return null;
         }
@@ -66,7 +65,7 @@ class WordService {
     }
 
     public
-    function editWordHardly(\Request $request, Translation $translation, ?Authenticatable $user): Word {
+    function editWordHardly(Request $request, Translation $translation, ?Authenticatable $user): Word {
         if ($this->isUnchanged($request, $translation->word)) {
             return null;
         }
@@ -99,11 +98,11 @@ class WordService {
     }
 
     /**
-     * @param \Request $request
+     * @param Request $request
      * @param Word $word
      * @return bool
      */
-    private function isUnchanged(\Request $request, Word $word): bool {
+    private function isUnchanged(Request $request, Word $word): bool {
         return $request->input('literal') == $word->literal;
     }
 

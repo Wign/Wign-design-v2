@@ -1,0 +1,23 @@
+# Create translation mutation example
+mutation {
+  createTranslation(
+    word: {
+      literal: "test"
+    },
+    sign: {
+      videoUuid: "testuid"
+    },
+    description: {
+      text: "A big huck of text using to create the translation Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hic nihil fuit, quod quaereremus. Duo Reges: constructio interrete. Varietates autem iniurasque fortunae facile veteres philosophorum praeceptis instituta vita superabat. Quid, si etiam iucunda memoria est praeteritorum malorum?"
+    }
+  ) {
+    id
+    creator {
+      name
+    }
+    word {
+      id
+      literal
+    }
+  }
+}

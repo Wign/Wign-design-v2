@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Translation;
 use Auth;
-use mysql_xdevapi\Exception;
+use Illuminate\Http\Request;
 use Nuwave\Lighthouse\Execution\Utils\Subscription;
-use Request;
 
 class TranslationController extends Controller {
 
@@ -14,7 +12,7 @@ class TranslationController extends Controller {
     private $signService;
     private $descriptionService;
 
-    private function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService)
+    public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService)
     {
         $this->wordService = $wordService;
         $this->signService = $signService;
@@ -84,7 +82,7 @@ class TranslationController extends Controller {
         return redirect()->back()->withErrors(__('error.noChanges'));
     }
 
-    public function deleteTranslation(\Illuminate\Http\Request $request): bool {
+    public function deleteTranslation(Request $request): bool {
         $translation = Translation::findOrFail($request->input('ID'));
 
         try {
@@ -95,7 +93,7 @@ class TranslationController extends Controller {
         return true;
     }
 
-    public function restoreTranslation(\Illuminate\Http\Request $request): bool {
+    public function restoreTranslation(Request $request): bool {
         $translation = Translation::withTrashed()->find($request->input(['ID']));
 
         if ($translation != null) {

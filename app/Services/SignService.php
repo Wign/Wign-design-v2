@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Sign;
 use App\Translation;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Request;
+use Illuminate\Http\Request;
 
 class SignService {
 
@@ -16,7 +16,7 @@ class SignService {
      */
     private $languageService;
 
-    private function __construct(LanguageService $languageService) {
+    public function __construct(LanguageService $languageService) {
         $this->languageService = $languageService;
     }
 

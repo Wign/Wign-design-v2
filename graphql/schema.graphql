@@ -38,10 +38,10 @@ type Query {
 
 type Mutation {
 ### TRANSLATION ###
-    createTranslation(word: WordInput!, sign:SignInput!, description:DescriptionInput!): Translation! @create
+    createTranslation(word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation!
         @broadcast(subscription: "traceTranslations")
-    editTranslation(id: ID!, literal: String, video_uuid: String, text:String): Translation @update
-    deleteTranslation(id: ID!): Translation @delete
+    editTranslation(id: ID!, word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation
+    deleteTranslation(id: ID!): Translation
 
 #    ### WORD ###
 #    requestWord(input: WordInput!): requestedWord

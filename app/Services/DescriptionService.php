@@ -3,10 +3,9 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Description;
 use App\User;
-use Request;
+use Illuminate\Http\Request;
 
 class DescriptionService {
 
