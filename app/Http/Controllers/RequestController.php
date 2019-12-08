@@ -9,11 +9,13 @@ use Illuminate\Validation\ValidationException;
 class RequestController extends Controller
 {
     private $wordService;
+
     /**
      * RequestController constructor.
      * @param WordService $wordService
      */
-    public function __construct(WordService $wordService) {
+    public function __construct(WordService $wordService)
+    {
         $this->wordService = $wordService;
     }
 
