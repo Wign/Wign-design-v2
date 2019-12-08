@@ -1,16 +1,17 @@
 <?php
 
+use App\Http\Controllers\RequestController;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class RequestEndpoints
 {
     /**
-     * @var \App\Http\Controllers\RequestController
+     * @var RequestController
      */
     private $controller;
 
-    public function __construct(\App\Http\Controllers\RequestController $controller)
+    public function __construct(RequestController $controller)
     {
         $this->controller = $controller;
     }
@@ -22,7 +23,7 @@ class RequestEndpoints
     }
 
     // MUTATIONS
-    public function requestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    public function toggleRequestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         return $this->controller->toggleRequest($context->request());
     }

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Word;
+use Exception;
 
 class WordRepository implements RespositoryInterface
 {
@@ -19,13 +20,12 @@ class WordRepository implements RespositoryInterface
     }
 
     /**
-     * Get all requested words.
+     * Get all request to words that have no translations
      *
-     * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @return Word|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    public function allRequested()
-    {
-        return $this->word->has('requesters')->get();
+    public function allActiveRequests() {
+        return $this->word->doesntHave('translations')->has('requesters')->withCount('requesters')->orderBy('requesters_count', 'desc')->orderBy('literal');
     }
 
     /**
@@ -58,7 +58,7 @@ class WordRepository implements RespositoryInterface
         return $this->word->create($data);
     }
 
-    public function update(array $data, $id): bool
+    public function update(array $data, $id)
     {
         $word = $this->find($id);
         $word->update($data);
@@ -66,6 +66,10 @@ class WordRepository implements RespositoryInterface
 
     public function delete($id)
     {
-        return $this->word->destroy($id);
+        try {
+            Word::find($id)->delete();
+        } catch (Exception $e) {
+            return response($e, 500);
+        }
     }
 }

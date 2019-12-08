@@ -92,7 +92,7 @@ class WordService
         return $translation->word;
     }
 
-    private function validateWord(Request $request)
+    public function validateWord(Request $request)
     {
         $this->validate($request, [
             'literal' => 'required|alpha_num', //TODO vær ikke vred mere

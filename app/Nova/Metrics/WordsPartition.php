@@ -30,7 +30,7 @@ class WordsPartition extends Partition
      */
     public function calculate(Request $request)
     {
-        $requestedWord = $this->wordRepository->allRequested()->count();
+        $requestedWord = $this->wordRepository->allActiveRequests()->count();
         $signedWord = $this->wordRepository->allSigned()->count();
         $vacantWord = $this->wordRepository->allVacant()->count();
         $trashedWord = $this->wordRepository->onlyTrashed()->count();

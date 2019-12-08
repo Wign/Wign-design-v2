@@ -2,31 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Word;
+use App\Repositories\WordRepository;
+use Auth;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
 class RequestController extends Controller
 {
     private $wordService;
+    private $wordRepository;
 
     /**
      * RequestController constructor.
      * @param WordService $wordService
+     * @param WordRepository $wordRepository
      */
-    public function __construct(WordService $wordService)
+    public function __construct(WordService $wordService, WordRepository $wordRepository)
     {
         $this->wordService = $wordService;
+        $this->wordRepository = $wordRepository;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $requests = Word::doesntHave('translations')->has('requesters')->withCount('requesters')->orderBy('requesters_count', 'desc')->orderBy('literal');
+        $requests = $this->wordRepository->allActiveRequests();
 
         return view('requests')->with($requests);
     }
@@ -34,36 +40,29 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Validation\ValidationException
-     * @throws \Exception
+     * @return array
+     * @throws Exception
      */
     public function toggleRequest(Request $request)
     {
-        try {
-            $this->validate($request, [
-                'literal' => 'required|string',
-            ]);
-        } catch (ValidationException $e) {
-            return redirect()->back(404);
-        }
+        $this->wordService->validateWord($request);
 
-        $user = \Auth::user();
+        $user = Auth::user();
         $word = $this->wordService->findOrMakeWord($request, $user);
         $word->save();
 
-        $word->requesters()->toggle($user);
+        $returnInfo = $word->requesters()->toggle($user);
 
         if ($word->requesters->isEmpty() && $word->translations->isEmpty()) {
             try {
                 $word->delete();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return response($e, 500);
             }
         }
 
-        return response()->view('requests');
+        return $returnInfo;
     }
 }

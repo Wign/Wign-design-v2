@@ -4,17 +4,18 @@ namespace App\GraphQL\Mutations;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use RequestEndpoints;
 
-class RequestWord
+class ToggleRequestWord
 {
     protected $endpoints;
 
     /**
      * RequestedWords constructor.
      *
-     * @param $wordRepository
+     * @param RequestEndpoints $requestEndpoints
      */
-    public function __construct(\RequestEndpoints $requestEndpoints)
+    public function __construct(RequestEndpoints $requestEndpoints)
     {
         $this->endpoints = $requestEndpoints;
     }
@@ -31,6 +32,6 @@ class RequestWord
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->endpoints->requestWord();
+        return $this->endpoints->toggleRequestWord($rootValue, $args, $context, $resolveInfo);
     }
 }
