@@ -44,7 +44,7 @@ type Mutation {
     deleteTranslation(id: ID!): Translation
 
 #    ### WORD ###
-    createRequestWord(input: WordInput!): Word
+    toggleRequestWord(wordInput: WordInput!): Word
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
 #

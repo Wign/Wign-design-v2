@@ -6,6 +6,7 @@ use App\Translation;
 use App\Word;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class WordService
 {
@@ -94,9 +95,17 @@ class WordService
 
     public function validateWord(Request $request)
     {
-        $this->validate($request, [
-            'literal' => 'required|alpha_num', //TODO vær ikke vred mere
+        $validator = Validator::make($request->all(), [
+            'literal' => 'required|alpha_num',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return true;
     }
 
     /**

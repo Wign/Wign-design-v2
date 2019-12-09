@@ -7,7 +7,6 @@ use Auth;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Validation\ValidationException;
 
 class RequestController extends Controller
 {
@@ -42,7 +41,7 @@ class RequestController extends Controller
      *
      * @param Request $request
      *
-     * @return array
+     * @return \App\Word
      * @throws Exception
      */
     public function toggleRequest(Request $request)
@@ -53,7 +52,7 @@ class RequestController extends Controller
         $word = $this->wordService->findOrMakeWord($request, $user);
         $word->save();
 
-        $returnInfo = $word->requesters()->toggle($user);
+        $word->requesters()->toggle($user);
 
         if ($word->requesters->isEmpty() && $word->translations->isEmpty()) {
             try {
@@ -63,6 +62,6 @@ class RequestController extends Controller
             }
         }
 
-        return $returnInfo;
+        return $word;
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
+namespace App\GraphQL;
+
 use App\Http\Controllers\RequestController;
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -25,6 +28,10 @@ class RequestEndpoints
     // MUTATIONS
     public function toggleRequestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->controller->toggleRequest($context->request());
+        try {
+            return $this->controller->toggleRequest($context->request());
+        } catch (Exception $e) {
+            return response($e, 500);
+        }
     }
 }
