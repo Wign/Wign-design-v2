@@ -1,5 +1,7 @@
 <?php
 
+namespace App\GraphQL;
+
 use App\Http\Controllers\LikeController;
 
 class LikeEndpoints
@@ -17,7 +19,7 @@ class LikeEndpoints
     // QUERIES
 
     // MUTATIONS
-    public function toogleLike($rootValue, array $args, \Nuwave\Lighthouse\Support\Contracts\GraphQLContext $context, \GraphQL\Type\Definition\ResolveInfo $resolveInfo)
+    public function toggleLike($rootValue, array $args, \Nuwave\Lighthouse\Support\Contracts\GraphQLContext $context, \GraphQL\Type\Definition\ResolveInfo $resolveInfo)
     {
         return $this->controller->toggleLike($context->request());
     }

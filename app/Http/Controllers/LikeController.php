@@ -22,7 +22,9 @@ class LikeController extends Controller
     {
         $user = $this->userService->getUser($request);
         $sign = Sign::find($request->input('signId'));
-
-        return $user->likes()->toggle($sign);
+        if ($user != null) {
+            $user->likes()->toggle($sign);
+        }
+        return $sign;
     }
 }
