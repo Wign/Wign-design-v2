@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Systemparameter
+ * App\Systemparameter.
  *
  * @property int $id
  * @property string $type
