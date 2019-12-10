@@ -13,11 +13,12 @@ class SystemparameterTableSeeder extends Seeder
     public function run()
     {
         $parameters = [
-            collect(['type' => 'list_limit', 'value' => '30']),
+            collect(['key' => 'list_limit', 'type' => 'INTEGER', 'value' => '30']),
         ];
 
         foreach ($parameters as $p) {
             Systemparameter::create([
+                'key' => $p->get('key'),
                 'type' => $p->get('type'),
                 'value' => $p->get('value'),
             ]);

@@ -35,6 +35,7 @@ class Systemparameter extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'key',
         'type',
         'value',
     ];

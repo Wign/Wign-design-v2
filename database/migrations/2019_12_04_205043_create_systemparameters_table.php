@@ -14,9 +14,9 @@ class CreateSystemparametersTable extends Migration
     public function up()
     {
         Schema::create('systemparameters', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('type')->index()->unique();
-            $table->integer('value');
+            $table->string('key')->index()->unique();
+            $table->string('type');
+            $table->string('value');
             $table->timestamps();
             $table->softDeletes();
         });
