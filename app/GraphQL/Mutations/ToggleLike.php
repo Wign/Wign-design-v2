@@ -8,7 +8,6 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class ToggleLike
 {
-
     private $endpoints;
 
     public function __construct(LikeEndpoints $endpoints)
