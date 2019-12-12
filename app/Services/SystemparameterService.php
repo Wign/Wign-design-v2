@@ -38,5 +38,4 @@ class SystemparameterService
         }
         $parameter->update(['value' => $value]);
     }
-
 }
