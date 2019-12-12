@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class UserService
 {
-    public function getUser(Request $request): User
+    public function getUser(GraphQLContext $context): Authenticatable
     {
         return Auth::user();
     }
