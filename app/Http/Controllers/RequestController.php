@@ -54,7 +54,7 @@ class RequestController extends Controller
 
         $word->requesters()->toggle($user);
 
-        if ($word->requesters->isEmpty() && $word->translations->isEmpty()) {
+        if ($this->wordService->isVacant($word)) {
             try {
                 $word->delete();
             } catch (Exception $e) {

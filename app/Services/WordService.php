@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Translation;
 use App\Word;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class WordService
@@ -42,7 +42,7 @@ class WordService
 
     public function findWord($literal): Word
     {
-        $word = Word::where([
+        $word = Word::withTrashed()->where([
             'literal' => $literal,
             'language_id' => $this->languageService->getWritten()->id,
         ])->first();
@@ -50,7 +50,7 @@ class WordService
         return $word;
     }
 
-    public function editWordSoftly(Request $request, Translation $translation, ?Authenticatable $user): Word
+    public function editWord(Request $request, Translation $translation, Auth $user): Word
     {
         if ($this->isUnchanged($request, $translation->word)) {
             return null;
@@ -67,7 +67,7 @@ class WordService
         return $word;
     }
 
-    public function editWordHardly(Request $request, Translation $translation, ?Authenticatable $user): Word
+    public function renameLiteral(Request $request, Translation $translation, Auth $user): Word
     {
         if ($this->isUnchanged($request, $translation->word)) {
             return null;
@@ -91,6 +91,10 @@ class WordService
         }
 
         return $translation->word;
+    }
+
+    public function isVacant(Word $word) {
+        return $word->requesters->isEmpty() && $word->translations->isEmpty();
     }
 
     public function validateWord(Request $request)

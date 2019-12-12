@@ -54,7 +54,7 @@ class TranslationController extends Controller
 
         $translation = Translation::findOrFail($translationId);
 
-        $newWord = $this->wordService->editWordSoftly($request, $translation, $user);
+        $newWord = $this->wordService->editWord($request, $translation, $user);
         $newSign = $this->signService->editSign($request, $translation, $user);
         $newDesc = $this->descriptionService->editDescription($request, $translation, $user);
 
