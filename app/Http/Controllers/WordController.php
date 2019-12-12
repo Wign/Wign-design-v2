@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\WordRepository;
-use Illuminate\Http\Request;
 
 class WordController extends Controller
 {
