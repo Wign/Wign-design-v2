@@ -56,8 +56,7 @@ type Mutation {
 #    deleteSign(signId: ID!): Sign
 #
 #    ### LIKE ###
-#    like(userId: ID!, signId: ID!): Boolean! # Returns true if liked
-#    unlike(userId: ID!, signId: ID!): Boolean! # Returns false if is unliked
+   toggleLike(userId: ID!, signId: ID!): Word! # Returns true if liked
 }
 
 type Subscription {
