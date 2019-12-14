@@ -14,7 +14,7 @@
 Route::view('/', 'pages.index')->name('index');
 
 //Route::get('/new', function () { return view(''); })->name('createSign');
-Route::view('/ask', 'pages.request')->name('ask');
+Route::get('/ask', 'RequestController@index')->name('ask');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/signs', 'pages.recent')->name('signs');
 
