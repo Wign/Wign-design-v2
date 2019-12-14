@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import gql from 'graphql-tag'
+    import gql from 'graphql-tag';
 
     export default {
         props: ['sortText', 'requestText', 'alphaText', 'seeMoreText'],

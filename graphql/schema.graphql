@@ -6,6 +6,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
     ### USER ###
+    me: User @auth
     users: [User!]! @paginate
     user(id: ID! @eq): User @find
 
@@ -45,6 +46,7 @@ type Mutation {
     deleteTranslation(id: ID!): Translation
 
 #    ### WORD ###
+    toggleRequest(wordId: ID!): Word!
 #    requestWord(input: WordInput!): requestedWord
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
@@ -57,7 +59,7 @@ type Mutation {
 #    deleteSign(signId: ID!): Sign
 #
 #    ### LIKE ###
-   toggleLike(userId: ID!, signId: ID!): Word! # Returns true if liked
+   toggleLike(userId: ID!, signId: ID!): Word! @auth # Returns true if liked
 }
 
 type Subscription {

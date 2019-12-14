@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UserService;
 use App\Sign;
-use GraphQL\Type\Definition\ResolveInfo;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use \Illuminate\Foundation\Auth\User;
+use App\Word;
 
 class LikeController extends Controller
 {
@@ -19,15 +20,24 @@ class LikeController extends Controller
         $this->userService = $userService;
     }
 
-    public function toggleLike($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    public function toggleLike(String $signId, User $user)
     {
-        $user = $this->userService->getUser($context);
-        $sign = Sign::find($context->request()->input('signId'));
+        $sign = Sign::find($signId);
 
         if ($user != null) {
             $user->likes()->toggle($sign);
         }
 
         return $sign;
+    }
+
+    public function toggleRequest(String $wordId, User $user): Word {
+        $word = Word::find($wordId);
+
+        if (isset($user) && isset($word)) {
+            $user->requests()->toggle($word);
+        }
+
+        return $word;
     }
 }

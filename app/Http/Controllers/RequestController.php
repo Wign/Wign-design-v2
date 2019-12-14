@@ -14,10 +14,12 @@ class RequestController extends Controller
      */
     public function index()
     {
+        /*
         $limit = config('global.list_limit');
         $requests = Word::doesntHave('posts')->has('requests')->withCount('requests')->orderBy('requests_count', 'desc')->orderBy('word')->paginate($limit);
 
-        return view('requests')->with($requests);
+        return view('requests')->with($requests);*/
+        return view('pages.request');
     }
 
     /**

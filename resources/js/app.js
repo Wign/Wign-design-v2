@@ -26,6 +26,8 @@ window.Vue = require('vue');
 Vue.config.productionTip = false;
 Vue.use(VueApollo);
 
+Vue.prototype.$userLoggedIn = document.querySelector("meta[name='user-logged']").getAttribute('content') === "1";
+
 //Vue.use(VueI18n);
 //Vue.use(VeeValidate);
 

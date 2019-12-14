@@ -39,7 +39,7 @@
                 switch (this.size) {
                     case 'lg':
                     case 'md':
-                        return true;
+                        return this.$userLoggedIn;
                     default:
                         return false;
                 }

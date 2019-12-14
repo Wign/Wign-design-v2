@@ -1,14 +1,12 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class UserService
 {
-    public function getUser(GraphQLContext $context): Authenticatable
+    public function getUser(): Authenticatable
     {
         return Auth::user();
     }

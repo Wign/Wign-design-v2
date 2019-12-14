@@ -3,6 +3,10 @@
 namespace App\GraphQL;
 
 use App\Http\Controllers\LikeController;
+use App\Word;
+use GraphQL\Type\Definition\ResolveInfo;
+use Illuminate\Support\Facades\Log;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class LikeEndpoints
 {
@@ -19,8 +23,15 @@ class LikeEndpoints
     // QUERIES
 
     // MUTATIONS
-    public function toggleLike($rootValue, array $args, \Nuwave\Lighthouse\Support\Contracts\GraphQLContext $context, \GraphQL\Type\Definition\ResolveInfo $resolveInfo)
+    public function toggleLike($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->controller->toggleLike($rootValue, $args, $context, $resolveInfo);
+        return $this->controller->toggleLike($args['signId'], $context->user());
+    }
+
+    public function toggleRequest($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): Word
+    {
+        Log::debug('context user');
+        Log::debug($context);
+        return $this->controller->toggleRequest($args['wordId'], $context->user());
     }
 }
