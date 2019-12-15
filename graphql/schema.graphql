@@ -1,0 +1,196 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+type Query {
+    ### USER ###
+    users: [User!]! @paginate
+    user(id: ID! @eq): User @find
+
+    ### WORDS ###
+    words: [Word!]! @all # All words
+    word(literal: String!): Word @find # later use @search
+    #randomWord: Word # A random existing word
+    requestedWords: [Word]!
+    #signedWords: [signedWord]!
+
+    ### SIGNS ###
+    signs: [Sign]! @paginate
+    signById(id: ID! @eq): Sign @find
+    #signByWord(literal: String!): [Sign!] @find
+    #randomSign: Sign!
+
+    ### BUCKET ###
+    # Later...
+
+    ### LANGUAGE ###
+    # Later... ?
+
+    ### TAG ###
+    # Later...
+
+    ### ART / ARTIST ###
+    # Later...
+
+}
+
+type Mutation {
+### TRANSLATION ###
+    createTranslation(word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation!
+        @broadcast(subscription: "traceTranslations")
+    editTranslation(id: ID!, word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation
+    deleteTranslation(id: ID!): Translation
+
+#    ### WORD ###
+#    requestWord(input: WordInput!): requestedWord
+#    deleteWord(wordId: ID!): Word
+#    addAlias(wordId: ID!, input: WordInput): Word
+#
+#    ### SIGN ###
+#    signPlayed(signId: ID!): Int! # Added one click to "play" in the video
+#    createSign(input: SignInput!): Sign
+#    editDescription(input: DescriptionInput): Sign
+#    flagSign(input: FlagInput): Sign
+#    deleteSign(signId: ID!): Sign
+#
+#    ### LIKE ###
+   toggleLike(userId: ID!, signId: ID!): Word! # Returns true if liked
+}
+
+type Subscription {
+    traceTranslations(literal: String): [Translation]
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    role: Role! @belongsTo
+    signsCreated: [Sign]! @hasMany
+    descriptionsCreated: [Description]! @hasMany
+    descriptionsEdited: [Description]! @hasMany
+    likes: [Word]! @belongsToMany
+    requests: [Word]! @belongsToMany
+    translationsCreated: [Translation]! @hasMany
+    translationsEdited: [Translation]! @hasMany
+    wordsCreated: [Word]! @hasMany
+    wordsEdited: [Word]! @hasMany
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Word {
+    id: ID!
+    literal: String!
+    language: Language! @belongsTo
+    creator: User! @belongsTo
+    editor: User! @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Language {
+    id: ID!
+    code: String!
+    text: String!
+    type: String!
+    words: [Word]! @hasMany
+}
+
+type Sign {
+    id: ID!
+    video_uuid: String!
+    video_url: String!
+    thumbnail_url: String!
+    small_thumbnail_url: String!
+    language: Language! @belongsTo
+    playings: Int!
+    creator: User! @belongsTo
+    translation: Translation! @hasMany
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Translation {
+    id: ID!
+    creator: User! @belongsTo
+    description: Description! @belongsTo
+    editor: User! @belongsTo
+    sign: Sign! @belongsTo
+    word: Word! @belongsTo
+    likes: [User]! @belongsToMany
+    created_at: DateTime!
+    updated_at: DateTime!
+    deleted_at: DateTime!
+}
+
+type Description {
+    id: ID!
+    text: String!
+    creator: User! @belongsTo
+    editor: User! @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!
+    deleted_at: DateTime!
+}
+
+type Role {
+    id: ID!
+    type: String!
+    users: [User]! @hasMany
+}
+
+# LATER...
+#type Tag {
+#    id: ID!
+#    tag: String!
+#    signs: [Sign!]! # Evt. kun/også liste af descriptions?
+#}
+#
+#type Bucket {
+#    id: ID! # Bruge uuid her!
+#    title: String!
+#    owner: User!
+#    created: Date!
+#}
+#
+#type Art {
+#    id: ID!
+#    name: String!
+#    filename: String!
+#    url: String!
+#    artist: Artist!
+#    year: Year!
+#}
+#
+#type Artist {
+#    id: ID!
+#    name: String!
+#    externalUrl: String! # Url til deres hjemmeside eller lignende
+#    internalUrl: String! # Url til vores egen profilering-side af dem
+#}
+
+# INPUTS TO MUTATION. LATER!
+input WordInput {
+    literal: String
+}
+
+input SignInput {
+    videoUuid: String!
+}
+
+input DescriptionInput {
+    text: String
+}
+
+
+
+#input FlagInput {
+#    signId: ID!
+#    userId: ID!
+#    Reason: String! # One of the hardcoded possibilities
+#    IP: String!
+#    Description: String # Opt: Extra descirption of the reason
+#}

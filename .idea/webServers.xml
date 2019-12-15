@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f7f8b3d1-5995-4a7c-a058-ff7c6e765193" name="Laravel" url="http://localhost">
+        <fileTransfer host="localhost" port="2222" privateKey="$PROJECT_DIR$/laradock/workspace/insecure_id_rsa.ppk" rootFolder="/var/www" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

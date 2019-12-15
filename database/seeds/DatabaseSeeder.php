@@ -1,5 +1,7 @@
 <?php
 
+use App\Helpers\StopWatch;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,24 +13,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RolesTableSeeder::class);
-        $this->call(LevelsTableSeeder::class);
+        StopWatch::start();
+        $this->call(InitSeeder::class);
+        echo 'InitSeeder completed! It took '.StopWatch::round()." seconds\n";
+
         $this->call(UsersTableSeeder::class);
-        $this->call(LanguagesTableSeeder::class);
-        $this->call(SignLanguagesTableSeeder::class);
+        echo 'UserTableSeeder completed! It took '.StopWatch::round()." seconds\n";
+
+        $this->call(LikeSeeder::class);
+        echo 'LikeSeeder completed! It took '.StopWatch::round()." seconds\n";
+
         $this->call(RequestsTableSeeder::class);
-        //$this->call(TranslationsTableSeeder::class);
+        echo 'RequestsTableSeeder completed! It took '.StopWatch::round()." seconds\n";
+        echo 'Database seed completed! It took '.StopWatch::elapsed()." seconds in total!\n\n";
 
-        echo "Model: visible / trashed / total seeded\n";
-        echo "Roles: " . \App\Role::count() . "\n";
-        echo "Levels: " . \App\Level::count() . "\n";
-        echo "Languages: " . \App\Language::count() . "\n";
-        echo "SignLanguages: " . \App\SignLanguage::count() . "\n";
-        echo "Words: " . \App\Word::count() . " / " . \App\Word::onlyTrashed()->count() . " / " .\App\Word::withTrashed()->count() . "\n";
-        echo "Signs: " . \App\Sign::count() . " / " . \App\Sign::onlyTrashed()->count() . " / " .\App\Sign::withTrashed()->count() . "\n";
-        echo "Descriptions: " . \App\Description::count() . " / " . \App\Description::onlyTrashed()->count() . " / " .\App\Description::withTrashed()->count() . "\n";
-        echo "Translations: " . \App\Translation::count() . " / " . \App\Translation::onlyTrashed()->count() . " / " .\App\Translation::withTrashed()->count() . "\n";
-        echo "Users: " . \App\User::count() . " / " . \App\User::onlyTrashed()->count() . " / " .\App\User::withTrashed()->count() . "\n";
+        //echo "Model: visible / trashed / total seeded\n";
+        echo "Model: total seeded\n";
+        echo $this->output('Words', \App\Word::getModel());
+        echo $this->output('Signs', \App\Sign::getModel());
+        echo $this->output('Descriptions', \App\Description::getModel());
+        echo $this->output('Translations', \App\Translation::getModel());
+        echo $this->output('Users', \App\User::getModel());
+    }
 
+    private function output(string $name, Model $model)
+    {
+        //$visible = $model::all()->count();
+        //$trashed = $model::onlyTrashed()->count();
+        $total = $model::withTrashed()->count();
+
+        //return "$name: $visible / $trashed / $total\n";
+        return "$name: $total\n";
     }
 }

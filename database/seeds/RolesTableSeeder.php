@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
@@ -11,16 +12,15 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $roles = array(
+        $roles = [
             'DEFAULT',
-            'ADMIN'
-        );
+            'ADMIN',
+        ];
 
-        foreach ($roles as $r)  {
-            \App\Role::create([
-                'type' => $r
+        foreach ($roles as $r) {
+            Role::create([
+                'type' => $r,
             ]);
         }
-
     }
 }

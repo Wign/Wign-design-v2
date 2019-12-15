@@ -1,29 +1,25 @@
 <?php
 
 use App\User;
+use App\Word;
 use Illuminate\Database\Seeder;
 
-class RequestsTableSeeder extends Seeder {
+class RequestsTableSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run () {
-        $UsersTotal = User::count();
+    public function run()
+    {
+        $users = User::all()->random(40);
 
-        factory(App\Word::class, 200)->create()->each(function ($word) use ($UsersTotal) {
-
-            $n1 = rand(0, $UsersTotal / 2);
-            $n2 = rand(0, $UsersTotal / 2);
-            $numUsers = $n1 < $n2 ? $n1 : $n2;
-
-            if ($numUsers > 0) {
-                $users = User::all()->random($numUsers);
-                foreach ($users as $user) {
-                    $user->requests()->attach($word);
-                }
-            }
+        $users->each(function (User $user) {
+            $user->requests()->attach(factory(Word::class)->create([
+                'creator_id' => $user->id,
+                'editor_id'  => $user->id,
+            ]));
         });
     }
 }
