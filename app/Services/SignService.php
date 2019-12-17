@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Sign;
 use App\Translation;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SignService
 {
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
+    private $languageRepository;
+    private $signRepository;
 
-    public function __construct(LanguageService $languageService)
+    public function __construct(LanguageRepository $languageRepository, SignRepository $signRepository)
     {
-        $this->languageService = $languageService;
+        $this->languageRepository = $languageRepository;
+        $this->signRepository = $signRepository;
     }
 
     public function makeSign(Request $request, $user): Sign
@@ -26,15 +27,14 @@ class SignService
         return $sign;
     }
 
-    public function editSign(Request $request, Translation $translation, ?Authenticatable $user): Sign
+    public function editSign(Request $request, $user): Sign
     {
-        if ($request->input('video_uuid') == null) {
-            return null;
+        if ($request->input('video_uuid') != null) {
+            $sign = $this->newSign($request, $user);
+
+            return $sign;
         }
-
-        $sign = $this->newSign($request, $user);
-
-        return $sign;
+        return null;
     }
 
     /**
@@ -42,22 +42,26 @@ class SignService
      * @param $user
      * @return Sign|\Illuminate\Database\Eloquent\Model
      */
-    private function newSign(Request $request, $user): Sign
+    private function newSign(Request $request, User $user): Sign
     {
+        $this->validateSign($request);
+
+        $language = $this->languageRepository->getSigned();
+        $sign = $this->signRepository->make($request, $language, $user);
+
+        return $sign;
+    }
+
+    //TODO delete sign -> place the video with the previous one -- otherwise delete the translation
+
+    /**
+     * @param Request $request
+     */
+    private function validateSign(Request $request)
+    : void {
         $this->validate($request, [
             'video_uuid' => 'required',
             'video_url' => 'required',
         ]);
-
-        $sign = Sign::make([
-            'video_uuid' => $request->input('video_uuid'),
-            'video_url' => $request->input('video_url'),
-            'thumbnail_url' => $request->input('thumbnail_url'),
-            'small_thumbnail_url' => $request->input('small_thumbnail_url'),
-            'language_id' => $this->languageService->getSigned()->id,
-            'creator_id' => $user->id,
-        ]);
-
-        return $sign;
     }
 }

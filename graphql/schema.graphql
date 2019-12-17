@@ -12,21 +12,14 @@ type Query {
     ### WORDS ###
     words: [Word!]! @all # All words
     word(literal: String!): Word @find # later use @search
-    #randomWord: Word # A random existing word
     requestedWords: [Word]!
-    #signedWords: [signedWord]!
 
     ### SIGNS ###
     signs: [Sign]! @paginate
     signById(id: ID! @eq): Sign @find
-    #signByWord(literal: String!): [Sign!] @find
-    #randomSign: Sign!
 
     ### BUCKET ###
     # Later...
-
-    ### LANGUAGE ###
-    # Later... ?
 
     ### TAG ###
     # Later...
@@ -44,14 +37,10 @@ type Mutation {
     deleteTranslation(id: ID!): Translation
 
 #    ### WORD ###
-#    requestWord(input: WordInput!): requestedWord
-#    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
 #
 #    ### SIGN ###
-#    signPlayed(signId: ID!): Int! # Added one click to "play" in the video
-#    createSign(input: SignInput!): Sign
-#    editDescription(input: DescriptionInput): Sign
+#    signPlayed(signId: ID!): Int! # Added one click to "play" in the vide
 #    flagSign(input: FlagInput): Sign
 #    deleteSign(signId: ID!): Sign
 #

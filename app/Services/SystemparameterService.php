@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\SystemparameterRepository;
 use App\Systemparameter;
 
 class SystemparameterService
 {
-    public function getParameter(string $type, string $key)
+    private $repository;
+
+    public function __construct(SystemparameterRepository $repository) {
+        $this->repository = $repository;
+    }
+
+    /**
+     * @param string $key
+     * @param string|null $type
+     * @return int|string|null
+     */
+    public function getParameter(string $key, string $type = null)
     {
-        $value = Systemparameter::where('key', $key)->value('value');
+        $value = $this->repository->findParameterByKey($key)->value('value');
 
         switch ($type) {
             case 'STRING':
@@ -16,26 +28,30 @@ class SystemparameterService
             case 'INTEGER':
                 return (int) $value;
             default:
-                return $value;
+                return null;
         }
     }
 
+    /**
+     * @param string $key
+     * @param string $type
+     * @param $value
+     * @return Systemparameter
+     */
     public function newParameter(string $key, string $type, $value)
     {
-        Systemparameter::create([
-            'key' => $key,
-            'type' => $type,
-            'value' => $value,
-        ]);
+        return $this->repository->create($key, $type, $value);
     }
 
+    /**
+     * @param string $key
+     * @param string $type
+     * @param $value
+     */
     public function updateParameter(string $key, string $type, $value)
     {
-        $parameter = Systemparameter::find($key);
+        $parameter = $this->repository->findParameterByKey($key);
 
-        if ($type != null) {
-            $parameter->update(['type' => $type]);
-        }
-        $parameter->update(['value' => $value]);
+        $this->repository->update($parameter, $type, $value);
     }
 }

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Language;
 
-class LanguageService
+class LanguageRepository
 {
-    public function getWritten()
+    public function getWritten(): Language
     {
         $language = Language::findOrFail([
                 'code' => 'da_DK',
@@ -17,7 +17,7 @@ class LanguageService
         return $language;
     }
 
-    public function getSigned()
+    public function getSigned(): Language
     {
         $language = Language::findOrFail([
                 'code' => 'dt_DK',

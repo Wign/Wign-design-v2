@@ -12,17 +12,19 @@ class TranslationController extends Controller
     private $wordService;
     private $signService;
     private $descriptionService;
+    private $userService;
 
-    public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService)
+    public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService, UserService $userService)
     {
         $this->wordService = $wordService;
         $this->signService = $signService;
         $this->descriptionService = $descriptionService;
+        $this->userService = $userService;
     }
 
     public function createTranslation(Request $request)
     {
-        $user = Auth::user();
+        $user = $this->userService->getUser();
 
         $word = $this->wordService->findOrMakeWord($request, $user);
         $sign = $this->signService->makeSign($request, $user);
@@ -55,7 +57,7 @@ class TranslationController extends Controller
         $translation = Translation::findOrFail($translationId);
 
         $newWord = $this->wordService->editWordSoftly($request, $translation, $user);
-        $newSign = $this->signService->editSign($request, $translation, $user);
+        $newSign = $this->signService->editSign($request, $user);
         $newDesc = $this->descriptionService->editDescription($request, $translation, $user);
 
         if ($newWord != null || $newSign != null || $newDesc != null) {
@@ -103,7 +105,7 @@ class TranslationController extends Controller
         return true;
     }
 
-    public function restoreTranslation(Request $request): bool
+    public function restoreTranslation(Request $request): bool //TODO do more the analyse
     {
         $translation = Translation::withTrashed()->find($request->input(['ID']));
 

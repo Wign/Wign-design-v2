@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Word.
@@ -48,8 +47,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Word extends Model
 {
     // MASS ASSIGNMENT ------------------------------------------
-    use SoftDeletes;
-
     protected $fillable = [
         'creator_id',
         'editor_id',

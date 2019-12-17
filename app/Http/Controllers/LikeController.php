@@ -21,7 +21,7 @@ class LikeController extends Controller
 
     public function toggleLike($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $user = $this->userService->getUser($context);
+        $user = $this->userService->getUser();
         $sign = Sign::find($context->request()->input('signId'));
 
         if ($user != null) {
