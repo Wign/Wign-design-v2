@@ -21,6 +21,6 @@ class LikeEndpoints
     // MUTATIONS
     public function toggleLike($rootValue, array $args, \Nuwave\Lighthouse\Support\Contracts\GraphQLContext $context, \GraphQL\Type\Definition\ResolveInfo $resolveInfo)
     {
-        return $this->controller->toggleLike($rootValue, $args, $context, $resolveInfo);
+        return $this->controller->toggleLike($context);
     }
 }

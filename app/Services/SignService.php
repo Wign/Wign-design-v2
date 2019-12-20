@@ -47,7 +47,14 @@ class SignService
         $this->validateSign($request);
 
         $language = $this->languageRepository->getSigned();
-        $sign = $this->signRepository->make($request, $language, $user);
+        $sign = $this->signRepository->make(
+            $request->input('video_uuid'),
+            $request->input('video_url'),
+            $request->input('thumbnail_url'),
+            $request->input('small_thumbnail_url'),
+            $language,
+            $user
+        );
 
         return $sign;
     }
@@ -57,8 +64,8 @@ class SignService
     /**
      * @param Request $request
      */
-    private function validateSign(Request $request)
-    : void {
+    private function validateSign(Request $request): void
+    {
         $this->validate($request, [
             'video_uuid' => 'required',
             'video_url' => 'required',

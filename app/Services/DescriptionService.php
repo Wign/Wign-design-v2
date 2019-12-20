@@ -12,7 +12,8 @@ class DescriptionService
 {
     private $repository;
 
-    public function __construct(DescriptionRepository $repository) {
+    public function __construct(DescriptionRepository $repository)
+    {
         $this->repository = $repository;
     }
 
@@ -41,7 +42,8 @@ class DescriptionService
     private function newDescription(Request $request, User $user): Description
     {
         $this->validateDescription($request);
-        $desc = $this->repository->make($request, $user);
+        $text = $request->input('text');
+        $desc = $this->repository->make($text, $user);
 
         return $desc;
     }
@@ -59,7 +61,8 @@ class DescriptionService
     /**
      * @param Request $request
      */
-    private function validateDescription(Request $request): void {
+    private function validateDescription(Request $request): void
+    {
         $this->validate($request, [
             'text' => 'nullable|string',
         ]);

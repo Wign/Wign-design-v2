@@ -6,11 +6,13 @@ use App\Systemparameter;
 
 class SystemparameterRepository
 {
-    public function findParameterByKey(string $key): Systemparameter {
+    public function findParameterByKey(string $key): Systemparameter
+    {
         return Systemparameter::where('key', $key);
     }
 
-    public function create(string $key, string $type, $value): Systemparameter {
+    public function create(string $key, string $type, $value): Systemparameter
+    {
         return Systemparameter::create([
             'key' => $key,
             'type' => $type,
@@ -18,7 +20,8 @@ class SystemparameterRepository
         ]);
     }
 
-    public function update(Systemparameter $parameter, string $type, string $value) {
+    public function update(Systemparameter $parameter, string $type, string $value)
+    {
         if ($type != null) {
             $parameter->update(['type' => $type]);
         }

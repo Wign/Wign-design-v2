@@ -9,7 +9,8 @@ class SystemparameterService
 {
     private $repository;
 
-    public function __construct(SystemparameterRepository $repository) {
+    public function __construct(SystemparameterRepository $repository)
+    {
         $this->repository = $repository;
     }
 
@@ -28,7 +29,7 @@ class SystemparameterService
             case 'INTEGER':
                 return (int) $value;
             default:
-                return null;
+                return;
         }
     }
 

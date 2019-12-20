@@ -3,14 +3,14 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Description;
-use Illuminate\Http\Request;
 
-class DescriptionRepository {
-    public function make(Request $request, $user) {
+class DescriptionRepository
+{
+    public function make(string $text, $user): Description
+    {
         return Description::make([
-            'text' => $request->input('text'),
+            'text' => $text,
             'creator_id' => $user->id,
             'editor_id' => $user->id,
         ]);

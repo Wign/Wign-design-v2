@@ -4,12 +4,13 @@ namespace App\Repositories;
 
 use App\Language;
 use App\Word;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
+use function response;
 
 class WordRepository
 {
-    public function all()
+    public function all(): Collection
     {
         return Word::all();
     }
@@ -19,7 +20,7 @@ class WordRepository
      *
      * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|Collection
      */
-    public function allRequested(): Word
+    public function allRequested(): Collection
     {
         return Word::has('requesters')->get();
     }
@@ -29,19 +30,14 @@ class WordRepository
      *
      * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|Collection
      */
-    public function allSigned(): Word
+    public function allSigned(): Collection
     {
         return Word::has('signs')->get();
     }
 
-    public function allVacant(): Word
+    public function allVacant(): Collection
     {
         return Word::doesntHave('signs')->doesntHave('requesters')->get();
-    }
-
-    public function find($id): Word
-    {
-        return Word::find($id);
     }
 
     public function update(array $data, Word $word)
@@ -53,31 +49,34 @@ class WordRepository
     {
         try {
             $word->delete();
-        } catch (\Exception $e) {
-            return \response($e, 500);
+        } catch (Exception $e) {
+            return response($e, 500);
         }
-        return \response("", 200);
+        return response('', 200);
     }
 
-    public function make(Request $request, Language $language, $user): Word {
+    public function make(string $literal, Language $language, $user): Word
+    {
         return Word::make([
-            'literal' => $request->input('literal'),
+            'literal' => $literal,
             'language_id' => $language->id,
             'creator_id' => $user->id,
             'editor_id' => $user->id,
         ]);
     }
 
-    public function findByLiteral(Request $request, Language $language): Word {
+    public function findByLiteral(string $literal, Language $language)
+    {
         return Word::where([
-            'literal' => $request->input('literal'),
+            'literal' => $literal,
             'language_id' => $language->id,
         ])->first();
     }
 
-    public function firstOrNew(Request $request, Language $language, $user): Word {
+    public function firstOrNew(string $literal, Language $language, $user): Word
+    {
         return Word::firstOrNew([
-            'literal' => $request->input('literal'),
+            'literal' => $literal,
             'language_id' => $language->id,
         ], [
             'creator_id' => $user->id,

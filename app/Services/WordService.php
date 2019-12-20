@@ -26,7 +26,7 @@ class WordService
 
         if ($word == null) {
             $language = $this->languageService->getWritten();
-            $word = $this->wordRepository->make($request, $language, $user);
+            $word = $this->wordRepository->make($request->input('literal'), $language, $user);
         } else {
             $word->editor->save($user);
         }
@@ -50,6 +50,7 @@ class WordService
 
             return $word;
         }
+
         return null;
     }
 
