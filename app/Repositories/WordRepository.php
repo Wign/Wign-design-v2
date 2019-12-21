@@ -15,11 +15,12 @@ class WordRepository
     }
 
     /**
-     * Get all request to words that have no translations
+     * Get all request to words that have no translations.
      *
      * @return Word|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    public function allActiveRequests() {
+    public function allActiveRequests()
+    {
         return Word::doesntHave('translations')->has('requesters')->withCount('requesters')->orderBy('requesters_count', 'desc')->orderBy('literal');
     }
 

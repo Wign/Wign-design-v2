@@ -58,7 +58,9 @@ class RequestController extends Controller
         if ($this->wordService->isVacant($word)) {
             try {
                 $this->wordRepository->delete($word);
-            } catch (Exception $e) { }
+            } catch (Exception $e) {
+                
+            }
         }
 
         return $word;

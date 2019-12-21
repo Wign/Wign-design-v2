@@ -69,8 +69,6 @@ class TranslationController extends Controller
                 'editor_id' => $user->id,
             ]);
 
-
-
             if ($newWord != null) {
                 $newWord->save();
                 if ($this->wordService->isVacant($translation->word)) {

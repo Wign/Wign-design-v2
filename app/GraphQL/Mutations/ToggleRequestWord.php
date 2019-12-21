@@ -2,9 +2,9 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\GraphQL\RequestEndpoints;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
-use App\GraphQL\RequestEndpoints;
 
 class ToggleRequestWord
 {
