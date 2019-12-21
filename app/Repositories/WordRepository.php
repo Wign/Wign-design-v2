@@ -52,6 +52,7 @@ class WordRepository
         } catch (Exception $e) {
             return response($e, 500);
         }
+
         return response('', 200);
     }
 

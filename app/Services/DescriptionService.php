@@ -31,6 +31,7 @@ class DescriptionService
 
             return $newDesc;
         }
+
         return null;
     }
 

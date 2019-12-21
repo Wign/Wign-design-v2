@@ -34,6 +34,7 @@ class SignService
 
             return $sign;
         }
+        
         return null;
     }
 
