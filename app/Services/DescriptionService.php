@@ -3,46 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Description;
+use App\Translation;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class DescriptionService
 {
-    public function makeDescription(Request $request, User $user)
+    private $repository;
+
+    public function __construct(DescriptionRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function makeDescription(Request $request, User $user): Description
     {
         $desc = $this->newDescription($request, $user);
 
         return $desc;
     }
 
-    public function editDescription(Request $request, \App\Translation $translation, ?\Illuminate\Contracts\Auth\Authenticatable $user)
+    public function editDescription(Request $request, Translation $translation, $user): Description
     {
-        if ($request->input('text') == null) {
-            return null;
+        if ($this->isChanged($request, $translation->description)) {
+            $newDesc = $this->newDescription($request, $user);
+
+            return $newDesc;
         }
 
-        $newDesc = $this->newDescription($request, $user);
-
-        return $newDesc;
+        return null;
     }
 
     /**
      * @param Request $request
      * @param User $user
-     * @return Description|\Illuminate\Database\Eloquent\Model
+     * @return Description|Model
      */
-    public function newDescription(Request $request, User $user)
+    private function newDescription(Request $request, User $user): Description
     {
-        $this->validate($request, [
-            'text'       => 'nullable|string',
-        ]);
-
-        $desc = Description::make([
-            'text' => $request->input('text'),
-            'creator_id' => $user->id,
-            'editor_id' => $user->id,
-        ]);
+        $this->validateDescription($request);
+        $text = $request->input('text');
+        $desc = $this->repository->make($text, $user);
 
         return $desc;
+    }
+
+    /**
+     * @param Request $request
+     * @param Description $description
+     * @return bool
+     */
+    private function isChanged(Request $request, Description $description): bool
+    {
+        return $request->input('text') != $description->text;
+    }
+
+    /**
+     * @param Request $request
+     */
+    private function validateDescription(Request $request): void
+    {
+        $this->validate($request, [
+            'text' => 'nullable|string',
+        ]);
     }
 }
