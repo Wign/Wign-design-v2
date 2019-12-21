@@ -2,20 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\WordRepository;
 use App\Word;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Http\Response;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class RequestController extends Controller
 {
+    private $wordService;
+    private $wordRepository;
+    private $userService;
+
+    /**
+     * RequestController constructor.
+     * @param WordService $wordService
+     * @param WordRepository $wordRepository
+     * @param UserService $userService
+     */
+    public function __construct(WordService $wordService, WordRepository $wordRepository, UserService $userService)
+    {
+        $this->wordService = $wordService;
+        $this->wordRepository = $wordRepository;
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $limit = config('global.list_limit');
-        $requests = Word::doesntHave('posts')->has('requests')->withCount('requests')->orderBy('requests_count', 'desc')->orderBy('word')->paginate($limit);
+        $requests = $this->wordRepository->allActiveRequests();
 
         return view('requests')->with($requests);
     }
@@ -23,93 +42,26 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Validation\ValidationException
+     * @param GraphQLContext $context
+     * @return Word
      */
-    public function store(Request $request)
+    public function toggleRequest(GraphQLContext $context): Word
     {
-        $this->validate($request, [
-            'literal' => 'required|string',
-            'new' => 'required|in:true,false',
-        ]);
-        $literal = $request->input('literal');
-        $newRequest = $request->input('new') == 'true' ? 1 : 0;
+        $this->wordService->validateWord($context->request());
 
-        if (empty($literal)) {
-            return redirect()->back()->withErrors(__('error.missingLiteral'));
-        }
+        $user = $this->userService->getUser();
+        $word = $this->wordService->findOrMakeWord($context->request(), $user);
+        $word->save();
 
-        $user = \Auth::user();
-        $word = Word::firstOrCreate([
-            'literal' => $literal,
-        ], [
-            'creator_id' => $user->id,
-            'editor_id' => $user->id,
-        ]);
+        $word->requesters()->toggle($user);
 
-        if ($newRequest && $word->translations->isEmpty()) {
-            $word->requesters()->attach($user);
-
-            return view('home')->with('message', __('success.request.created'));
-        } elseif (! $newRequest) {
-            $word->requesters()->detach($user);
-
-            return view('home')->with('message', __('success.request.removed'));
-        }
-
-        return redirect()->back()->withErrors(__('error.request.notUpdated'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function update(Request $request, $id)
-    {
-        $user = \Auth::user();
-
-        $this->validate($request, [
-            'literal' => 'required|string',
-        ]);
-        $literal = $request->input('literal');
-
-        $word = Word::findOrFail($id);
-        if (! $word->literal.equalTo($literal)) {
-            $word->save([
-                'literal' => $literal,
-                'editor_id' => $user->getAuthIdentifier(),
-            ]);
-        }
-
-        return view('home')->with('message', __('success.request.renamed'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $word = Word::findOrFail($id);
-
-        if ($word->translations->isEmpty()) {
+        if ($this->wordService->isVacant($word)) {
             try {
-                $word->delete();
-                $word->requesters()->detach();
-            } catch (\Exception $e) {
-                return view()->withErrors(__('error.deleteFailed'));
+                $this->wordRepository->delete($word);
+            } catch (Exception $e) {
             }
         }
 
-        return view('home')->with('message', __('success.word.deleted'));
+        return $word;
     }
 }

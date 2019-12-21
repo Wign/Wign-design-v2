@@ -6,7 +6,6 @@ use App\Language;
 use App\Word;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use function response;
 
 class WordRepository
 {
@@ -16,13 +15,13 @@ class WordRepository
     }
 
     /**
-     * Get all requested words.
+     * Get all request to words that have no translations.
      *
-     * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|Collection
+     * @return Word|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    public function allRequested(): Collection
+    public function allActiveRequests()
     {
-        return Word::has('requesters')->get();
+        return Word::doesntHave('translations')->has('requesters')->withCount('requesters')->orderBy('requesters_count', 'desc')->orderBy('literal');
     }
 
     /**

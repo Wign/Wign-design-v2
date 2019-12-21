@@ -17,7 +17,7 @@ class DescriptionService
         $this->repository = $repository;
     }
 
-    public function makeDescription(Request $request, User $user): Description
+    public function makeDescription(Request $request, $user): Description
     {
         $desc = $this->newDescription($request, $user);
 

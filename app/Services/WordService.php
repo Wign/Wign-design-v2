@@ -44,7 +44,7 @@ class WordService
 
     public function editWordSoftly(Request $request, Translation $translation, $user): Word
     {
-        if ($this->isChanged($request, $translation->word)) {
+        if ($this->isChanged($request->input('literal'), $translation->word)) {
             $language = $this->languageService->getWritten();
             $word = $this->wordRepository->firstOrNew($request, $language, $user);
 
@@ -78,7 +78,7 @@ class WordService
         return $translation->word;
     }
 
-    private function validateWord(Request $request)
+    public function validateWord(Request $request)
     {
         $this->validate($request, [
             'literal' => 'required|alpha_num', //TODO vær ikke vred mere
@@ -90,8 +90,13 @@ class WordService
      * @param Word $word
      * @return bool
      */
-    private function isChanged(Request $request, Word $word): bool
+    private function isChanged(string $literal, Word $word): bool
     {
-        return $request->input('literal') != $word->literal;
+        return $literal != $word->literal;
+    }
+
+    public function isVacant(Word $word): bool
+    {
+        return $word->translations()->doesntExist() && $word->requesters()->doesntExist();
     }
 }

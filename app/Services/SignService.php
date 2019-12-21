@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Sign;
-use App\Translation;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class SignService
 {
@@ -34,7 +31,7 @@ class SignService
 
             return $sign;
         }
-        
+
         return null;
     }
 

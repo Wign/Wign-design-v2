@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Translation;
 use Auth;
+use Exception;
 use Illuminate\Http\Request;
 use Nuwave\Lighthouse\Execution\Utils\Subscription;
 
@@ -55,7 +56,6 @@ class TranslationController extends Controller
         $user = Auth::user();
 
         $translation = Translation::findOrFail($translationId);
-
         $newWord = $this->wordService->editWordSoftly($request, $translation, $user);
         $newSign = $this->signService->editSign($request, $user);
         $newDesc = $this->descriptionService->editDescription($request, $translation, $user);
@@ -69,14 +69,14 @@ class TranslationController extends Controller
                 'editor_id' => $user->id,
             ]);
 
-            try {
-                $translation->delete();
-            } catch (\Exception $e) {
-                return response($e, 500);
-            }
-
             if ($newWord != null) {
                 $newWord->save();
+                if ($this->wordService->isVacant($translation->word)) {
+                    try {
+                        $translation->word->delete();
+                    } catch (Exception $e) {
+                    }
+                }
             }
             if ($newSign != null) {
                 $newSign->save();
@@ -85,6 +85,12 @@ class TranslationController extends Controller
                 $newDesc->save();
             }
             $newTranslation->save();
+
+            try {
+                $translation->delete();
+            } catch (Exception $e) {
+                return response($e, 500);
+            }
 
             return response()->json($newTranslation);
         }
@@ -98,7 +104,7 @@ class TranslationController extends Controller
 
         try {
             $translation->delete();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 

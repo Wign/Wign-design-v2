@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Sign;
-use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class LikeController extends Controller
