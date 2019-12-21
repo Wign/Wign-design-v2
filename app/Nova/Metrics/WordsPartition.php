@@ -33,13 +33,11 @@ class WordsPartition extends Partition
         $requestedWord = $this->wordRepository->allActiveRequests()->count();
         $signedWord = $this->wordRepository->allSigned()->count();
         $vacantWord = $this->wordRepository->allVacant()->count();
-        $trashedWord = $this->wordRepository->onlyTrashed()->count();
 
         return $this->result([
             'Requested' => $requestedWord,
             'Signed'    => $signedWord,
             'Vacant'    => $vacantWord,
-            'Trashed'   => $trashedWord,
         ]);
     }
 

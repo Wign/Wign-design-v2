@@ -29,7 +29,7 @@ class RequestEndpoints
     public function toggleRequestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         try {
-            return $this->controller->toggleRequest($rootValue, $args, $context, $resolveInfo);
+            return $this->controller->toggleRequest($context);
         } catch (Exception $e) {
             return response($e, 500);
         }

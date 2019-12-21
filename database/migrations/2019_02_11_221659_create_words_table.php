@@ -20,7 +20,6 @@ class CreateWordsTable extends Migration
             $table->integer('creator_id')->unsigned();
             $table->integer('editor_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
             $table->unique(['literal', 'language_id']);
             $table->index('literal');
         });

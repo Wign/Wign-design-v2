@@ -2,27 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Sign;
-use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class LikeController extends Controller
 {
     private $userService;
+    private $signRepository;
 
-    /**
-     * LikeController constructor.
-     * @param UserService $userService
-     */
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, SignRepository $signRepository)
     {
         $this->userService = $userService;
+        $this->signRepository = $signRepository;
     }
 
-    public function toggleLike($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    public function toggleLike(GraphQLContext $context)
     {
-        $user = $this->userService->getUser($context);
-        $sign = Sign::find($context->request()->input('signId'));
+        $user = $this->userService->getUser();
+        $sign = $this->signRepository->find($context->request()->input('signId'));
 
         if ($user != null) {
             $user->likes()->toggle($sign);

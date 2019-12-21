@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\WordRepository;
 use App\Word;
-use Auth;
 use Exception;
-use GraphQL\Type\Definition\ResolveInfo;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -45,13 +42,10 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param $rootValue
-     * @param array $args
      * @param GraphQLContext $context
-     * @param ResolveInfo $resolveInfo
      * @return Word
      */
-    public function toggleRequest($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): Word
+    public function toggleRequest(GraphQLContext $context): Word
     {
         $this->wordService->validateWord($context->request());
 

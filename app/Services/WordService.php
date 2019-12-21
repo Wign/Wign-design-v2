@@ -2,37 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\WordRepository;
 use App\Translation;
 use App\Word;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class WordService
 {
-    /**
-     * @var LanguageService
-     */
     private $languageService;
+    private $wordRepository;
 
-    public function __construct(LanguageService $languageService)
+    public function __construct(LanguageRepository $languageRepository, WordRepository $wordRepository)
     {
-        $this->languageService = $languageService;
+        $this->languageService = $languageRepository;
+        $this->wordRepository = $wordRepository;
     }
 
     public function findOrMakeWord(Request $request, $user): Word
     {
         $this->validateWord($request);
 
-        $word = $this->findWord($request->input('literal'));
+        $word = $this->findWord($request);
 
         if ($word == null) {
-            $word = Word::make([
-                'literal' => $request->input('literal'),
-                'language_id' => $this->languageService->getWritten()->id,
-                'creator_id' => $user->id,
-                'editor_id' => $user->id,
-            ]);
+            $language = $this->languageService->getWritten();
+            $word = $this->wordRepository->make($request->input('literal'), $language, $user);
         } else {
             $word->editor->save($user);
         }
@@ -40,43 +34,34 @@ class WordService
         return $word;
     }
 
-    public function findWord($literal): Word
+    public function findWord(Request $request): Word
     {
-        $word = Word::withTrashed()->where([
-            'literal' => $literal,
-            'language_id' => $this->languageService->getWritten()->id,
-        ])->first();
+        $language = $this->languageService->getWritten();
+        $word = $this->wordRepository->findByLiteral($request, $language);
 
         return $word;
     }
 
-    public function editWord(Request $request, Translation $translation, Auth $user): Word
+    public function editWordSoftly(Request $request, Translation $translation, $user): Word
+    {
+        if ($this->isChanged($request->input('literal'), $translation->word)) {
+            $language = $this->languageService->getWritten();
+            $word = $this->wordRepository->firstOrNew($request, $language, $user);
+
+            return $word;
+        }
+
+        return null;
+    }
+
+    public function editWordHardly(Request $request, Translation $translation, $user): Word //TODO add in API
     {
         if ($this->isUnchanged($request, $translation->word)) {
             return null;
         }
 
-        $word = Word::firstOrNew([
-            'literal' => $request->input('literal'),
-            'language_id' => $this->languageService->getWritten()->id,
-        ], [
-            'creator_id' => $user->id,
-            'editor_id' => $user->id,
-        ]);
-
-        return $word;
-    }
-
-    public function renameLiteral(Request $request, Translation $translation, Auth $user): Word
-    {
-        if ($this->isUnchanged($request, $translation->word)) {
-            return null;
-        }
-
-        $word = Word::where([
-            'literal' => $request->input('literal'),
-            'language_id' => $this->languageService->getWritten()->id,
-        ])->first();
+        $language = $this->languageService->getWritten();
+        $word = $this->wordRepository->findByLiteral($request, $language);
 
         if ($word == null) {
             $translation->word->literal = $request->input('literal');
@@ -93,23 +78,11 @@ class WordService
         return $translation->word;
     }
 
-    public function isVacant(Word $word) {
-        return $word->requesters->isEmpty() && $word->translations->isEmpty();
-    }
-
     public function validateWord(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'literal' => 'required|alpha_num',
+        $this->validate($request, [
+            'literal' => 'required|alpha_num', //TODO vær ikke vred mere
         ]);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-        return true;
     }
 
     /**
@@ -117,8 +90,13 @@ class WordService
      * @param Word $word
      * @return bool
      */
-    private function isUnchanged(Request $request, Word $word): bool
+    private function isChanged(string $literal, Word $word): bool
     {
-        return $request->input('literal') == $word->literal;
+        return $literal != $word->literal;
+    }
+
+    public function isVacant(Word $word): bool
+    {
+        return $word->translations()->doesntExist() && $word->requesters()->doesntExist();
     }
 }

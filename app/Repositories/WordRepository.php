@@ -2,21 +2,16 @@
 
 namespace App\Repositories;
 
+use App\Language;
 use App\Word;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 
-class WordRepository implements RespositoryInterface
+class WordRepository
 {
-    protected $word;
-
-    public function __construct(Word $word)
+    public function all(): Collection
     {
-        $this->word = $word;
-    }
-
-    public function all()
-    {
-        return $this->word->all();
+        return Word::all();
     }
 
     /**
@@ -25,51 +20,66 @@ class WordRepository implements RespositoryInterface
      * @return Word|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
     public function allActiveRequests() {
-        return $this->word->doesntHave('translations')->has('requesters')->withCount('requesters')->orderBy('requesters_count', 'desc')->orderBy('literal');
+        return Word::doesntHave('translations')->has('requesters')->withCount('requesters')->orderBy('requesters_count', 'desc')->orderBy('literal');
     }
 
     /**
      * Get all words with at least one sign.
      *
-     * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|Collection
      */
-    public function allSigned()
+    public function allSigned(): Collection
     {
-        return $this->word->has('signs')->get();
+        return Word::has('signs')->get();
     }
 
-    public function allVacant()
+    public function allVacant(): Collection
     {
-        return $this->word->doesntHave('signs')->doesntHave('requesters')->get();
+        return Word::doesntHave('signs')->doesntHave('requesters')->get();
     }
 
-    public function onlyTrashed()
+    public function update(array $data, Word $word)
     {
-        return $this->word->onlyTrashed()->get();
-    }
-
-    public function find($id)
-    {
-        return $this->word->find($id);
-    }
-
-    public function create(array $data)
-    {
-        return $this->word->create($data);
-    }
-
-    public function update(array $data, $id)
-    {
-        $word = $this->find($id);
         $word->update($data);
     }
 
-    public function delete($id)
+    public function delete(Word $word)
     {
         try {
-            Word::find($id)->delete();
+            $word->delete();
         } catch (Exception $e) {
             return response($e, 500);
         }
+
+        return response('', 200);
+    }
+
+    public function make(string $literal, Language $language, $user): Word
+    {
+        return Word::make([
+            'literal' => $literal,
+            'language_id' => $language->id,
+            'creator_id' => $user->id,
+            'editor_id' => $user->id,
+        ]);
+    }
+
+    public function findByLiteral(string $literal, Language $language)
+    {
+        return Word::where([
+            'literal' => $literal,
+            'language_id' => $language->id,
+        ])->first();
+    }
+
+    public function firstOrNew(string $literal, Language $language, $user): Word
+    {
+        return Word::firstOrNew([
+            'literal' => $literal,
+            'language_id' => $language->id,
+        ], [
+            'creator_id' => $user->id,
+            'editor_id' => $user->id,
+        ]);
     }
 }
