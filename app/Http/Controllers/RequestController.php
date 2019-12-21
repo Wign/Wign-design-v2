@@ -59,7 +59,6 @@ class RequestController extends Controller
             try {
                 $this->wordRepository->delete($word);
             } catch (Exception $e) {
-                
             }
         }
 
