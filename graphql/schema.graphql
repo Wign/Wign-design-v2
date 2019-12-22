@@ -14,21 +14,14 @@ type Query {
     words: [Word!]! @all # All words
     wordByLiteral(literal: String! @eq): Word @find # later use @search
     wordById(id: ID! @eq): Word @find
-    #randomWord: Word # A random existing word
     requestedWords(first: Int, sort: SortInput): [Word]!
-    #signedWords: [signedWord]! @paginate(type: "paginator" model: "Word")
 
     ### SIGNS ###
     signs: [Sign]! @paginate
     signById(id: ID! @eq): Sign @find
-    #signByWord(literal: String!): [Sign!] @find
-    #randomSign: Sign!
 
     ### BUCKET ###
     # Later...
-
-    ### LANGUAGE ###
-    # Later... ?
 
     ### TAG ###
     # Later...
@@ -51,9 +44,7 @@ type Mutation {
 #    addAlias(wordId: ID!, input: WordInput): Word
 #
 #    ### SIGN ###
-#    signPlayed(signId: ID!): Int! # Added one click to "play" in the video
-#    createSign(input: SignInput!): Sign
-#    editDescription(input: DescriptionInput): Sign
+#    signPlayed(signId: ID!): Int! # Added one click to "play" in the vide
 #    flagSign(input: FlagInput): Sign
 #    deleteSign(signId: ID!): Sign
 #

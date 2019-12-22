@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Translation;
 use Auth;
+use Exception;
 use Illuminate\Http\Request;
 use Nuwave\Lighthouse\Execution\Utils\Subscription;
 
@@ -12,17 +13,19 @@ class TranslationController extends Controller
     private $wordService;
     private $signService;
     private $descriptionService;
+    private $userService;
 
-    public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService)
+    public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService, UserService $userService)
     {
         $this->wordService = $wordService;
         $this->signService = $signService;
         $this->descriptionService = $descriptionService;
+        $this->userService = $userService;
     }
 
     public function createTranslation(Request $request)
     {
-        $user = Auth::user();
+        $user = $this->userService->getUser();
 
         $word = $this->wordService->findOrMakeWord($request, $user);
         $sign = $this->signService->makeSign($request, $user);
@@ -53,9 +56,8 @@ class TranslationController extends Controller
         $user = Auth::user();
 
         $translation = Translation::findOrFail($translationId);
-
         $newWord = $this->wordService->editWordSoftly($request, $translation, $user);
-        $newSign = $this->signService->editSign($request, $translation, $user);
+        $newSign = $this->signService->editSign($request, $user);
         $newDesc = $this->descriptionService->editDescription($request, $translation, $user);
 
         if ($newWord != null || $newSign != null || $newDesc != null) {
@@ -67,14 +69,14 @@ class TranslationController extends Controller
                 'editor_id' => $user->id,
             ]);
 
-            try {
-                $translation->delete();
-            } catch (\Exception $e) {
-                return response($e, 500);
-            }
-
             if ($newWord != null) {
                 $newWord->save();
+                if ($this->wordService->isVacant($translation->word)) {
+                    try {
+                        $translation->word->delete();
+                    } catch (Exception $e) {
+                    }
+                }
             }
             if ($newSign != null) {
                 $newSign->save();
@@ -83,6 +85,12 @@ class TranslationController extends Controller
                 $newDesc->save();
             }
             $newTranslation->save();
+
+            try {
+                $translation->delete();
+            } catch (Exception $e) {
+                return response($e, 500);
+            }
 
             return response()->json($newTranslation);
         }
@@ -96,14 +104,14 @@ class TranslationController extends Controller
 
         try {
             $translation->delete();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 
         return true;
     }
 
-    public function restoreTranslation(Request $request): bool
+    public function restoreTranslation(Request $request): bool //TODO do more the analyse
     {
         $translation = Translation::withTrashed()->find($request->input(['ID']));
 

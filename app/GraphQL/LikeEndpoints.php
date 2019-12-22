@@ -5,7 +5,6 @@ namespace App\GraphQL;
 use App\Http\Controllers\LikeController;
 use App\Word;
 use GraphQL\Type\Definition\ResolveInfo;
-use Illuminate\Support\Facades\Log;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class LikeEndpoints
@@ -32,6 +31,7 @@ class LikeEndpoints
     {
         $wordId = $args['wordId'];
         $this->controller->toggleRequest($wordId, $context->user());
+
         return Word::whereId($wordId)->withCount('requesters')->first();
     }
 }
