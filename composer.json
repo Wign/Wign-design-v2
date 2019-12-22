@@ -12,8 +12,10 @@
         "aws/aws-sdk-php": "^3.112",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
+        "joselfonseca/lighthouse-graphql-passport-auth": "^2.0",
         "laravel/framework": "^6.0",
         "laravel/nova": "~2.0",
+        "laravel/passport": "^8.0",
         "laravel/tinker": "^1.0",
         "nuwave/lighthouse": "^4.3",
         "wign/video": "*"

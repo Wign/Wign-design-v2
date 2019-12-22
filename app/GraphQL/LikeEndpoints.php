@@ -30,8 +30,8 @@ class LikeEndpoints
 
     public function toggleRequest($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): Word
     {
-        Log::debug('context user');
-        Log::debug($context);
-        return $this->controller->toggleRequest($args['wordId'], $context->user());
+        $wordId = $args['wordId'];
+        $this->controller->toggleRequest($wordId, $context->user());
+        return Word::whereId($wordId)->withCount('requesters')->first();
     }
 }

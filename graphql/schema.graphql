@@ -6,7 +6,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
     ### USER ###
-    me: User @auth
+    me: User @middleware(checks: ["auth:api"]) @auth
     users: [User!]! @paginate
     user(id: ID! @eq): User @find
 
@@ -39,14 +39,13 @@ type Query {
 }
 
 type Mutation {
-### TRANSLATION ###
-    createTranslation(word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation!
-        @broadcast(subscription: "traceTranslations")
-    editTranslation(id: ID!, word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation
-    deleteTranslation(id: ID!): Translation
+#   ### TRANSLATION ###
+    createTranslation(word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation! @broadcast(subscription: "traceTranslations") @middleware(checks: ["auth:api"])
+    editTranslation(id: ID!, word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation @middleware(checks: ["auth:api"])
+    deleteTranslation(id: ID!): Translation @middleware(checks: ["auth:api"])
 
 #    ### WORD ###
-    toggleRequest(wordId: ID!): Word!
+     toggleRequest(wordId: ID!): Word! @middleware(checks: ["auth:api"])
 #    requestWord(input: WordInput!): requestedWord
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
@@ -59,7 +58,15 @@ type Mutation {
 #    deleteSign(signId: ID!): Sign
 #
 #    ### LIKE ###
-   toggleLike(userId: ID!, signId: ID!): Word! @auth # Returns true if liked
+    toggleLike(userId: ID!, signId: ID!): Word! @middleware(checks: ["auth:api"]) @auth # Returns true if liked
+#
+#   ### USER LOGINS ###
+    login(input: LoginInput @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Login@resolve")
+    refreshToken(input: RefreshTokenInput @spread): RefreshTokenPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\RefreshToken@resolve")
+    logout: LogoutResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Logout@resolve")
+    forgotPassword(input: ForgotPasswordInput! @spread): ForgotPasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\ForgotPassword@resolve")
+    updateForgottenPassword(input: NewPasswordWithCodeInput @spread): ForgotPasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\ResetPassword@resolve")
+    register(input: RegisterInput @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Register@resolve")
 }
 
 type Subscription {

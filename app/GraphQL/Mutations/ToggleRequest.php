@@ -28,10 +28,6 @@ class ToggleRequest
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $user = auth()->user();
-        $user2 = Auth::user();
-        $user3 = $context->user;
-        $user4 = $context->user();
         return $this->endpoints->toggleRequest($rootValue, $args, $context, $resolveInfo);
     }
 }
