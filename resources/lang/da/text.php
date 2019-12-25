@@ -112,7 +112,7 @@ return [
         'sort'    => [
             'title'   => 'Sortér efter:',
             'alpha'   => 'Alfabetisk',
-            'request' => 'Efterspørgsel'
+            'request' => 'Efterspørgsel',
         ],
         'see_all' => 'Se alle :count efterlyste tegn',
     ],

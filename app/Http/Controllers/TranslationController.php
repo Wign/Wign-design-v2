@@ -21,10 +21,10 @@ class TranslationController extends Controller
 
     public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService, UserService $userService)
     {
-        $this->wordService        = $wordService;
-        $this->signService        = $signService;
+        $this->wordService = $wordService;
+        $this->signService = $signService;
         $this->descriptionService = $descriptionService;
-        $this->userService        = $userService;
+        $this->userService = $userService;
     }
 
     public function createTranslation(Request $request)
@@ -60,9 +60,9 @@ class TranslationController extends Controller
         $user = Auth::user();
 
         $translation = Translation::findOrFail($translationId);
-        $newWord     = $this->wordService->editWordSoftly($request, $translation, $user);
-        $newSign     = $this->signService->editSign($request, $user);
-        $newDesc     = $this->descriptionService->editDescription($request, $translation, $user);
+        $newWord = $this->wordService->editWordSoftly($request, $translation, $user);
+        $newSign = $this->signService->editSign($request, $user);
+        $newDesc = $this->descriptionService->editDescription($request, $translation, $user);
 
         if ($newWord != null || $newSign != null || $newDesc != null) {
             $newTranslation = Translation::make([

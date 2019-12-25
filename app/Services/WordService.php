@@ -16,7 +16,7 @@ class WordService
     public function __construct(LanguageRepository $languageRepository, WordRepository $wordRepository)
     {
         $this->languageService = $languageRepository;
-        $this->wordRepository  = $wordRepository;
+        $this->wordRepository = $wordRepository;
     }
 
     public function findOrMakeWord(Request $request, $user): Word
@@ -28,7 +28,7 @@ class WordService
 
         if ($word == null) {
             $language = $this->languageService->getWritten();
-            $word     = $this->wordRepository->make($literal, $language, $user);
+            $word = $this->wordRepository->make($literal, $language, $user);
         } else {
             $word->editor->save($user);
         }
@@ -47,7 +47,7 @@ class WordService
     {
         if ($this->isChanged($request->input('literal'), $translation->word)) {
             $language = $this->languageService->getWritten();
-            $word     = $this->wordRepository->firstOrNew($request, $language, $user);
+            $word = $this->wordRepository->firstOrNew($request, $language, $user);
 
             return $word;
         }
@@ -62,7 +62,7 @@ class WordService
         }
 
         $language = $this->languageService->getWritten();
-        $word     = $this->wordRepository->findByLiteral($request, $language);
+        $word = $this->wordRepository->findByLiteral($request, $language);
 
         if ($word == null) {
             $translation->word->literal = $request->input('literal');

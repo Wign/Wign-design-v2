@@ -28,7 +28,7 @@ class SortInput extends FormRequest
             'sortOrder'     => 'nullable|alpha|in:asc,desc,ASC,DESC,Asc,Desc',
             'whereColumn'   => 'nullable|string',
             'whereOperator' => 'nullable|string',
-            'whereValue'    => 'nullable|string|required_with:whereColumn'
+            'whereValue'    => 'nullable|string|required_with:whereColumn',
         ];
     }
 }

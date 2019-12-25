@@ -21,7 +21,7 @@ class RequestController extends Controller
      */
     public function __construct(WordService $wordService, WordRepository $wordRepository)
     {
-        $this->wordService    = $wordService;
+        $this->wordService = $wordService;
         $this->wordRepository = $wordRepository;
     }
 

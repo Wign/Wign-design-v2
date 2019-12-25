@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnused - The methods here is used by Lighthouse's own resolver */
+<?php
+
+/** @noinspection PhpUnused - The methods here is used by Lighthouse's own resolver */
 
 namespace App\GraphQL;
 
@@ -25,7 +27,7 @@ class RequestEndpoints
     public function requestedWords($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         $limit = isset($args['first']) ? intval($args['first']) : 0;
-        $sort  = isset($args['sort']) ? new SortInput($args['sort']) : null;
+        $sort = isset($args['sort']) ? new SortInput($args['sort']) : null;
 
         return $this->requestController->list($limit, $sort);
     }
@@ -38,7 +40,6 @@ class RequestEndpoints
             $this->requestController->toggleRequest($wordId, $context->user());
 
             return Word::withCount('requesters')->find($wordId);
-
         } catch (Exception $e) {
             return response($e, 500);
         }

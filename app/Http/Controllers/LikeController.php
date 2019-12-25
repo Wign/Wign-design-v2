@@ -26,7 +26,7 @@ class LikeController extends Controller
         $this->signRepository = $signRepository;
     }
 
-    public function toggleLike(String $signId, User $user): Sign
+    public function toggleLike(string $signId, User $user): Sign
     {
         $sign = $this->signRepository->find($signId);
 

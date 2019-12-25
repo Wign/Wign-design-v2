@@ -30,7 +30,7 @@ return [
     | the default location
     |
     */
-    'schema' => base_path('graphql/auth.graphql'),
+    'schema'        => base_path('graphql/auth.graphql'),
     /*
     |--------------------------------------------------------------------------
     | Username Column
@@ -40,5 +40,5 @@ return [
     | the user.
     |
     */
-    'username' => 'email'
+    'username'      => 'email',
 ];
