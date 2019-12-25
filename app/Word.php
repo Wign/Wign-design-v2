@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -46,6 +47,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Word extends Model
 {
+    use Sortable;
+
     // MASS ASSIGNMENT ------------------------------------------
     protected $fillable = [
         'creator_id',

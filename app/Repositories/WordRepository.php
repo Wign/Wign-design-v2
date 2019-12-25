@@ -21,8 +21,7 @@ class WordRepository
      */
     public function allActiveRequests()
     {
-        return Word::doesntHave('translations')->has('requesters')->withCount('requesters')->orderBy('requesters_count',
-            'desc')->orderBy('literal');
+        return Word::doesntHave('translations')->has('requesters')->withCount('requesters');
     }
 
     /**
@@ -64,6 +63,11 @@ class WordRepository
             'creator_id'  => $user->id,
             'editor_id'   => $user->id,
         ]);
+    }
+
+    public function find($id)
+    {
+        return Word::find($id);
     }
 
     public function findByLiteral(string $literal, Language $language)

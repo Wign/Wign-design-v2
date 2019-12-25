@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DescriptionService;
+use App\Services\SignService;
+use App\Services\UserService;
+use App\Services\WordService;
 use App\Translation;
 use Auth;
 use Exception;
@@ -17,10 +21,10 @@ class TranslationController extends Controller
 
     public function __construct(WordService $wordService, SignService $signService, DescriptionService $descriptionService, UserService $userService)
     {
-        $this->wordService = $wordService;
-        $this->signService = $signService;
+        $this->wordService        = $wordService;
+        $this->signService        = $signService;
         $this->descriptionService = $descriptionService;
-        $this->userService = $userService;
+        $this->userService        = $userService;
     }
 
     public function createTranslation(Request $request)
@@ -37,11 +41,11 @@ class TranslationController extends Controller
             $desc->save();
 
             $translation = Translation::create([
-                'word_id' => $word->id,
-                'sign_id' => $sign->id,
+                'word_id'        => $word->id,
+                'sign_id'        => $sign->id,
                 'description_id' => $desc->id,
-                'creator_id' => $user->id,
-                'editor_id' => $user->id,
+                'creator_id'     => $user->id,
+                'editor_id'      => $user->id,
             ]);
             Subscription::broadcast('traceTranslations', $translation);
 
@@ -56,17 +60,17 @@ class TranslationController extends Controller
         $user = Auth::user();
 
         $translation = Translation::findOrFail($translationId);
-        $newWord = $this->wordService->editWordSoftly($request, $translation, $user);
-        $newSign = $this->signService->editSign($request, $user);
-        $newDesc = $this->descriptionService->editDescription($request, $translation, $user);
+        $newWord     = $this->wordService->editWordSoftly($request, $translation, $user);
+        $newSign     = $this->signService->editSign($request, $user);
+        $newDesc     = $this->descriptionService->editDescription($request, $translation, $user);
 
         if ($newWord != null || $newSign != null || $newDesc != null) {
             $newTranslation = Translation::make([
-                'word_id' => $newWord == null ? $translation->word->id : $newWord->id,
-                'sign_id' => $newSign == null ? $translation->sign->id : $newSign->id,
+                'word_id'        => $newWord == null ? $translation->word->id : $newWord->id,
+                'sign_id'        => $newSign == null ? $translation->sign->id : $newSign->id,
                 'description_id' => $newDesc == null ? $translation->description->id : $newDesc->id,
-                'creator_id' => $translation->creator->id,
-                'editor_id' => $user->id,
+                'creator_id'     => $translation->creator->id,
+                'editor_id'      => $user->id,
             ]);
 
             if ($newWord != null) {

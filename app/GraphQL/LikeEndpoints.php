@@ -3,7 +3,6 @@
 namespace App\GraphQL;
 
 use App\Http\Controllers\LikeController;
-use App\Word;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -25,13 +24,5 @@ class LikeEndpoints
     public function toggleLike($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         return $this->controller->toggleLike($args['signId'], $context->user());
-    }
-
-    public function toggleRequest($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): Word
-    {
-        $wordId = $args['wordId'];
-        $this->controller->toggleRequest($wordId, $context->user());
-
-        return Word::whereId($wordId)->withCount('requesters')->first();
     }
 }

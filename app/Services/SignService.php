@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
+use App\Repositories\LanguageRepository;
+use App\Repositories\SignRepository;
 use App\Sign;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -14,7 +16,7 @@ class SignService
     public function __construct(LanguageRepository $languageRepository, SignRepository $signRepository)
     {
         $this->languageRepository = $languageRepository;
-        $this->signRepository = $signRepository;
+        $this->signRepository     = $signRepository;
     }
 
     public function makeSign(Request $request, $user): Sign
@@ -45,7 +47,7 @@ class SignService
         $this->validateSign($request);
 
         $language = $this->languageRepository->getSigned();
-        $sign = $this->signRepository->make(
+        $sign     = $this->signRepository->make(
             $request->input('video_uuid'),
             $request->input('video_url'),
             $request->input('thumbnail_url'),
@@ -66,7 +68,7 @@ class SignService
     {
         $this->validate($request, [
             'video_uuid' => 'required',
-            'video_url' => 'required',
+            'video_url'  => 'required',
         ]);
     }
 }

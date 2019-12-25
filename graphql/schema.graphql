@@ -14,7 +14,7 @@ type Query {
     words: [Word!]! @all # All words
     wordByLiteral(literal: String! @eq): Word @find # later use @search
     wordById(id: ID! @eq): Word @find
-    requestedWords(first: Int, sort: SortInput): [Word]!
+    requestedWords(first: Int, sort: SortInput): [Word]! @field(resolver: "App\\GraphQL\\RequestEndpoints@requestedWords")
 
     ### SIGNS ###
     signs: [Sign]! @paginate
@@ -38,7 +38,7 @@ type Mutation {
     deleteTranslation(id: ID!): Translation @middleware(checks: ["auth:api"])
 
 #    ### WORD ###
-     toggleRequest(wordId: ID!): Word! @middleware(checks: ["auth:api"])
+    toggleRequest(wordId: ID!): Word! @middleware(checks: ["auth:api"]) @field(resolver: "App\\GraphQL\\RequestEndpoints@toggleRequestWord")
 #    requestWord(input: WordInput!): requestedWord
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word

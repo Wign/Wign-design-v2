@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Repositories\SystemparameterRepository;
 use App\Systemparameter;
