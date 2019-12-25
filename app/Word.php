@@ -96,7 +96,7 @@ class Word extends Model
     public function getUserRequestedAttribute()
     {
         $user = Auth()->user();
-        if ( ! isset($user)) {
+        if (! isset($user)) {
             return false;
         }
 
