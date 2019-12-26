@@ -26,10 +26,10 @@
     .la-ball-clip-rotate {
         display: block;
         font-size: 0;
-        @apply text-tyrisk
+        @apply text-turkis
     }
     .la-ball-clip-rotate.la-dark {
-        @apply text-tyrisk-dark
+        @apply text-turkis-dark
     }
     .la-ball-clip-rotate > div {
         display: inline-block;

@@ -112,7 +112,7 @@ type Sign {
     language: Language! @belongsTo
     playings: Int!
     creator: User! @belongsTo
-    translation: [Translation]! @hasMany
+    translations: [Translation]! @hasMany
     created_at: DateTime!
     updated_at: DateTime!
 }

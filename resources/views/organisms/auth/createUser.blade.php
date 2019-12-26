@@ -1,5 +1,5 @@
 <h4 class="uppercase m-0">{{ __('text.user.new') }}</h4>
-<h1 class="text-tyrisk-dark font-bold text-4xl">{{ __('text.user.create') }}</h1>
+<h1 class="text-turkis-dark font-bold text-4xl">{{ __('text.user.create') }}</h1>
 
 <div class="my-4">
     <p>

@@ -6,21 +6,20 @@ namespace App\GraphQL;
 
 use App\Http\Controllers\RequestController;
 use App\Http\Requests\SortInput;
-use App\Word;
+use App\Repositories\WordRepository;
 use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class RequestEndpoints
 {
-    /**
-     * @var RequestController
-     */
     private $requestController;
+    private $wordRepository;
 
-    public function __construct(RequestController $requestController)
+    public function __construct(RequestController $requestController, WordRepository $wordRepository)
     {
         $this->requestController = $requestController;
+        $this->wordRepository = $wordRepository;
     }
 
     // QUERIES
@@ -29,7 +28,7 @@ class RequestEndpoints
         $limit = isset($args['first']) ? intval($args['first']) : 0;
         $sort = isset($args['sort']) ? new SortInput($args['sort']) : null;
 
-        return $this->requestController->list($limit, $sort);
+        return $this->requestController->getList($limit, $sort);
     }
 
     // MUTATIONS
@@ -39,7 +38,8 @@ class RequestEndpoints
             $wordId = $args['wordId'];
             $this->requestController->toggleRequest($wordId, $context->user());
 
-            return Word::withCount('requesters')->find($wordId);
+            return $this->wordRepository->getWordWithRequesters($wordId);
+
         } catch (Exception $e) {
             return response($e, 500);
         }

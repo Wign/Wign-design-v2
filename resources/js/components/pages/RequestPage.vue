@@ -3,7 +3,7 @@
         <nav class="my-4">
             {{sortText}}
             <span v-for="(letter, index) in sortArray">
-                <a v-on:click="sorting = index" class="cursor-pointer hover:text-tyrisk-dark"
+                <a v-on:click="sorting = index" class="cursor-pointer hover:text-turkis-dark"
                    :class="(sorting === index) ? 'font-bold' : ''"
                    v-text="letter"></a>
                 <span v-if="index < 2"> | </span>
@@ -19,7 +19,7 @@
         </div>
 
         <a v-if="!seeAll" v-on:click="seeAll = true" class="w-1/3 mx-auto block mt-8 cursor-pointer">
-            <tyrisk-button>{{seeAllText}}</tyrisk-button>
+            <turkis-button>{{seeAllText}}</turkis-button>
         </a>
     </div>
 </template>

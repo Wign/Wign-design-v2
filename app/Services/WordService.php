@@ -39,8 +39,9 @@ class WordService
     public function findWord(string $literal)
     {
         $language = $this->languageService->getWritten();
+        $word = $this->wordRepository->findByLiteral($literal, $language);
 
-        return $this->wordRepository->findByLiteral($literal, $language);
+        return $word;
     }
 
     public function editWordSoftly(Request $request, Translation $translation, $user): Word
@@ -57,7 +58,7 @@ class WordService
 
     public function editWordHardly(Request $request, Translation $translation, $user): Word //TODO add in API
     {
-        if ($this->isUnchanged($request, $translation->word)) { // TODO This method doesn't exist...
+        if (!$this->isChanged($request, $translation->word)) {
             return null;
         }
 

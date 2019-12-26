@@ -9,7 +9,7 @@
 
 <div class="flex flex-wrap">
     <a href="{{@route('ask')}}" class="sm:w-2/3 md:w-full xl:w-2/3">
-    @component('atoms.btn_tyrisk')
+    @component('atoms.btn_turkis')
         @lang('text.requested.see.all')
     @endcomponent
     </a>

@@ -87,9 +87,9 @@ return [
         'submit.word'     => 'Læg et tegn for :word',
         'request.word'    => 'Efterlyse tegnet for :word',
         'meant'           => [
-            '1word'    => 'Eller mente du :word',
-            '2word'    => 'Eller mente du :word1 eller :word2?',
-            'multiple' => 'Eller mente du et af disse ord? :words',
+            'single_word' => 'Eller mente du :suggestword',
+            'two_words'   => 'Eller mente du :suggestword1 eller :suggestword2?',
+            'multiple'    => 'Eller mente du et af disse ord? :suggestwords',
         ],
         'report'          => 'Rapportér tegnet',
         'alt.suggest'     => 'Foreslå et alternativt tegn',
@@ -112,7 +112,7 @@ return [
         'sort'    => [
             'title'   => 'Sortér efter:',
             'alpha'   => 'Alfabetisk',
-            'request' => 'Efterspørgsel',
+            'request' => 'Popularitet',
         ],
         'see_all' => 'Se alle :count efterlyste tegn',
     ],

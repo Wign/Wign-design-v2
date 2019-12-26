@@ -88,4 +88,9 @@ class WordRepository
             'editor_id' => $user->id,
         ]);
     }
+
+    public function getWordWithRequesters($wordId)
+    {
+        return Word::withCount('requesters')->find($wordId);
+    }
 }

@@ -3,7 +3,7 @@
         <div class="relative">
             <label for="search-input" class="sr-only">@lang('text.search.text')</label>
             <input type="search"
-                   class="block w-4/5 px-3 py-2 my-1 mx-auto text-base leading-normal text-black bg-transparent border-b-2 border-tyrisk rounded-none"
+                   class="block w-4/5 px-3 py-2 my-1 mx-auto text-base leading-normal text-black bg-transparent border-b-2 border-turkis rounded-none"
                    placeholder="@lang('text.search.text')" id="search-input" required autofocus>
             {{-- TODO: Søg knap, forbedret accessibility (farve, kontast osv) --}}
         </div>

@@ -35,7 +35,15 @@ class RequestController extends Controller
         return view('pages.request');
     }
 
-    public function list(int $limit, ?SortInput $sort)
+    /**
+     * Returns a list of all active requested words.
+     * Those can be limited to $limit requests, and/or sorted using SortInput $sort
+     * @param  int  $limit
+     * @param  SortInput|null  $sort
+     *
+     * @return Word[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public function getList(int $limit, ?SortInput $sort)
     {
         $requests = $this->wordRepository->allActiveRequests();
 
@@ -62,8 +70,6 @@ class RequestController extends Controller
      */
     public function toggleRequest($wordId, $user): Word
     {
-        //$this->wordService->validateWord($context->request()); // TODO Hvorfor dobbelt? Denne kaldes også i findOrMakeWord...
-
         //$word = $this->wordService->findOrMakeWord($context->request(), $user); // TODO dette markerer brugeren som editor af word. Er det meningen? Brugeren efterspørger blot ordet... Nu er brugeren også editoren
         //$word->save(); // TODO Hvorfor sker dette ikke i servicen?
 

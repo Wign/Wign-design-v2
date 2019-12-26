@@ -14385,7 +14385,7 @@ function previouslyCompared(a, b) {
 /*!*****************************************************!*\
   !*** ./node_modules/apollo-boost/lib/bundle.esm.js ***!
   \*****************************************************/
-/*! exports provided: HttpLink, gql, default, ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument */
+/*! exports provided: ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument, HttpLink, gql, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31754,7 +31754,7 @@ var render = function() {
   return _c(
     "a",
     {
-      staticClass: "btn btn-tyrisk-outline my-2 relative",
+      staticClass: "btn btn-turkis-outline my-2 relative",
       attrs: { href: _vm.link }
     },
     [_vm._t("default", [_vm._v(_vm._s(_vm.literal))])],
@@ -31808,9 +31808,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atoms/TyriskButton.vue?vue&type=template&id=4ce6aefe&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atoms/TurkisButton.vue?vue&type=template&id=1cb4334e&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/atoms/TyriskButton.vue?vue&type=template&id=4ce6aefe& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/atoms/TurkisButton.vue?vue&type=template&id=1cb4334e& ***!
   \*********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -31825,7 +31825,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "button",
-    { staticClass: "btn btn-tyrisk my-2 w-full", attrs: { type: "button" } },
+    { staticClass: "btn btn-turkis my-2 w-full", attrs: { type: "button" } },
     [_vm._t("default")],
     2
   )
@@ -32495,7 +32495,7 @@ var render = function() {
           _vm._l(_vm.sortArray, function(letter, index) {
             return _c("span", [
               _c("a", {
-                staticClass: "cursor-pointer hover:text-tyrisk-dark",
+                staticClass: "cursor-pointer hover:text-turkis-dark",
                 class: _vm.sorting === index ? "font-bold" : "",
                 domProps: { textContent: _vm._s(letter) },
                 on: {
@@ -32547,7 +32547,7 @@ var render = function() {
                 }
               }
             },
-            [_c("tyrisk-button", [_vm._v(_vm._s(_vm.seeAllText))])],
+            [_c("turkis-button", [_vm._v(_vm._s(_vm.seeAllText))])],
             1
           )
         : _vm._e()
@@ -46659,7 +46659,7 @@ var map = {
 	"./atoms/LoadingComponent.vue": "./resources/js/components/atoms/LoadingComponent.vue",
 	"./atoms/RequestButton.vue": "./resources/js/components/atoms/RequestButton.vue",
 	"./atoms/RequestLikeButton.vue": "./resources/js/components/atoms/RequestLikeButton.vue",
-	"./atoms/TyriskButton.vue": "./resources/js/components/atoms/TyriskButton.vue",
+	"./atoms/TurkisButton.vue": "./resources/js/components/atoms/TurkisButton.vue",
 	"./form/inputs/SelectInput.vue": "./resources/js/components/form/inputs/SelectInput.vue",
 	"./form/inputs/TextArea.vue": "./resources/js/components/form/inputs/TextArea.vue",
 	"./form/inputs/TextInput.vue": "./resources/js/components/form/inputs/TextInput.vue",
@@ -47334,16 +47334,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/atoms/TyriskButton.vue":
+/***/ "./resources/js/components/atoms/TurkisButton.vue":
 /*!********************************************************!*\
-  !*** ./resources/js/components/atoms/TyriskButton.vue ***!
+  !*** ./resources/js/components/atoms/TurkisButton.vue ***!
   \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TyriskButton_vue_vue_type_template_id_4ce6aefe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TyriskButton.vue?vue&type=template&id=4ce6aefe& */ "./resources/js/components/atoms/TyriskButton.vue?vue&type=template&id=4ce6aefe&");
+/* harmony import */ var _TurkisButton_vue_vue_type_template_id_1cb4334e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TurkisButton.vue?vue&type=template&id=1cb4334e& */ "./resources/js/components/atoms/TurkisButton.vue?vue&type=template&id=1cb4334e&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 var script = {}
@@ -47353,8 +47353,8 @@ var script = {}
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
   script,
-  _TyriskButton_vue_vue_type_template_id_4ce6aefe___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TyriskButton_vue_vue_type_template_id_4ce6aefe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _TurkisButton_vue_vue_type_template_id_1cb4334e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TurkisButton_vue_vue_type_template_id_1cb4334e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -47364,24 +47364,24 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/atoms/TyriskButton.vue"
+component.options.__file = "resources/js/components/atoms/TurkisButton.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/atoms/TyriskButton.vue?vue&type=template&id=4ce6aefe&":
+/***/ "./resources/js/components/atoms/TurkisButton.vue?vue&type=template&id=1cb4334e&":
 /*!***************************************************************************************!*\
-  !*** ./resources/js/components/atoms/TyriskButton.vue?vue&type=template&id=4ce6aefe& ***!
+  !*** ./resources/js/components/atoms/TurkisButton.vue?vue&type=template&id=1cb4334e& ***!
   \***************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TyriskButton_vue_vue_type_template_id_4ce6aefe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TyriskButton.vue?vue&type=template&id=4ce6aefe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atoms/TyriskButton.vue?vue&type=template&id=4ce6aefe&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TyriskButton_vue_vue_type_template_id_4ce6aefe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TurkisButton_vue_vue_type_template_id_1cb4334e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TurkisButton.vue?vue&type=template&id=1cb4334e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atoms/TurkisButton.vue?vue&type=template&id=1cb4334e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TurkisButton_vue_vue_type_template_id_1cb4334e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TyriskButton_vue_vue_type_template_id_4ce6aefe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TurkisButton_vue_vue_type_template_id_1cb4334e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -48443,8 +48443,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/Troels/Documents/5 Websites/Wign-v6/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/Troels/Documents/5 Websites/Wign-v6/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

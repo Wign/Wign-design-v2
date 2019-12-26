@@ -1,4 +1,4 @@
-<h1 class="text-tyrisk-dark font-bold text-4xl">{{ __('text.user.passwordReset') }}</h1>
+<h1 class="text-turkis-dark font-bold text-4xl">{{ __('text.user.passwordReset') }}</h1>
 
 <div class="w-4/5 mt-4">
     <form method="POST" action="{{ route('password.email') }}">

@@ -1,5 +1,5 @@
 <h4 class="uppercase m-0">@lang('text.welcome-back')</h4>
-<h1 class="text-tyrisk-dark font-bold text-4xl">@lang('text.user.login')</h1>
+<h1 class="text-turkis-dark font-bold text-4xl">@lang('text.user.login')</h1>
 
 <div class="w-3/5 mt-4">
     <button class="btn bg-facebook text-white hover:bg-facebook-dark w-full">

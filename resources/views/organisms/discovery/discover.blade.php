@@ -16,7 +16,7 @@
 </div>
 
 <div class="flex flex-wrap">
-    @component('atoms.btn_tyrisk', ['class' => 'sm:w-2/3 lg:w-1/2'])
+    @component('atoms.btn_turkis', ['class' => 'sm:w-2/3 lg:w-1/2'])
         @lang('text.sign.see.random')
     @endcomponent
 </div>
