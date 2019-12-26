@@ -4,29 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Repositories\SignRepository;
 use App\Services\UserService;
-use App\Sign;
-use Illuminate\Foundation\Auth\User;
 
 class LikeController extends Controller
 {
     private $userService;
     private $signRepository;
 
-    /**
-     * LikeController constructor.
-     *
-     * @param  UserService  $userService
-     * @param  SignRepository  $signRepository
-     */
-    public function __construct(
-        UserService $userService,
-        SignRepository $signRepository
-    ) {
+    public function __construct(UserService $userService, SignRepository $signRepository)
+    {
         $this->userService = $userService;
         $this->signRepository = $signRepository;
     }
 
-    public function toggleLike(string $signId, User $user): Sign
+    public function toggleLike(string $signId, $user)
     {
         $sign = $this->signRepository->find($signId);
 
