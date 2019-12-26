@@ -6,13 +6,15 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
     ### USER ###
+    me: User @middleware(checks: ["auth:api"]) @auth
     users: [User!]! @paginate
     user(id: ID! @eq): User @find
 
     ### WORDS ###
     words: [Word!]! @all # All words
-    word(literal: String!): Word @find # later use @search
-    requestedWords: [Word]!
+    wordByLiteral(literal: String! @eq): Word @find # later use @search
+    wordById(id: ID! @eq): Word @find
+    requestedWords(first: Int, sort: SortInput): [Word]! @field(resolver: "App\\GraphQL\\RequestEndpoints@requestedWords")
 
     ### SIGNS ###
     signs: [Sign]! @paginate
@@ -30,14 +32,14 @@ type Query {
 }
 
 type Mutation {
-### TRANSLATION ###
-    createTranslation(word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation!
-        @broadcast(subscription: "traceTranslations")
-    editTranslation(id: ID!, word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation
-    deleteTranslation(id: ID!): Translation
+#   ### TRANSLATION ###
+    createTranslation(word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation! @broadcast(subscription: "traceTranslations") @middleware(checks: ["auth:api"])
+    editTranslation(id: ID!, word: WordInput!, sign: SignInput!, description: DescriptionInput!): Translation @middleware(checks: ["auth:api"])
+    deleteTranslation(id: ID!): Translation @middleware(checks: ["auth:api"])
 
 #    ### WORD ###
-    toggleRequestWord(wordInput: WordInput!): Word
+    toggleRequest(wordId: ID!): Word! @middleware(checks: ["auth:api"]) @field(resolver: "App\\GraphQL\\RequestEndpoints@toggleRequestWord")
+#    requestWord(input: WordInput!): requestedWord
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word
 #
@@ -47,7 +49,15 @@ type Mutation {
 #    deleteSign(signId: ID!): Sign
 #
 #    ### LIKE ###
-   toggleLike(userId: ID!, signId: ID!): Word! # Returns true if liked
+    toggleLike(userId: ID!, signId: ID!): Word! @middleware(checks: ["auth:api"]) @auth # Returns true if liked
+#
+#   ### USER LOGINS ###
+    login(input: LoginInput @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Login@resolve")
+    refreshToken(input: RefreshTokenInput @spread): RefreshTokenPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\RefreshToken@resolve")
+    logout: LogoutResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Logout@resolve")
+    forgotPassword(input: ForgotPasswordInput! @spread): ForgotPasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\ForgotPassword@resolve")
+    updateForgottenPassword(input: NewPasswordWithCodeInput @spread): ForgotPasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\ResetPassword@resolve")
+    register(input: RegisterInput @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Register@resolve")
 }
 
 type Subscription {
@@ -76,10 +86,13 @@ type Word {
     id: ID!
     literal: String!
     language: Language! @belongsTo
+    translations: [Translation]! @hasMany
     creator: User! @belongsTo
     editor: User! @belongsTo
     created_at: DateTime!
     updated_at: DateTime!
+    requesters_count: Int!
+    user_requested: Boolean!
 }
 
 type Language {
@@ -99,7 +112,7 @@ type Sign {
     language: Language! @belongsTo
     playings: Int!
     creator: User! @belongsTo
-    translation: Translation! @hasMany
+    translations: [Translation]! @hasMany
     created_at: DateTime!
     updated_at: DateTime!
 }
@@ -120,6 +133,7 @@ type Translation {
 type Description {
     id: ID!
     text: String!
+    translations: [Translation]! @hasMany
     creator: User! @belongsTo
     editor: User! @belongsTo
     created_at: DateTime!
@@ -185,3 +199,11 @@ input DescriptionInput {
 #    IP: String!
 #    Description: String # Opt: Extra descirption of the reason
 #}
+
+input SortInput {
+    sortColumn: String
+    sortOrder: String
+    whereColumn: String
+    whereOperator: String
+    whereValue: String
+}

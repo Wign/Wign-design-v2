@@ -12,20 +12,22 @@
         "build-video-prod": "cd nova-components/Video && npm run prod"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.25",
-        "@fortawesome/free-brands-svg-icons": "^5.11.2",
-        "@fortawesome/free-regular-svg-icons": "^5.11.2",
-        "@fortawesome/free-solid-svg-icons": "^5.11.2",
-        "@fortawesome/vue-fontawesome": "^0.1.8",
+        "@fortawesome/fontawesome-svg-core": "^1.2.26",
+        "@fortawesome/free-brands-svg-icons": "^5.12.0",
+        "@fortawesome/free-regular-svg-icons": "^5.12.0",
+        "@fortawesome/free-solid-svg-icons": "^5.12.0",
+        "@fortawesome/vue-fontawesome": "^0.1.9",
+        "apollo-boost": "^0.4.4",
         "axios": "^0.19",
         "cross-env": "^5.1",
+        "graphql": "^14.5.8",
         "laravel-mix": "^4.1.2",
         "resolve-url-loader": "2.3.2",
         "sass": "^1.23.7",
         "sass-loader": "7.*",
         "tailwindcss": "^1.1.4",
-        "terser-webpack-plugin": "^2.2.2",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "vue": "^2.6.11",
+        "vue-apollo": "^3.0.0",
+        "vue-template-compiler": "^2.6.11"
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
+use App\Repositories\LanguageRepository;
+use App\Repositories\SignRepository;
 use App\Sign;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;

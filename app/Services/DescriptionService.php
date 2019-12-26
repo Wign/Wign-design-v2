@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Description;
+use App\Repositories\DescriptionRepository;
 use App\Translation;
 use App\User;
 use Illuminate\Database\Eloquent\Model;

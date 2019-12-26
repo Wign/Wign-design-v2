@@ -12,7 +12,7 @@ class FakerProvider extends Base
         'opfør', 'ørn', 'transmongolske', 'kreditor', 'translokation', 'veganer', 'headset', 'marijuana', 'foreningen',
         'diesel', 'taekwondo', 'cup', 'shakespeare', 'agil', 'efsli', 'bremse', 'psykostisk', 'animator', 'rundkørsel',
         'layout', 'forfatning', 'galileo', 'minnie', 'pathos', 'insufficiens', 'x-sheet', 'cameroon', 'drawing',
-        'nazist', 'ventrikel', 'ishockey', 'impuls', 'detect', 'kirtel', 'træ', 'pixel', 'rendering', 'upload', 'konge',
+        'ventrikel', 'ishockey', 'impuls', 'detect', 'kirtel', 'træ', 'pixel', 'rendering', 'upload', 'konge',
         'havanna', 'elipse', 'apex', 'cyber', 'traume', 'tweening', 'wernher', 'falk', 'solglimt', 'momentum',
         'flipping', 'illumination', 'database', 'abduktiv', 'tasmanien', 'default', 'adapter', 'marketing', 'show',
         'kateter', 'caribiske', 'hotkey', 'robin', 'gyse', 'luther', 'translation', 'elongated', 'krudtugle', 'plainer',

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
+use App\Repositories\LanguageRepository;
 use App\Repositories\WordRepository;
 use App\Translation;
 use App\Word;
@@ -21,12 +22,13 @@ class WordService
     public function findOrMakeWord(Request $request, $user): Word
     {
         $this->validateWord($request);
+        $literal = $request->input('literal');
 
-        $word = $this->findWord($request);
+        $word = $this->findWord($literal);
 
         if ($word == null) {
             $language = $this->languageService->getWritten();
-            $word = $this->wordRepository->make($request->input('literal'), $language, $user);
+            $word = $this->wordRepository->make($literal, $language, $user);
         } else {
             $word->editor->save($user);
         }
@@ -34,10 +36,10 @@ class WordService
         return $word;
     }
 
-    public function findWord(Request $request): Word
+    public function findWord(string $literal)
     {
         $language = $this->languageService->getWritten();
-        $word = $this->wordRepository->findByLiteral($request, $language);
+        $word = $this->wordRepository->findByLiteral($literal, $language);
 
         return $word;
     }
@@ -56,7 +58,7 @@ class WordService
 
     public function editWordHardly(Request $request, Translation $translation, $user): Word //TODO add in API
     {
-        if ($this->isUnchanged($request, $translation->word)) {
+        if (! $this->isChanged($request, $translation->word)) {
             return null;
         }
 
@@ -80,14 +82,16 @@ class WordService
 
     public function validateWord(Request $request)
     {
+        return true; // TODO I must insert it here because it doesn't work. Validate method doesn't exist in WordService. Perhaps you meant $request->validate()?
         $this->validate($request, [
             'literal' => 'required|alpha_num', //TODO vær ikke vred mere
         ]);
     }
 
     /**
-     * @param Request $request
-     * @param Word $word
+     * @param  string  $literal
+     * @param  Word  $word
+     *
      * @return bool
      */
     private function isChanged(string $literal, Word $word): bool

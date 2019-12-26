@@ -3,19 +3,19 @@
   @apply inline-block appearance-none align-middle text-center whitespace-no-wrap py-2 px-4 font-semibold leading-normal no-underline
 }
 
-.btn-tyrisk {
-  @apply bg-tyrisk text-gray-100 rounded-full
+.btn-turkis {
+  @apply bg-turkis text-gray-100 rounded-full
 }
 
-.btn-tyrisk:hover {
-  @apply bg-tyrisk-light
+.btn-turkis:hover {
+  @apply bg-turkis-light
 }
 
-.btn-tyrisk-outline {
-  @apply border border-tyrisk text-gray-800 bg-gray-100 rounded-full
+.btn-turkis-outline {
+  @apply border border-turkis text-gray-800 bg-white rounded
 }
 
-.btn-tyrisk-outline:hover {
+.btn-turkis-outline:hover {
   @apply bg-gray-300
 }
 
@@ -38,4 +38,13 @@
 
 .input-error {
   @apply border-b-2 border-red-500
+}
+
+/** LINKS **/
+.header-link {
+    @apply no-underline
+}
+
+.header-link:hover {
+    @apply text-gray-800 underline
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -46,6 +47,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Word extends Model
 {
+    use Sortable;
+
     // MASS ASSIGNMENT ------------------------------------------
     protected $fillable = [
         'creator_id',
@@ -88,6 +91,16 @@ class Word extends Model
     public function editor()
     {
         return $this->belongsTo(User::class, 'editor_id');
+    }
+
+    public function getUserRequestedAttribute()
+    {
+        $user = Auth()->user();
+        if (! isset($user)) {
+            return false;
+        }
+
+        return $this->requesters()->where('user_id', Auth()->user()->id)->count() > 0;
     }
 
     /* LEAVING THIS OUT FOR NOW

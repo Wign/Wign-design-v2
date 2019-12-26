@@ -3,6 +3,8 @@
 namespace App\GraphQL;
 
 use App\Http\Controllers\LikeController;
+use GraphQL\Type\Definition\ResolveInfo;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class LikeEndpoints
 {
@@ -19,8 +21,8 @@ class LikeEndpoints
     // QUERIES
 
     // MUTATIONS
-    public function toggleLike($rootValue, array $args, \Nuwave\Lighthouse\Support\Contracts\GraphQLContext $context, \GraphQL\Type\Definition\ResolveInfo $resolveInfo)
+    public function toggleLike($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->controller->toggleLike($context);
+        return $this->controller->toggleLike($args['signId'], $context->user());
     }
 }

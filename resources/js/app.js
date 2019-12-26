@@ -1,7 +1,18 @@
-//import Vue from 'vue';
 //import VueI18n from 'vue-i18n';
 //import Locales from './vue-i18n-locales.generated';
 //import VeeValidate from 'vee-validate';
+import Vue from 'vue'
+import VueApollo from 'vue-apollo'
+import ApolloClient from 'apollo-boost';
+
+const apolloClient = new ApolloClient({
+    // You should use an absolute URL here
+    uri: 'http://localhost/graphql'
+});
+
+const apolloProvider = new VueApollo({
+    defaultClient: apolloClient,
+});
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13,6 +24,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 Vue.config.productionTip = false;
+Vue.use(VueApollo);
+
+Vue.prototype.$userLoggedIn = document.querySelector("meta[name='user-logged']").getAttribute('content') === "1";
 
 //Vue.use(VueI18n);
 //Vue.use(VeeValidate);
@@ -21,12 +35,20 @@ Vue.config.productionTip = false;
  * Adding fontawesome svg icons to our code
  */
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faHome, faPlusCircle, faThumbsUp as fasThumbsUp, faEllipsisH} from '@fortawesome/free-solid-svg-icons';
-import {faThumbsUp as farThumbsUp} from '@fortawesome/free-regular-svg-icons';
+import {
+    faHome,
+    faPlusCircle,
+    faThumbsUp as fasThumbsUp,
+    faEllipsisH,
+    faAngleDown,
+    faAngleLeft,
+    faHandPointUp as fasHandPointUp
+} from '@fortawesome/free-solid-svg-icons';
+import {faThumbsUp as farThumbsUp, faHandPointUp as farHandPointUp} from '@fortawesome/free-regular-svg-icons';
 import {faFacebook, faGithub, faGoogle} from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
-library.add(faFacebook, faGoogle, faGithub, faHome, faPlusCircle, fasThumbsUp, farThumbsUp, faEllipsisH);
+library.add(faFacebook, faGoogle, faGithub, faHome, faPlusCircle, fasThumbsUp, farThumbsUp, faEllipsisH, faAngleDown, faAngleLeft, fasHandPointUp, farHandPointUp);
 //dom.watch();
 
 Vue.component('fa-icon', FontAwesomeIcon);
@@ -48,6 +70,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+new Vue({
     el: '#app',
+    apolloProvider
 });

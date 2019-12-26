@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use Auth;
 use Illuminate\Contracts\Auth\Authenticatable;

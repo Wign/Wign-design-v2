@@ -1,11 +1,11 @@
-@extends('layouts.box')
+@extends('templates.box')
 
 @push('styles')
     @include('temp.backgroundImage')
 @endpush
 
 @section('leftSide')
-    @include('components.auth.passwords.reset')
+    @include('organisms.auth.passwords.reset')
     {{--
     <div class="flex flex-wrap">
         <div class="xl:w-2/3 pr-4 pl-4 lg:w-4/5 pr-4 pl-4 xl:mx-1/5 lg:mx-1/6">

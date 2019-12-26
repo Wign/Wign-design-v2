@@ -13,3 +13,10 @@ body {
 
 @tailwind utilities;
 @import "custom-utilities";
+
+@variants group-hover {
+    .rotate-90ccw {
+        transform: rotate(-90deg);
+        transition: transform 0.1s;
+    }
+}
