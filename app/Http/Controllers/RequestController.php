@@ -37,7 +37,7 @@ class RequestController extends Controller
 
     /**
      * Returns a list of all active requested words.
-     * Those can be limited to $limit requests, and/or sorted using SortInput $sort
+     * Those can be limited to $limit requests, and/or sorted using SortInput $sort.
      * @param  int  $limit
      * @param  SortInput|null  $sort
      *

@@ -58,7 +58,7 @@ class WordService
 
     public function editWordHardly(Request $request, Translation $translation, $user): Word //TODO add in API
     {
-        if (!$this->isChanged($request, $translation->word)) {
+        if (! $this->isChanged($request, $translation->word)) {
             return null;
         }
 

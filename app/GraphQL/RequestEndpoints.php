@@ -39,7 +39,6 @@ class RequestEndpoints
             $this->requestController->toggleRequest($wordId, $context->user());
 
             return $this->wordRepository->getWordWithRequesters($wordId);
-
         } catch (Exception $e) {
             return response($e, 500);
         }
