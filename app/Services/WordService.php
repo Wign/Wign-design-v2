@@ -81,7 +81,7 @@ class WordService
 
     public function validateWord(Request $request)
     {
-        return true;
+        return true; // TODO I must insert it here because it doesn't work. Validate method doesn't exist in WordService. Perhaps you meant $request->validate()?
         $this->validate($request, [
             'literal' => 'required|alpha_num', //TODO vær ikke vred mere
         ]);

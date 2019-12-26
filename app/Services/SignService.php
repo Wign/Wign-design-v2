@@ -68,7 +68,7 @@ class SignService
     {
         $this->validate($request, [
             'video_uuid' => 'required',
-            'video_url'  => 'required',
+            'video_url' => 'required',
         ]);
     }
 }

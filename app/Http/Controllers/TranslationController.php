@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\DescriptionService;
-use App\Services\SignService;
-use App\Services\UserService;
-use App\Services\WordService;
 use App\Translation;
 use Auth;
 use Exception;
@@ -41,11 +37,11 @@ class TranslationController extends Controller
             $desc->save();
 
             $translation = Translation::create([
-                'word_id'        => $word->id,
-                'sign_id'        => $sign->id,
+                'word_id' => $word->id,
+                'sign_id' => $sign->id,
                 'description_id' => $desc->id,
-                'creator_id'     => $user->id,
-                'editor_id'      => $user->id,
+                'creator_id' => $user->id,
+                'editor_id' => $user->id,
             ]);
             Subscription::broadcast('traceTranslations', $translation);
 
@@ -66,11 +62,11 @@ class TranslationController extends Controller
 
         if ($newWord != null || $newSign != null || $newDesc != null) {
             $newTranslation = Translation::make([
-                'word_id'        => $newWord == null ? $translation->word->id : $newWord->id,
-                'sign_id'        => $newSign == null ? $translation->sign->id : $newSign->id,
+                'word_id' => $newWord == null ? $translation->word->id : $newWord->id,
+                'sign_id' => $newSign == null ? $translation->sign->id : $newSign->id,
                 'description_id' => $newDesc == null ? $translation->description->id : $newDesc->id,
-                'creator_id'     => $translation->creator->id,
-                'editor_id'      => $user->id,
+                'creator_id' => $translation->creator->id,
+                'editor_id' => $user->id,
             ]);
 
             if ($newWord != null) {

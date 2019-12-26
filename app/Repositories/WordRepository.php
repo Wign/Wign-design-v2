@@ -58,10 +58,10 @@ class WordRepository
     public function make(string $literal, Language $language, $user): Word
     {
         return Word::make([
-            'literal'     => $literal,
+            'literal' => $literal,
             'language_id' => $language->id,
-            'creator_id'  => $user->id,
-            'editor_id'   => $user->id,
+            'creator_id' => $user->id,
+            'editor_id' => $user->id,
         ]);
     }
 
@@ -73,7 +73,7 @@ class WordRepository
     public function findByLiteral(string $literal, Language $language)
     {
         return Word::where([
-            'literal'     => $literal,
+            'literal' => $literal,
             'language_id' => $language->id,
         ])->first();
     }
@@ -81,11 +81,11 @@ class WordRepository
     public function firstOrNew(string $literal, Language $language, $user): Word
     {
         return Word::firstOrNew([
-            'literal'     => $literal,
+            'literal' => $literal,
             'language_id' => $language->id,
         ], [
             'creator_id' => $user->id,
-            'editor_id'  => $user->id,
+            'editor_id' => $user->id,
         ]);
     }
 }
