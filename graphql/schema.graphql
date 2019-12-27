@@ -38,7 +38,7 @@ type Mutation {
     deleteTranslation(id: ID!): Translation @middleware(checks: ["auth:api"])
 
 #    ### WORD ###
-    toggleRequest(wordId: ID!): Word! @middleware(checks: ["auth:api"]) @field(resolver: "App\\GraphQL\\RequestEndpoints@toggleRequestWord")
+    toggleRequest(word: WordInput!): Word! @middleware(checks: ["auth:api"]) @field(resolver: "App\\GraphQL\\RequestEndpoints@toggleRequestWord")
 #    requestWord(input: WordInput!): requestedWord
 #    deleteWord(wordId: ID!): Word
 #    addAlias(wordId: ID!, input: WordInput): Word

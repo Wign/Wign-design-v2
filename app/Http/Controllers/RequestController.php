@@ -6,7 +6,9 @@ use App\Http\Requests\SortInput;
 use App\Repositories\WordRepository;
 use App\Services\WordService;
 use App\Word;
+use Auth;
 use Exception;
+use Log;
 
 class RequestController extends Controller
 {
@@ -63,18 +65,15 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param $wordId  - The id of the Word
-     * @param $user  - The user whom toggled the request
-     *
+     * @param $literal
      * @return Word
      */
-    public function toggleRequest($wordId, $user): Word
+    public function toggleRequest($literal): Word
     {
-        //$word = $this->wordService->findOrMakeWord($context->request(), $user); // TODO dette markerer brugeren som editor af word. Er det meningen? Brugeren efterspørger blot ordet... Nu er brugeren også editoren
-        //$word->save(); // TODO Hvorfor sker dette ikke i servicen?
+        $user = Auth::user();
 
-        /** @var Word $word */
-        $word = $this->wordRepository->find($wordId);
+        $word = $this->wordService->findOrMakeWord($literal, $user);
+        $word->save();
 
         if (isset($user) && isset($word)) {
             $word->requesters()->toggle($user);
@@ -84,11 +83,13 @@ class RequestController extends Controller
             try {
                 $this->wordRepository->delete($word);
             } catch (Exception $e) {
-                // TODO Suggesting to log something here. In case it fails. It actual is hard to fail here, so it's nice to have some log to look at....
-                // BTW, aner ikke hvorfor jeg skrev engelsk her...
+                Log::error("USER: " . $user->id . " ACTION: " . __FUNCTION__); // TODO Create a logger class
+                Log::error($e);
+
+                return abort(500, __('error.toggle.request.failed'));
             }
         }
 
-        return $word;
+        return $this->wordRepository->getWordWithRequesters($word);
     }
 }
