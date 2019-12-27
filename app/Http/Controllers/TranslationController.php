@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DescriptionService;
+use App\Services\SignService;
+use App\Services\UserService;
+use App\Services\WordService;
 use App\Translation;
 use Auth;
 use Exception;
