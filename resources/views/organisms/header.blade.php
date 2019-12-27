@@ -1,6 +1,6 @@
 <nav class="relative py-2 px-4 pin-t bg-white">
     <div class="container mx-auto flex flex-row flex-wrap items-center justify-between">
-        <a class="pt-1 pb-1 mr-4" href="{{ url('/') }}"><img src="{{asset('/images/logo/wign-logo-colour.svg')}}" class="wign-logo inline" alt="@lang("common.Wign.logo")"></a>
+        <a class="pt-1 pb-1 mr-4" href="{{ route('index') }}"><img src="{{asset('/images/logo/wign-logo-colour.svg')}}" class="wign-logo inline" alt="@lang("common.Wign.logo")"></a>
 
         {{-- To small screen; show navigation dropdown
         <button class="py-1 px-2 text-md leading-normal bg-transparent border border-transparent rounded" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
                         </a>
 
                         <div class="invisible group-hover:visible absolute z-50 pt-1 mt-2 bg-white shadow-md" aria-labelledby="navbarDropdown" role="navigation">
-                            <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('index') }}">{{ __('nav.profile') }}</a>
+                            <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('index.profile') }}">{{ __('nav.profile') }}</a>
                             <a class="block w-full py-1 px-6 whitespace-no-wrap hover:bg-gray-200" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
