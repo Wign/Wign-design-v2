@@ -94,6 +94,7 @@ class TranslationController extends Controller
                 $translation->delete();
             } catch (Exception $e) {
                 Log::error('Delete the previous translation has failed', [$e]);
+
                 return abort(500);
             }
 
@@ -111,6 +112,7 @@ class TranslationController extends Controller
             $translation->delete();
         } catch (Exception $e) {
             Log::error('Delete the previous translation has failed', [$e]);
+
             return abort(500);
         }
 
