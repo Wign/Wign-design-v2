@@ -24,6 +24,11 @@ class IndexController extends Controller
         return view('pages.contact');
     }
 
+    public function cookies()
+    {
+        return view('pages.cookies');
+    }
+
     public function profile()
     {
         return view('pages.profile');
