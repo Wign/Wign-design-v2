@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DescriptionService;
+use App\Services\SignService;
+use App\Services\UserService;
+use App\Services\WordService;
 use App\Translation;
 use Auth;
 use Exception;
@@ -22,6 +26,21 @@ class TranslationController extends Controller
         $this->signService = $signService;
         $this->descriptionService = $descriptionService;
         $this->userService = $userService;
+    }
+
+    public function recents()
+    {
+        return view('pages.recent');
+    }
+
+    public function index()
+    {
+        return view('pages.signs');
+    }
+
+    public function createIndex()
+    {
+        return view('pages.createTranslation');
     }
 
     public function createTranslation(Request $request)
