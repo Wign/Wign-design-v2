@@ -7,6 +7,7 @@ use App\Repositories\WordRepository;
 use App\Services\WordService;
 use App\Word;
 use Exception;
+use Log;
 
 class RequestController extends Controller
 {
@@ -84,8 +85,7 @@ class RequestController extends Controller
             try {
                 $this->wordRepository->delete($word);
             } catch (Exception $e) {
-                // TODO Suggesting to log something here. In case it fails. It actual is hard to fail here, so it's nice to have some log to look at....
-                // BTW, aner ikke hvorfor jeg skrev engelsk her...
+                Log::error('Deleting the word has failed', [$e]);
             }
         }
 
