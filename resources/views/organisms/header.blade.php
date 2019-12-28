@@ -11,11 +11,11 @@
         <div class="collapse flex-grow-0" id="navbarSupportedContent">
             <!-- Right Side Of Navbar -->
             <ul class="flex flex-wrap text-xs">
-                <li><a class="p-2 header-link" href="{{ Route::has('translation.create') ? route('translation.create') : '#' }}">@lang("nav.upload")</a></li>
-                <li><a class="p-2 header-link" href="{{ Route::has('request.index') ? route('request.index') : '#' }}">@lang("nav.requested")</a></li>
-                <li><a class="p-2 header-link" href="{{ Route::has('translation.recent') ? route('translation.recent') : '#' }}">@lang("nav.recent")</a></li>
-                <li><a class="p-2 header-link" href="{{ Route::has('sign') ? route('sign') : '#' }}">HJERTE (temp)</a></li>
-                <li><a class="p-2 header-link" href="{{ Route::has('index.about') ? route('index.about') : '#' }}">@lang("nav.about")</a></li>
+                <li><a class="p-2 header-link" href="{{ route('translation.create') }}">@lang("nav.upload")</a></li>
+                <li><a class="p-2 header-link" href="{{ route('request.index') }}">@lang("nav.requested")</a></li>
+                <li><a class="p-2 header-link" href="{{ route('translation.recent') }}">@lang("nav.recent")</a></li>
+                <li><a class="p-2 header-link" href="{{ route('sign') }}">HJERTE (temp)</a></li>
+                <li><a class="p-2 header-link" href="{{ route('index.about') }}">@lang("nav.about")</a></li>
 
                 <!-- Authentication Links -->
                 @guest

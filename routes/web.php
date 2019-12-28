@@ -21,14 +21,14 @@ Route::get('profile', 'IndexController@profile')->name('index.profile'); // TODO
 
 // TRANSLATION //
 Route::get('recent', 'TranslationController@recents')->name('translation.recent');
-Route::get('word'.'/{literal}', 'TranslationController@index')->name('translation.signs');
+Route::get('word/{literal}', 'TranslationController@index')->name('translation.signs');
 //Route::get('translation' . '/{id}', 'TranslationController@singleIndex')->name('translation.single');
-Route::get('create'.'/{literal?}', 'TranslationController@createIndex')->name('translation.create');
+Route::get('create/{literal?}', 'TranslationController@createIndex')->name('translation.create');
 
-Route::view('sign'.'/Hjerte', 'pages.signs')->name('sign'); //TODO Slet når søgningen virker
+Route::view('sign/Hjerte', 'pages.signs')->name('sign'); //TODO Slet når søgningen virker
 
 // REQUEST //
-Route::get('/ask', 'RequestController@index')->name('request.index');
+Route::get('ask', 'RequestController@index')->name('request.index');
 
 Auth::routes();
 
