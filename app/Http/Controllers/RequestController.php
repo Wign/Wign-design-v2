@@ -83,11 +83,12 @@ class RequestController extends Controller
             try {
                 $this->wordRepository->delete($word);
             } catch (Exception $e) {
-                Log::error('USER: '.$user->id.' ACTION: '.__FUNCTION__);
-                Log::error($e);
+                Log::error('Deleting the word has failed', [$e]);
 
-                return abort(500, __('error.toggle.request.failed'));
+                return abort(500, __('error.request.toggle.failed'));
             }
+
+            return null;
         }
 
         return $this->wordRepository->getWordWithRequesters($word);

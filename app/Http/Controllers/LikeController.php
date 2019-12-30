@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\SignRepository;
 use App\Services\UserService;
+use Log;
 
 class LikeController extends Controller
 {
@@ -22,6 +23,8 @@ class LikeController extends Controller
 
         if ($user != null) {
             $user->likes()->toggle($sign);
+        } else {
+            Log::warning('Like not toggled because $user is null');
         }
 
         return $sign;

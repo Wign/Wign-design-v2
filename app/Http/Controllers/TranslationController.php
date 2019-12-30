@@ -10,6 +10,7 @@ use App\Translation;
 use Auth;
 use Exception;
 use Illuminate\Http\Request;
+use Log;
 use Nuwave\Lighthouse\Execution\Utils\Subscription;
 
 class TranslationController extends Controller
@@ -25,6 +26,21 @@ class TranslationController extends Controller
         $this->signService = $signService;
         $this->descriptionService = $descriptionService;
         $this->userService = $userService;
+    }
+
+    public function recents()
+    {
+        return view('pages.recent');
+    }
+
+    public function index()
+    {
+        return view('pages.signs');
+    }
+
+    public function createIndex()
+    {
+        return view('pages.createTranslation');
     }
 
     public function createTranslation(Request $request)
@@ -52,9 +68,9 @@ class TranslationController extends Controller
 
             return response()->json($translation);
         } else {
-            \Log::info('Creation of translation failed - how can it happens?', [$word, $sign, $desc]);
+            Log::error('Creation of translation has failed - some elements were missed', ['word' => $word, 'sign' => $sign, 'description' => $desc]);
 
-            return redirect()->back()->withErrors(__('error.creationFailed'));
+            return redirect()->back()->withErrors(__('error.translation.create.failed'));
         }
     }
 
@@ -82,6 +98,7 @@ class TranslationController extends Controller
                     try {
                         $translation->word->delete();
                     } catch (Exception $e) {
+                        Log::error('Deleting the word has failed', [$e]);
                     }
                 }
             }
@@ -96,13 +113,15 @@ class TranslationController extends Controller
             try {
                 $translation->delete();
             } catch (Exception $e) {
-                return response($e, 500);
+                Log::error('Delete the previous translation has failed', [$e]);
+
+                return abort(500);
             }
 
             return response()->json($newTranslation);
         }
 
-        return redirect()->back()->withErrors(__('error.noChanges'));
+        return redirect()->back()->withErrors(__('error.translation.edit.noChanges'));
     }
 
     public function deleteTranslation(Request $request): bool
@@ -112,7 +131,9 @@ class TranslationController extends Controller
         try {
             $translation->delete();
         } catch (Exception $e) {
-            return false;
+            Log::error('Delete the previous translation has failed', [$e]);
+
+            return abort(500);
         }
 
         return true;
