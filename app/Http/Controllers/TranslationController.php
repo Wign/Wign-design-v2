@@ -53,6 +53,7 @@ class TranslationController extends Controller
             return response()->json($translation);
         } else {
             \Log::info('Creation of translation failed - how can it happens?', [$word, $sign, $desc]);
+
             return redirect()->back()->withErrors(__('error.creationFailed'));
         }
     }

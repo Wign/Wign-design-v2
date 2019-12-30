@@ -23,7 +23,7 @@ class WordService
     {
         $word = $this->findWord($literal);
 
-        if (!isset($word)) {
+        if (! isset($word)) {
             $language = $this->languageService->getWritten();
             $word = $this->wordRepository->make($literal, $language, $user);
         }

@@ -83,7 +83,7 @@ class RequestController extends Controller
             try {
                 $this->wordRepository->delete($word);
             } catch (Exception $e) {
-                Log::error("USER: " . $user->id . " ACTION: " . __FUNCTION__); // TODO Create a logger class
+                Log::error('USER: '.$user->id.' ACTION: '.__FUNCTION__);
                 Log::error($e);
 
                 return abort(500, __('error.toggle.request.failed'));
