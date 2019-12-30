@@ -67,7 +67,7 @@ class TranslationController extends Controller
 
             return response()->json($translation);
         } else {
-            Log::error('Creation of translation has failed - some elements were missed', [$word, $sign, $desc]);
+            Log::error('Creation of translation has failed - some elements were missed', ['word' => $word, 'sign' => $sign, 'description' => $desc]);
 
             return redirect()->back()->withErrors(__('error.creationFailed'));
         }
