@@ -30,8 +30,9 @@ class TranslationController extends Controller
     public function createTranslation(Request $request)
     {
         $user = $this->userService->getUser();
+        $literal = $request->input('literal');
 
-        $word = $this->wordService->findOrMakeWord($request, $user);
+        $word = $this->wordService->findOrMakeWord($literal, $user);
         $sign = $this->signService->makeSign($request, $user);
         $desc = $this->descriptionService->makeDescription($request, $user);
 
@@ -51,6 +52,7 @@ class TranslationController extends Controller
 
             return response()->json($translation);
         } else {
+            \Log::info('Creation of translation failed - how can it happens?', [$word, $sign, $desc]);
             return redirect()->back()->withErrors(__('error.creationFailed'));
         }
     }
