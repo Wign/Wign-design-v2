@@ -27,8 +27,7 @@ class DatabaseSeeder extends Seeder
         echo 'RequestsTableSeeder completed! It took '.StopWatch::round()." seconds\n";
         echo 'Database seed completed! It took '.StopWatch::elapsed()." seconds in total!\n\n";
 
-        //echo "Model: visible / trashed / total seeded\n";
-        echo "Model: total seeded\n";
+        echo "Model: visible / trashed / total seeded\n";
         echo $this->output('Words', \App\Word::getModel());
         echo $this->output('Signs', \App\Sign::getModel());
         echo $this->output('Descriptions', \App\Description::getModel());
@@ -38,11 +37,21 @@ class DatabaseSeeder extends Seeder
 
     private function output(string $name, Model $model)
     {
-        //$visible = $model::all()->count();
-        //$trashed = $model::onlyTrashed()->count();
-        $total = $model::count();
+        if ($this->hasSoftDelete($model)) {
+            $visible = $model::all()->count();
+            $trashed = $model::onlyTrashed()->count();
+            $total = $model::withTrashed()->count();
 
-        //return "$name: $visible / $trashed / $total\n";
-        return "$name: $total\n";
+            return "$name: $visible / $trashed / $total\n";
+        } else {
+            $total = $model::count();
+
+            return "$name: / / $total\n";
+        }
+    }
+
+    private function hasSoftDelete(Model $model): bool
+    {
+        return $model->hasGlobalScope('Illuminate\Database\Eloquent\SoftDeletingScope');
     }
 }
