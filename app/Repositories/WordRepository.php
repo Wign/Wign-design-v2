@@ -89,7 +89,7 @@ class WordRepository
         ]);
     }
 
-    public function getWordWithRequesters(string $wordId)
+    public function getWordWithRequesters($wordId)
     {
         return Word::withCount('requesters')->find($wordId);
     }
