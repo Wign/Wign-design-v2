@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SortInput;
+use App\Http\Requests\WordRequest;
 use App\Repositories\WordRepository;
 use App\Services\WordService;
 use App\Word;
@@ -64,18 +65,17 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param $wordId  - The id of the Word
+     * @param  WordRequest  $request
      * @param $user  - The user whom toggled the request
      *
      * @return Word
      */
-    public function toggleRequest($wordId, $user): Word
+    public function toggleRequest(WordRequest $request, $user): Word
     {
         //$word = $this->wordService->findOrMakeWord($context->request(), $user); // TODO dette markerer brugeren som editor af word. Er det meningen? Brugeren efterspørger blot ordet... Nu er brugeren også editoren
         //$word->save(); // TODO Hvorfor sker dette ikke i servicen?
 
-        /** @var Word $word */
-        $word = $this->wordRepository->find($wordId);
+        $word = $this->wordService->findOrMakeWord($request, $user);
 
         if (isset($user) && isset($word)) {
             $word->requesters()->toggle($user);

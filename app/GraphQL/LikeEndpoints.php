@@ -3,13 +3,14 @@
 namespace App\GraphQL;
 
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\TranslationController;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class LikeEndpoints
 {
     /**
-     * @var \App\Http\Controllers\TranslationController
+     * @var TranslationController
      */
     private $controller;
 
@@ -23,6 +24,8 @@ class LikeEndpoints
     // MUTATIONS
     public function toggleLike($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        return $this->controller->toggleLike($args['signId'], $context->user());
+        $signId = $args['signId'];
+
+        return $this->controller->toggleLike($signId, $context->user());
     }
 }

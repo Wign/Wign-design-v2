@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
+use App\Http\Requests\WordRequest;
 use App\Repositories\LanguageRepository;
 use App\Repositories\WordRepository;
 use App\Translation;
 use App\Word;
-use Illuminate\Http\Request;
 
 class WordService
 {
@@ -19,11 +19,9 @@ class WordService
         $this->wordRepository = $wordRepository;
     }
 
-    public function findOrMakeWord(Request $request, $user): Word
+    public function findOrMakeWord(WordRequest $request, $user): Word
     {
-        $this->validateWord($request);
         $literal = $request->input('literal');
-
         $word = $this->findWord($literal);
 
         if ($word == null) {
@@ -44,7 +42,7 @@ class WordService
         return $word;
     }
 
-    public function editWordSoftly(Request $request, Translation $translation, $user): Word
+    public function editWordSoftly(WordRequest $request, Translation $translation, $user): Word
     {
         if ($this->isChanged($request->input('literal'), $translation->word)) {
             $language = $this->languageService->getWritten();
@@ -56,7 +54,7 @@ class WordService
         return null;
     }
 
-    public function editWordHardly(Request $request, Translation $translation, $user): Word //TODO add in API
+    public function editWordHardly(WordRequest $request, Translation $translation, $user): Word //TODO add in API
     {
         if (! $this->isChanged($request, $translation->word)) {
             return null;
@@ -78,14 +76,6 @@ class WordService
         }
 
         return $translation->word;
-    }
-
-    public function validateWord(Request $request)
-    {
-        return true; // TODO I must insert it here because it doesn't work. Validate method doesn't exist in WordService. Perhaps you meant $request->validate()?
-        $this->validate($request, [
-            'literal' => 'required|alpha_num', //TODO vær ikke vred mere
-        ]);
     }
 
     /**

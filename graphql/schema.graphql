@@ -183,7 +183,8 @@ input WordInput {
 }
 
 input SignInput {
-    videoUuid: String!
+    video_uuid: String!
+    video_url: String!
 }
 
 input DescriptionInput {
