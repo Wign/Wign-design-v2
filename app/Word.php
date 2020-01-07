@@ -100,7 +100,7 @@ class Word extends Model
             return false;
         }
 
-        return $this->requesters()->where('user_id', Auth()->user()->id)->count() > 0;
+        return $this->requesters()->where('user_id', $user->id)->exists();
     }
 
     /* LEAVING THIS OUT FOR NOW
