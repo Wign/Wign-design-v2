@@ -9,9 +9,9 @@ class LanguageRepository
     public function getWritten(): Language
     {
         $language = Language::findOrFail([
-                'code' => 'da_DK',
-                'type' => 'TEXT',
-            ]
+            'code' => 'da_DK',
+            'type' => 'TEXT',
+        ]
         );
 
         return $language;
@@ -20,9 +20,9 @@ class LanguageRepository
     public function getSigned(): Language
     {
         $language = Language::findOrFail([
-                'code' => 'dt_DK',
-                'type' => 'SIGN',
-            ]
+            'code' => 'dt_DK',
+            'type' => 'SIGN',
+        ]
         );
 
         return $language;
