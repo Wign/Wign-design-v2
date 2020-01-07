@@ -26,6 +26,5 @@ class WordRequest extends FormRequest
         return [
             'literal' => 'required|alpha_num|max:255',
         ];
-
     }
 }

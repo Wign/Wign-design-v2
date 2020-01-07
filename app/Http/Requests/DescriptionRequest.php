@@ -24,7 +24,7 @@ class DescriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'nullable|string'
+            'text' => 'nullable|string',
         ];
     }
 }
