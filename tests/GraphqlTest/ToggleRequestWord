@@ -1,0 +1,7 @@
+mutation {
+  toggleRequest(
+    word: { literal: "Blåbærgrød" }
+  ) {
+    id
+  }
+}
