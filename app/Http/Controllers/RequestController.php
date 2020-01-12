@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SortInput;
+use App\Http\Requests\WordRequest;
 use App\Repositories\WordRepository;
 use App\Services\WordService;
 use App\Word;
@@ -65,14 +66,16 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param $literal
+     * @param  WordRequest  $request
+     * @param $user  - The user whom toggled the request
+     *
      * @return Word
      */
-    public function toggleRequest($literal): Word
+    public function toggleRequest(WordRequest $request, $user): Word
     {
         $user = Auth::user();
 
-        $word = $this->wordService->findOrMakeWord($literal, $user);
+        $word = $this->wordService->findOrMakeWord($request, $user);
         $word->save();
 
         if (isset($user) && isset($word)) {

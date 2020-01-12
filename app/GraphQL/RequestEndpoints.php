@@ -6,6 +6,7 @@ namespace App\GraphQL;
 
 use App\Http\Controllers\RequestController;
 use App\Http\Requests\SortInput;
+use App\Http\Requests\WordRequest;
 use App\Repositories\WordRepository;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -33,7 +34,9 @@ class RequestEndpoints
     // MUTATIONS
     public function toggleRequestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $literal = $args['literal'];
+        $wordRequest = new WordRequest($args['literal']);
+        try {
+            $word = $this->requestController->toggleRequest($wordRequest, $context->user());
 
         return $this->requestController->toggleRequest($literal);
     }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DescriptionRequest;
+use App\Http\Requests\SignRequest;
+use App\Http\Requests\WordRequest;
 use App\Services\DescriptionService;
 use App\Services\SignService;
 use App\Services\UserService;
@@ -43,14 +46,13 @@ class TranslationController extends Controller
         return view('pages.createTranslation');
     }
 
-    public function createTranslation(Request $request)
+    public function createTranslation(WordRequest $wordRequest, SignRequest $signRequest, DescriptionRequest $descriptionRequest)
     {
         $user = $this->userService->getUser();
-        $literal = $request->input('literal');
 
-        $word = $this->wordService->findOrMakeWord($literal, $user);
-        $sign = $this->signService->makeSign($request, $user);
-        $desc = $this->descriptionService->makeDescription($request, $user);
+        $word = $this->wordService->findOrMakeWord($wordRequest, $user);
+        $sign = $this->signService->makeSign($signRequest, $user);
+        $desc = $this->descriptionService->makeDescription($descriptionRequest, $user);
 
         if ($word != null && $sign != null && $desc != null) {
             $word->save();
@@ -74,14 +76,14 @@ class TranslationController extends Controller
         }
     }
 
-    public function editTranslation(Request $request, $translationId)
+    public function editTranslation(WordRequest $wordRequest, SignRequest $signRequest, DescriptionRequest $descriptionRequest, $translationId)
     {
         $user = Auth::user();
 
         $translation = Translation::findOrFail($translationId);
-        $newWord = $this->wordService->editWordSoftly($request, $translation, $user);
-        $newSign = $this->signService->editSign($request, $user);
-        $newDesc = $this->descriptionService->editDescription($request, $translation, $user);
+        $newWord = $this->wordService->editWordSoftly($wordRequest, $translation, $user);
+        $newSign = $this->signService->editSign($signRequest, $user);
+        $newDesc = $this->descriptionService->editDescription($descriptionRequest, $translation, $user);
 
         if ($newWord != null || $newSign != null || $newDesc != null) {
             $newTranslation = Translation::make([
@@ -124,9 +126,9 @@ class TranslationController extends Controller
         return redirect()->back()->withErrors(__('error.translation.edit.noChanges'));
     }
 
-    public function deleteTranslation(Request $request): bool
+    public function deleteTranslation(string $translationId): bool
     {
-        $translation = Translation::findOrFail($request->input('ID'));
+        $translation = Translation::findOrFail($translationId);
 
         try {
             $translation->delete();
