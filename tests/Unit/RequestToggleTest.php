@@ -2,23 +2,24 @@
 
 namespace Tests\Unit;
 
+use App\Role;
 use App\Sign;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use InitSeeder;
 use Tests\TestCase;
 
 class RequestToggleTest extends TestCase
 {
-    use DatabaseTransactions;
     use DatabaseMigrations;
+    use DatabaseTransactions;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
         $this->seed(InitSeeder::class);
-        
+
         factory(User::class)->create();
         factory(Sign::class)->create();
     }
@@ -45,7 +46,7 @@ class RequestToggleTest extends TestCase
                 'signId' => $sign->id,
             ],
         ]);
-        //dd($response);
+        dd($response);
 
     }
 }
