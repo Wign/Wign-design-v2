@@ -61,7 +61,7 @@ type Mutation {
 }
 
 type Subscription {
-    traceTranslations(literal: String): [Translation]
+    traceTranslations(wordId: ID): [Translation]
 }
 
 type User {
