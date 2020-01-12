@@ -6,6 +6,7 @@ namespace App\GraphQL;
 
 use App\Http\Controllers\RequestController;
 use App\Http\Requests\SortInput;
+use App\Http\Requests\WordRequest;
 use App\Repositories\WordRepository;
 use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -34,11 +35,11 @@ class RequestEndpoints
     // MUTATIONS
     public function toggleRequestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
+        $wordRequest = new WordRequest($args['literal']);
         try {
-            $wordId = $args['wordId'];
-            $this->requestController->toggleRequest($wordId, $context->user());
+            $word = $this->requestController->toggleRequest($wordRequest, $context->user());
 
-            return $this->wordRepository->getWordWithRequesters($wordId);
+            return $this->wordRepository->getWordWithRequesters($word->literal);
         } catch (Exception $e) {
             return response($e, 500);
         }
