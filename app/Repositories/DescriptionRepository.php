@@ -7,10 +7,10 @@ use App\Http\Requests\DescriptionRequest;
 
 class DescriptionRepository
 {
-    public function make(DescriptionRequest $request, $user): Description
+    public function make(string $text, $user): Description
     {
         return Description::make([
-            'text' => $request->input('text'),
+            'text' => $text,
             'creator_id' => $user->id,
             'editor_id' => $user->id,
         ]);

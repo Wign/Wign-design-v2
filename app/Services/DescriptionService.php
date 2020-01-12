@@ -43,7 +43,9 @@ class DescriptionService
      */
     private function newDescription(DescriptionRequest $request, User $user): Description
     {
-        $desc = $this->repository->make($request, $user);
+        $text = $request->input('text');
+
+        $desc = $this->repository->make($text, $user);
 
         return $desc;
     }

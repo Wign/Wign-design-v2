@@ -45,8 +45,13 @@ class SignService
      */
     private function newSign(SignRequest $request, User $user): Sign
     {
+        $video_uuid = $request->input('video_uuid');
+        $video_url = $request->input('video_url');
+        $thumbnail_url = $request->input('thumbnail_url');
+        $small_thumbnail_url = $request->input('small_thumbnail_url');
         $language = $this->languageRepository->getSigned();
-        $sign = $this->signRepository->make($request, $language, $user);
+
+        $sign = $this->signRepository->make($video_uuid, $video_url, $thumbnail_url, $small_thumbnail_url, $language, $user);
 
         return $sign;
     }

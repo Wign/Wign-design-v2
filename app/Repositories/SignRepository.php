@@ -14,13 +14,22 @@ class SignRepository
         return Sign::find($id);
     }
 
-    public function make(SignRequest $request, Language $language, User $user): Sign
+    /**
+     * @param  string  $video_uuid
+     * @param  string  $video_url
+     * @param  string  $thumbnail_url
+     * @param  string  $small_thumbnail_url
+     * @param  Language  $language
+     * @param  User  $user
+     * @return Sign
+     */
+    public function make(string $video_uuid, string $video_url, string $thumbnail_url, string $small_thumbnail_url, Language $language, User $user): Sign
     {
         return Sign::make([
-            'video_uuid' => $request->input('video_uuid'),
-            'video_url' => $request->input('video_url'),
-            'thumbnail_url' => '',
-            'small_thumbnail_url' => '',
+            'video_uuid' => $video_uuid,
+            'video_url' => $video_url,
+            'thumbnail_url' => $thumbnail_url,
+            'small_thumbnail_url' => $small_thumbnail_url,
             'language_id' => $language->id,
             'creator_id' => $user->id,
         ]);
