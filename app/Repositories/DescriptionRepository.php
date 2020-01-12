@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Description;
+use App\Http\Requests\DescriptionRequest;
 
 class DescriptionRepository
 {
