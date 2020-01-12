@@ -1,6 +1,6 @@
 mutation {
   toggleLike(
-    signId: { literal: "Blåbærgrød" }
+    signId: "1"
   ) {
     id
   }

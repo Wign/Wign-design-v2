@@ -1,0 +1,14 @@
+# Delete the translation
+mutation {
+  deleteTranslation(
+    id: "1"
+  ) {
+    id
+    creator {
+      name
+    }
+    editor {
+      name
+    }
+  }
+}
