@@ -201,5 +201,8 @@ typings/
 schema-directives.graphql
 _ide_helper.php
 
+# Algolia
+config/scout.php
+
 # composer credentials
 auth.json
