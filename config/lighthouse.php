@@ -31,6 +31,8 @@ return [
          * To apply middleware on a field level, use the @middleware directive.
          */
         'middleware' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \App\Http\Middleware\AddAuthHeader::class,
             \Nuwave\Lighthouse\Support\Http\Middleware\AcceptJson::class,
         ],
     ],
