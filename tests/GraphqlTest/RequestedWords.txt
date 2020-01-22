@@ -1,0 +1,16 @@
+# Create translation
+mutation {
+  requestedWords(
+    first: "1",
+    sort: ""
+  ) {
+    id
+    creator {
+      name
+    }
+    word {
+      id
+      literal
+    }
+  }
+}

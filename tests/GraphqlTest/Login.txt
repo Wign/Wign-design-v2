@@ -1,0 +1,23 @@
+mutation {
+  login(input: {
+    username: "admin@wign.dk",
+    password: "pass"
+  }) {
+    access_token
+    refresh_token
+    expires_in
+    token_type
+  }
+}
+
+mutation {
+  login(input: {
+    username: "user@wign.dk",
+    password: "pass"
+  }) {
+    access_token
+    refresh_token
+    expires_in
+    token_type
+  }
+}
