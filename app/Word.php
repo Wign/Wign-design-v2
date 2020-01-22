@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 /**
  * App\Word.
  *
- * @property int $idzx
+ * @property int $id
  * @property string $literal
  * @property int $language_id
  * @property int $creator_id
