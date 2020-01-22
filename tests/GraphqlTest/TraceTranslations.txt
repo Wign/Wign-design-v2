@@ -1,7 +1,7 @@
 # Create translation mutation example
 mutation {
   traceTranslation(
-    wordId: "1"
+    wordId: 1
   ) {
     id
   }
