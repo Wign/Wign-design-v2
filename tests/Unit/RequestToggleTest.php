@@ -7,13 +7,13 @@ use App\Sign;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use InitSeeder;
 use Tests\TestCase;
 
 class RequestToggleTest extends TestCase
 {
-    use DatabaseMigrations;
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     public function setUp(): void
     {
@@ -33,6 +33,8 @@ class RequestToggleTest extends TestCase
         $user = User::first();
         $sign = Sign::first();
 
+        self::assertEmpty($user->likes()->get());
+
         $response = $this->postGraphQL([
             'query' => '
             mutation toggleLike($userId: ID!, $signId: ID!) {
@@ -46,7 +48,8 @@ class RequestToggleTest extends TestCase
                 'signId' => $sign->id,
             ],
         ]);
-        dd($response);
+
+        self::assertNotEmpty($user->likes()->get());
 
     }
 }
