@@ -2,11 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Role;
-use App\Sign;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Word;
+use Auth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use InitSeeder;
 use Tests\TestCase;
@@ -21,7 +19,7 @@ class RequestToggleTest extends TestCase
         $this->seed(InitSeeder::class);
 
         factory(User::class)->create();
-        factory(Sign::class)->create();
+        factory(Word::class)->create();
     }
     /**
      * A basic unit test example.
@@ -31,24 +29,24 @@ class RequestToggleTest extends TestCase
     public function testRequestToggle()
     {
         $user = User::first();
-        $sign = Sign::first();
+        $word = Word::first();
 
-        self::assertEmpty($user->likes()->get());
+        self::assertSame($user->likes()->count(), 0);
 
-        $response = $this->postGraphQL([
-            'query' => '
-            mutation toggleLike($userId: ID!, $signId: ID!) {
-                ToggleLike(userId: $userId, signId: $signId) {
-                    id
-                }
+        Auth::loginUsingId($user->id);
+
+        $response = $this->graphQL('
+        mutation toggleRequest($word: WordInput!) {
+            toggleRequestWord(word: { literal: $literal }) {
+                id
+                requesters_count
+                user_requested
             }
-        ',
-            'variables' => [
-                'userId' => $user->id,
-                'signId' => $sign->id,
-            ],
+        }'
+        , [
+            'literal' => $word->literal,
         ]);
-
+        dd($response);
         self::assertNotEmpty($user->likes()->get());
 
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\RequestController;
 use App\Http\Requests\SortInput;
 use App\Http\Requests\WordRequest;
 use App\Repositories\WordRepository;
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -35,9 +36,7 @@ class RequestEndpoints
     public function toggleRequestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         $wordRequest = new WordRequest($args['literal']);
-        try {
-            $word = $this->requestController->toggleRequest($wordRequest, $context->user());
 
-        return $this->requestController->toggleRequest($literal);
+        return $this->requestController->toggleRequest($wordRequest);
     }
 }

@@ -67,11 +67,8 @@ class RequestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  WordRequest  $request
-     * @param $user  - The user whom toggled the request
-     *
-     * @return Word
      */
-    public function toggleRequest(WordRequest $request, $user): Word
+    public function toggleRequest(WordRequest $request)
     {
         $user = Auth::user();
 
