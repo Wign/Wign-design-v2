@@ -14,6 +14,7 @@ type Query {
     words: [Word!]! @all # All words
     wordByLiteral(literal: String! @eq): Word @find # later use @search
     wordById(id: ID! @eq): Word @find
+    searchLiteral(literal: String @search): [Word!]! @paginate
     requestedWords(first: Int, sort: SortInput): [Word]!
         @field(resolver: "App\\GraphQL\\RequestEndpoints@requestedWords")
 
@@ -60,8 +61,8 @@ type Mutation {
 #
 #    ### LIKE ###
     toggleLike(userId: ID!, signId: ID!): Word!
-        @middleware(checks: ["auth:api"]) 
-        @field(resolver: "App\\GraphQL\\LikeEndpoints@toggleLike"
+        @middleware(checks: ["auth:api"])
+        @field(resolver: "App\\GraphQL\\LikeEndpoints@toggleLike")
 #
 #   ### USER LOGINS ###
     login(input: LoginInput @spread): AuthPayload!
@@ -79,7 +80,7 @@ type Mutation {
 }
 
 type Subscription {
-    traceTranslations(literal: String): [Translation]
+    traceTranslations(wordId: ID): [Translation]
 }
 
 type User {

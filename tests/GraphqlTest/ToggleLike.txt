@@ -1,0 +1,9 @@
+mutation {
+  toggleLike(
+    signId: 1
+  ) {
+    id
+    likes_count
+    user_liked
+  }
+}

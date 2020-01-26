@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * App\Word.
@@ -47,6 +48,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Word extends Model
 {
+    use Searchable;
     use Sortable;
 
     // MASS ASSIGNMENT ------------------------------------------
@@ -114,4 +116,29 @@ class Word extends Model
         return $this->belongsToMany(Word::class, 'aliases', 'parent_word_id', 'child_word_id')->withTimestamps();
     }
     */
+
+    public function searchableAs()
+    {
+        return 'words_index';
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->literal;
+    }
+
+    /**
+     * Get the key name used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKeyName()
+    {
+        return 'literal';
+    }
 }
