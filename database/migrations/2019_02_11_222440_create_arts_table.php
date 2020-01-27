@@ -16,7 +16,9 @@ class CreateArtsTable extends Migration
         Schema::create('arts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('artist_id')->unsigned();
-            //TODO TM!!!!!!!!!!!!
+            $table->string('title')->nullable();
+            $table->date('publish')->nullable(); //Ferniseringsdato (ikke oprettelsesdato på Wign)
+            $table->bigInteger('views')->unsigned()->default(0);
             $table->timestamps();
         });
     }

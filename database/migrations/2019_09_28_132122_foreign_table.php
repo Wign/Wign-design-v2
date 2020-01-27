@@ -13,6 +13,10 @@ class ForeignTable extends Migration
      */
     public function up()
     {
+        Schema::table('arts', function (Blueprint $table) {
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');;
+        });
+
         Schema::table('descriptions', function (Blueprint $table) {
             $table->foreign('creator_id')->references('id')->on('users');
             $table->foreign('editor_id')->references('id')->on('users');
@@ -64,6 +68,10 @@ class ForeignTable extends Migration
      */
     public function down()
     {
+        Schema::table('arts', function (Blueprint $table) {
+            $table->dropForeign(['artist_id']);
+        });
+
         Schema::table('descriptions', function (Blueprint $table) {
             $table->dropForeign(['creator_id']);
             $table->dropForeign(['editor_id']);
