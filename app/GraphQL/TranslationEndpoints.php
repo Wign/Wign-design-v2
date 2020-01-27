@@ -22,6 +22,7 @@ class TranslationEndpoints
     }
 
     // QUERIES
+
     /**
      * Return a value for the field.
      *

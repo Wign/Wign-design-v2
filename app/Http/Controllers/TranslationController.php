@@ -160,8 +160,8 @@ class TranslationController extends Controller
 
         if (isset($word)) {
             return $word->signs()->withCount('likes')->get()->sortBy('count_likes', SORT_REGULAR, true);
+        } else {
+            return null;
         }
-
-        return null;
     }
 }
