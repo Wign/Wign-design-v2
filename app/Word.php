@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
 /**
- * App\Word
+ * App\Word.
  *
  * @property int $id
  * @property string $literal
