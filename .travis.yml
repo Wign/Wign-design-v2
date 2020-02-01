@@ -16,15 +16,16 @@ services:
   - mysql
 
 before_install:
+  - cp .env.travis .env
   - mysql -e 'CREATE DATABASE IF NOT EXISTS forge;'
   - composer self-update
   - composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
 
 install:
-  - cp .env.travis .env
-  - chmod -R 660 storage/
-  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest --no-scripts
   - php artisan key:generate
+  - php artisan passport:keys
+  - php artisan package:discover --ansi
 
 before_script:
   - php artisan migrate --no-interaction
