@@ -23,8 +23,8 @@ before_install:
 
 install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest --no-scripts
-  - php artisan key:generate
   - php artisan passport:install
+  - php artisan key:generate
   - php artisan package:discover --ansi
 
 before_script:
