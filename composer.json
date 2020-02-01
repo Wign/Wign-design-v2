@@ -73,6 +73,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan passport:install",
             "@php artisan ide-helper:generate",
             "@php artisan lighthouse:ide-helper",
             "@php artisan nova:publish",
