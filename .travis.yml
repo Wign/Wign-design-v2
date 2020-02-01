@@ -19,6 +19,8 @@ before_install:
   - cp .env.travis .env
   - mysql -e 'CREATE DATABASE IF NOT EXISTS forge;'
   - composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
+  - ls -la
+  - ls -la storage/
 
 install:
   - composer install --no-interaction
