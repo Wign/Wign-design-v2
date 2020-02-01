@@ -21,7 +21,7 @@ before_install:
   - composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
 
 install:
-  - cp .env.testing .env
+  - cp .env.travis .env
   - chmod 660 storage/
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
