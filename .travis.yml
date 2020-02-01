@@ -21,7 +21,7 @@ before_install:
   - composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
 
 install:
-  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - composer install --no-interaction
 
 before_script:
   - php artisan migrate --no-interaction
