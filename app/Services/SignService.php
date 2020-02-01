@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
+use App\Http\Requests\SignRequest;
 use App\Repositories\LanguageRepository;
 use App\Repositories\SignRepository;
 use App\Sign;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
-use Illuminate\Http\Request;
 
 class SignService
 {
@@ -19,14 +20,14 @@ class SignService
         $this->signRepository = $signRepository;
     }
 
-    public function makeSign(Request $request, $user): Sign
+    public function makeSign(SignRequest $request, $user): Sign
     {
         $sign = $this->newSign($request, $user);
 
         return $sign;
     }
 
-    public function editSign(Request $request, $user): Sign
+    public function editSign(SignRequest $request, $user): Sign
     {
         if ($request->input('video_uuid') != null) {
             $sign = $this->newSign($request, $user);
@@ -38,37 +39,22 @@ class SignService
     }
 
     /**
-     * @param Request $request
-     * @param $user
-     * @return Sign|\Illuminate\Database\Eloquent\Model
+     * @param  SignRequest  $request
+     * @param  User  $user
+     * @return Sign|Model
      */
-    private function newSign(Request $request, User $user): Sign
+    private function newSign(SignRequest $request, User $user): Sign
     {
-        $this->validateSign($request);
-
+        $video_uuid = $request->input('video_uuid');
+        $video_url = $request->input('video_url');
+        $thumbnail_url = $request->input('thumbnail_url');
+        $small_thumbnail_url = $request->input('small_thumbnail_url');
         $language = $this->languageRepository->getSigned();
-        $sign = $this->signRepository->make(
-            $request->input('video_uuid'),
-            $request->input('video_url'),
-            $request->input('thumbnail_url'),
-            $request->input('small_thumbnail_url'),
-            $language,
-            $user
-        );
+
+        $sign = $this->signRepository->make($video_uuid, $video_url, $thumbnail_url, $small_thumbnail_url, $language, $user);
 
         return $sign;
     }
 
-    //TODO delete sign -> place the video with the previous one -- otherwise delete the translation
-
-    /**
-     * @param Request $request
-     */
-    private function validateSign(Request $request): void
-    {
-        $this->validate($request, [
-            'video_uuid' => 'required',
-            'video_url' => 'required',
-        ]);
-    }
+    //TODO delete sign -> place the video with the previous one -- otherwise delete the translatio
 }

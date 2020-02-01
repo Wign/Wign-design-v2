@@ -1,0 +1,24 @@
+# Create translation mutation example
+mutation {
+  editTranslation(
+    id: 1,
+    word: {
+      literal: "changeTest"
+    },
+    sign: {
+      videoUuid: "changeUuid"
+    },
+    description: {
+      text: "The text is changed"
+    }
+  ) {
+    id
+    creator {
+      name
+    }
+    word {
+      id
+      literal
+    }
+  }
+}

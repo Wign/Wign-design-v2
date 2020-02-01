@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Systemparameter withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Systemparameter withoutTrashed()
  * @mixin \Eloquent
+ * @property string $key
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Systemparameter whereKey($value)
  */
 class Systemparameter extends Model
 {
