@@ -22,7 +22,7 @@ before_install:
 
 install:
   - cp .env.travis .env
-  - chmod 660 storage/
+  - chmod -R 660 storage/
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
 
