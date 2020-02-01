@@ -78,7 +78,7 @@
             "@php artisan lighthouse:ide-helper",
             "@php artisan nova:publish",
             "@php artisan lighthouse:clear-cache",
-            "@php artisan package:discover --ansi",
+            "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
