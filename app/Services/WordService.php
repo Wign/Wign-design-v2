@@ -93,4 +93,11 @@ class WordService
     {
         return $word->translations()->doesntExist() && $word->requesters()->doesntExist();
     }
+
+    public function findWordWithTranslations(string $literal): Word
+    {
+        $language = $this->languageService->getWritten();
+
+        return $this->wordRepository->getWordWithTranslation($literal, $language);
+    }
 }
