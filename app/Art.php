@@ -19,6 +19,7 @@ class Art extends Model
     protected $fillable = [
         'artist_id',
         'title',
+        'year',
         'publish',
         'views',
     ];
