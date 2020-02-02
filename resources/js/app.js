@@ -7,7 +7,12 @@ import ApolloClient from 'apollo-boost';
 
 const apolloClient = new ApolloClient({
     // You should use an absolute URL here
-    uri: 'http://localhost/graphql'
+    uri: 'http://localhost/graphql',
+    credentials: 'same-origin',
+    headers: {
+        'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        'X-Requested-With': 'XMLHttpRequest'
+    }
 });
 
 const apolloProvider = new VueApollo({
@@ -22,7 +27,7 @@ const apolloProvider = new VueApollo({
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+window.Vue = Vue;
 Vue.config.productionTip = false;
 Vue.use(VueApollo);
 
@@ -69,7 +74,6 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 new Vue({
     el: '#app',
     apolloProvider
