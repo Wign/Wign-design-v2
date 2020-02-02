@@ -21,6 +21,8 @@ type Query {
     ### SIGNS ###
     signs: [Sign]! @paginate
     signById(id: ID! @eq): Sign @find
+    previewSigns(literal: String): [Sign!]!
+        @field(resolver: "App\\GraphQL\\TranslationEndpoints@previewSigns")
 
     ### BUCKET ###
     # Later...
