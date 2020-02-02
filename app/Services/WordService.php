@@ -98,6 +98,6 @@ class WordService
     {
         $language = $this->languageService->getWritten();
 
-        return $this->wordRepository->allSigned()->whereLanguageId($language->id)->whereLiteral($literal)->first();
+        return $this->wordRepository->getWordWithTranslation($literal, $language);
     }
 }

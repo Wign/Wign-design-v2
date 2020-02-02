@@ -93,4 +93,9 @@ class WordRepository
     {
         return Word::withCount('requesters')->find($wordId);
     }
+
+    public function getWordWithTranslation(string $literal, Language $language)
+    {
+        return Word::has('signs')->whereLanguageId($language->id)->whereLiteral($literal)->first();
+    }
 }
