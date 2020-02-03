@@ -22,11 +22,12 @@ before_install:
   - touch storage/oauth-private.key && touch storage/oauth-public.key
 
 install:
-  - travis_retry composer install --no-interaction --no-suggest
+  - travis_retry composer install --no-interaction --no-suggest --no-scripts
 
 before_script:
-  - php artisan passport:keys --force
   - php artisan key:generate
+  - php artisan passport:keys --force
+  - php artisan package:discover --ansi
   - php artisan migrate --no-interaction
 
 script:
