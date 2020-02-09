@@ -88,7 +88,7 @@ class RequestController extends Controller
                 return abort(500, __('error.request.toggle.failed'));
             }
 
-            return null;
+            return;
         }
 
         return $this->wordRepository->getWordWithRequesters($word);
