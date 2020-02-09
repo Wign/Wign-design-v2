@@ -24,11 +24,9 @@ class WordService
         $literal = $request->input('literal');
         $word = $this->findWord($literal);
 
-        if ($word == null) {
+        if (! isset($word)) {
             $language = $this->languageService->getWritten();
             $word = $this->wordRepository->make($literal, $language, $user);
-        } else {
-            $word->editor->save($user);
         }
 
         return $word;
@@ -92,5 +90,12 @@ class WordService
     public function isVacant(Word $word): bool
     {
         return $word->translations()->doesntExist() && $word->requesters()->doesntExist();
+    }
+
+    public function findWordWithTranslations(string $literal): Word
+    {
+        $language = $this->languageService->getWritten();
+
+        return $this->wordRepository->getWordWithTranslation($literal, $language);
     }
 }

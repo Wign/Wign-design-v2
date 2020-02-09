@@ -72,7 +72,7 @@ class TranslationController extends Controller
         } else {
             Log::error('Creation of translation has failed - some elements were missed', ['word' => $word, 'sign' => $sign, 'description' => $desc]);
 
-            return redirect()->back()->withErrors(__('error.creationFailed'));
+            return redirect()->back()->withErrors(__('error.translation.create.failed'));
         }
     }
 
@@ -123,7 +123,7 @@ class TranslationController extends Controller
             return response()->json($newTranslation);
         }
 
-        return redirect()->back()->withErrors(__('error.noChanges'));
+        return redirect()->back()->withErrors(__('error.translation.edit.noChanges'));
     }
 
     public function deleteTranslation(string $translationId): bool
@@ -152,5 +152,16 @@ class TranslationController extends Controller
         }
 
         return false;
+    }
+
+    public function previewSigns(string $literal)
+    {
+        $word = $this->wordService->findWordWithTranslations($literal);
+
+        if (isset($word)) {
+            return $word->signs()->withCount('likes')->get()->sortBy('count_likes', SORT_REGULAR, true);
+        } else {
+            return;
+        }
     }
 }

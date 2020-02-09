@@ -36,12 +36,7 @@ class RequestEndpoints
     public function toggleRequestWord($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         $wordRequest = new WordRequest($args['literal']);
-        try {
-            $word = $this->requestController->toggleRequest($wordRequest, $context->user());
 
-            return $this->wordRepository->getWordWithRequesters($word->literal);
-        } catch (Exception $e) {
-            return response($e, 500);
-        }
+        return $this->requestController->toggleRequest($wordRequest);
     }
 }
