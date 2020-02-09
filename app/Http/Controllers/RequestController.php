@@ -67,6 +67,7 @@ class RequestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  WordRequest  $request
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|void|null
      */
     public function toggleRequest(WordRequest $request)
     {
