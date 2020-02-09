@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Art;
 use App\Artist;
 use App\Repositories\GalleryRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Request;
 
 class ArtistController extends Controller
@@ -18,7 +20,7 @@ class ArtistController extends Controller
 
     public function create()
     {
-        //TODO create folder in S3
+        Storage::makeDirectory($directory);
 
         $name = Request::input('name');
         $url = Request::input('url');
@@ -28,14 +30,15 @@ class ArtistController extends Controller
 
     public function delete(string $artistId)
     {
-        //TODO remove all arts in S3
+        //Storage::deleteDirectory($directory);
 
         return $this->repository->deleteArtist($artistId);
     }
 
     public function addArt()
     {
-        //TODO store new art in S3
+        //$path = $request->file('avatar')->storeAs(
+        //    'avatars', $request->user()->id
 
         $artistId = Request::input('artist_id');
         $title = Request::input('title');
@@ -46,7 +49,8 @@ class ArtistController extends Controller
 
     public function removeArt(string $artId)
     {
-        //TODO remove the art in S3
+        $artist = Art::find($artId)->artist;
+        Storage::disk('s3')->delete('folder_path/file_name.jpg');
 
         return $this->repository->deleteArt($artId);
     }
@@ -55,6 +59,8 @@ class ArtistController extends Controller
     {
         $artist = Artist::inRandomOrder()->first();
         $art = $artist->arts()->inRandomOrder()->first()->with('artist')->get();
+
+        //$exists = Storage::disk('s3')->exists('file.jpg');
 
         return $art;
     }
