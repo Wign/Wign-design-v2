@@ -14385,7 +14385,7 @@ function previouslyCompared(a, b) {
 /*!*****************************************************!*\
   !*** ./node_modules/apollo-boost/lib/bundle.esm.js ***!
   \*****************************************************/
-/*! exports provided: ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument, HttpLink, gql, default */
+/*! exports provided: HttpLink, gql, default, ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20813,7 +20813,6 @@ module.exports = function isAbsoluteURL(url) {
 
 
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-var isValidXss = __webpack_require__(/*! ./isValidXss */ "./node_modules/axios/lib/helpers/isValidXss.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -20833,10 +20832,6 @@ module.exports = (
     */
       function resolveURL(url) {
         var href = url;
-
-        if (isValidXss(url)) {
-          throw new Error('URL contains XSS injection attempt');
-        }
 
         if (msie) {
         // IE needs attribute set twice to normalize properties
@@ -20883,25 +20878,6 @@ module.exports = (
       };
     })()
 );
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/isValidXss.js":
-/*!******************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/isValidXss.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isValidXss(requestURL) {
-  var xssRegex = /(\b)(on\w+)=|javascript|(<\s*)(\/*)script/gi;
-  return xssRegex.test(requestURL);
-};
-
 
 
 /***/ }),
@@ -30718,9 +30694,6 @@ function () {
       this._apolloSubscriptions.forEach(function (sub) {
         sub.unsubscribe();
       });
-
-      this._apolloSubscriptions = null;
-      this.vm = null;
     }
   }, {
     key: "provider",
@@ -31295,7 +31268,6 @@ function defineReactiveSetter($apollo, key, value, deep) {
 function destroy() {
   if (this.$_apollo) {
     this.$_apollo.destroy();
-    this.$_apollo = null;
   }
 }
 
@@ -31313,25 +31285,19 @@ function installMixin(Vue, vueVersion) {
       };
     },
     beforeCreate: function beforeCreate() {
-      var _this3 = this;
-
       initProvider.call(this);
       proxyData.call(this);
-
-      if (this.$isServer) {
-        // Patch render function to cleanup apollo
-        var render = this.$options.render;
-
-        this.$options.render = function (h) {
-          var result = render.call(_this3, h);
-          destroy.call(_this3);
-          return result;
-        };
-      }
     },
     serverPrefetch: function serverPrefetch() {
+      var _this3 = this;
+
       if (this.$_apolloPromises) {
-        return Promise.all(this.$_apolloPromises);
+        return Promise.all(this.$_apolloPromises).then(function () {
+          destroy.call(_this3);
+        })["catch"](function (e) {
+          destroy.call(_this3);
+          return Promise.reject(e);
+        });
       }
     }
   } : {}, {
@@ -31387,7 +31353,7 @@ function install(Vue, options) {
 }
 ApolloProvider.install = install; // eslint-disable-next-line no-undef
 
-ApolloProvider.version = "3.0.2"; // Apollo provider
+ApolloProvider.version = "3.0.3"; // Apollo provider
 
 var ApolloProvider$1 = ApolloProvider; // Components
 
@@ -48494,8 +48460,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/Troels/Documents/5 Websites/Wign-v6/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/Troels/Documents/5 Websites/Wign-v6/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
