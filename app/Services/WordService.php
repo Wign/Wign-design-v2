@@ -24,11 +24,9 @@ class WordService
         $literal = $request->input('literal');
         $word = $this->findWord($literal);
 
-        if ($word == null) {
+        if (! isset($word)) {
             $language = $this->languageService->getWritten();
             $word = $this->wordRepository->make($literal, $language, $user);
-        } else {
-            $word->editor->save($user);
         }
 
         return $word;
