@@ -64,57 +64,47 @@ class ForeignTable extends Migration
      */
     public function down()
     {
-        if (DB::getDriverName() !== 'sqlite') {
-            Schema::table('descriptions', function (Blueprint $table)
-            {
-                $table->dropForeign(['creator_id']);
-                $table->dropForeign(['editor_id']);
-            });
+        Schema::table('descriptions', function (Blueprint $table) {
+            $table->dropForeign(['creator_id']);
+            $table->dropForeign(['editor_id']);
+        });
 
-            Schema::table('likes', function (Blueprint $table)
-            {
-                $table->dropForeign(['user_id']);
-                $table->dropForeign(['sign_id']);
-            });
+        Schema::table('likes', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['sign_id']);
+        });
 
-            Schema::table('requests', function (Blueprint $table)
-            {
-                $table->dropForeign(['word_id']);
-                $table->dropForeign(['user_id']);
-            });
+        Schema::table('requests', function (Blueprint $table) {
+            $table->dropForeign(['word_id']);
+            $table->dropForeign(['user_id']);
+        });
 
-            Schema::table('signs', function (Blueprint $table)
-            {
-                $table->dropForeign(['creator_id']);
-                $table->dropForeign(['language_id']);
-            });
+        Schema::table('signs', function (Blueprint $table) {
+            $table->dropForeign(['creator_id']);
+            $table->dropForeign(['language_id']);
+        });
 
-            Schema::table('taggables', function (Blueprint $table)
-            {
-                $table->dropForeign(['tag_id']);
-                $table->dropForeign(['description_id']);
-            });
+        Schema::table('taggables', function (Blueprint $table) {
+            $table->dropForeign(['tag_id']);
+            $table->dropForeign(['description_id']);
+        });
 
-            Schema::table('translations', function (Blueprint $table)
-            {
-                $table->dropForeign(['word_id']);
-                $table->dropForeign(['sign_id']);
-                $table->dropForeign(['description_id']);
-                $table->dropForeign(['creator_id']);
-                $table->dropForeign(['editor_id']);
-            });
+        Schema::table('translations', function (Blueprint $table) {
+            $table->dropForeign(['word_id']);
+            $table->dropForeign(['sign_id']);
+            $table->dropForeign(['description_id']);
+            $table->dropForeign(['creator_id']);
+            $table->dropForeign(['editor_id']);
+        });
 
-            Schema::table('users', function (Blueprint $table)
-            {
-                $table->dropForeign(['role_id']);
-            });
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['role_id']);
+        });
 
-            Schema::table('words', function (Blueprint $table)
-            {
-                $table->dropForeign(['language_id']);
-                $table->dropForeign(['creator_id']);
-                $table->dropForeign(['editor_id']);
-            });
-        }
+        Schema::table('words', function (Blueprint $table) {
+            $table->dropForeign(['language_id']);
+            $table->dropForeign(['creator_id']);
+            $table->dropForeign(['editor_id']);
+        });
     }
 }
