@@ -21,10 +21,14 @@ class Art extends Model
         'title',
         'year',
         'publish',
+        'path',
         'views',
     ];
 
+    protected $casts = ['publish' => 'datetime'];
+
     // DEFINING RELATIONSHIPS -----------------------------------
+
     public function artist()
     {
         return $this->belongsTo(Artist::class);

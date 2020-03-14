@@ -18,7 +18,9 @@ class CreateArtsTable extends Migration
             $table->integer('artist_id')->unsigned();
             $table->string('title')->nullable();
             $table->year('year')->nullable();
-            $table->date('publish'); //Ferniseringsdato (ikke oprettelsesdato på Wign)
+            $table->dateTime('publish'); //Ferniseringsdato (ikke oprettelsesdato på Wign)
+            $table->boolean('is_published');
+            $table->string('filename')->unique();
             $table->bigInteger('views')->unsigned()->default(0);
             $table->timestamps();
 
