@@ -36,7 +36,7 @@ class ArtistObserver
      */
     public function deleted(Artist $artist)
     {
-        $artist->arts()->delete();
+
     }
 
     /**

@@ -21,6 +21,7 @@ class Artist extends Model
     protected $fillable = [
         'name',
         'url',
+        'is_visible'
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------

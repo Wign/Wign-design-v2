@@ -58,7 +58,7 @@ class Art extends Resource
             Text::make('Titel', 'title')->sortable()->required(),
             Number::make('År', 'year')->sortable(),
             DateTime::make('Ferniseringsdato', 'publish')->sortable(),
-            Boolean::make('Synlig', 'is_published')->withMeta(["value" => 1]),
+            Boolean::make('Synlig', 'is_visible')->withMeta(["value" => 1]),
             Image::make('Værk', 'filename')->disableDownload()->prunable()
                 ->disk(env('FILESYSTEM_DRIVER'))
                 ->path('/arts')

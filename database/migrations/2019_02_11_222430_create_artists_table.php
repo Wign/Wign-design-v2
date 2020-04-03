@@ -17,6 +17,7 @@ class CreateArtistsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('url')->nullable();
+            $table->boolean('is_visible');
             $table->timestamps();
         });
     }

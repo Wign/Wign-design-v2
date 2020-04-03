@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -62,6 +63,7 @@ class Artist extends Resource
             ID::make()->sortable(),
             Text::make('Name')->sortable(),
             Text::make('URL')->asHtml(),
+            Boolean::make('Synlig', 'is_visible')->withMeta(["value" => 1]),
             HasMany::make('Arts'),
 
             new Panel('Gallery', $this->artFields()),

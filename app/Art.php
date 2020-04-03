@@ -21,6 +21,7 @@ class Art extends Model
         'title',
         'year',
         'publish',
+        'is_visible',
         'path',
         'views',
     ];
