@@ -16,8 +16,15 @@ class CreateArtsTable extends Migration
         Schema::create('arts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('artist_id')->unsigned();
-            //TODO TM!!!!!!!!!!!!
+            $table->string('title')->nullable();
+            $table->year('year')->nullable();
+            $table->dateTime('publish'); //Ferniseringsdato (ikke oprettelsesdato på Wign)
+            $table->boolean('is_visible');
+            $table->string('filename')->unique();
+            $table->bigInteger('views')->unsigned()->default(0);
             $table->timestamps();
+
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
         });
     }
 
@@ -28,6 +35,10 @@ class CreateArtsTable extends Migration
      */
     public function down()
     {
+        Schema::table('arts', function (Blueprint $table) {
+            $table->dropForeign(['artist_id']);
+        });
+
         Schema::dropIfExists('arts');
     }
 }

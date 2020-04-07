@@ -19,10 +19,6 @@ class ForeignKeysTable extends Migration
             $table->foreign('creator_id')->references('id')->on('users');
         });
 
-        Schema::table('arts', function (Blueprint $table) {
-            $table->foreign('artist_id')->references('id')->on('artists');
-        });
-
         Schema::table('ban_users', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -89,10 +85,6 @@ class ForeignKeysTable extends Migration
             $table->dropForeign(['child_word_id']);
             $table->dropForeign(['parent_word_id']);
             $table->dropForeign(['creator_id']);
-        });
-
-        Schema::table('arts', function (Blueprint $table) {
-            $table->dropForeign(['artist_id']);
         });
 
         Schema::table('ban_users', function (Blueprint $table) {

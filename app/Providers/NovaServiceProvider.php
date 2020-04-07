@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Art;
+use App\Artist;
 use App\Nova\Metrics\PlayingsPerWeek;
 use App\Nova\Metrics\TotalSigns;
 use App\Nova\Metrics\WordsPartition;
+use App\Observers\ArtistObserver;
+use App\Observers\ArtObserver;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
@@ -21,6 +25,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::serving(function () {
+            Artist::observe(ArtistObserver::class);
+            Art::observe(ArtObserver::class);
+        });
     }
 
     /**
