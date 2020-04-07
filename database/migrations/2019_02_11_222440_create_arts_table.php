@@ -24,7 +24,7 @@ class CreateArtsTable extends Migration
             $table->bigInteger('views')->unsigned()->default(0);
             $table->timestamps();
 
-            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');;
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
         });
     }
 

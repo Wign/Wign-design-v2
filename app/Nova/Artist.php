@@ -63,7 +63,7 @@ class Artist extends Resource
             ID::make()->sortable(),
             Text::make('Name')->sortable(),
             Text::make('URL')->asHtml(),
-            Boolean::make('Synlig', 'is_visible')->withMeta(["value" => 1]),
+            Boolean::make('Synlig', 'is_visible')->withMeta(['value' => 1]),
             HasMany::make('Arts'),
 
             new Panel('Gallery', $this->artFields()),

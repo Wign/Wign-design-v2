@@ -26,8 +26,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::serving(function ()
-        {
+        Nova::serving(function () {
             Artist::observe(ArtistObserver::class);
             Art::observe(ArtObserver::class);
         });

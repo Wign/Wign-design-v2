@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Art
+ * App\Art.
  *
  * @property-read \App\Artist $artist
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Art newModelQuery()

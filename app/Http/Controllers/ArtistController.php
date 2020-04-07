@@ -27,5 +27,4 @@ class ArtistController extends Controller
 
         return $art;
     }
-
 }

@@ -61,14 +61,14 @@ class Art extends Resource
             Image::make('Værk', 'filename')->disableDownload()->prunable()
                 ->disk(env('FILESYSTEM_DRIVER'))
                 ->path('/arts')
-                //->store(new StoreImage)
-                //->delete(new DeleteImage)
-                //->preview(new PreviewImage)
-                //->thumbnail(new PreviewImage)
-                ,
-            Boolean::make('Synlig', 'is_visible')->withMeta(["value" => 1]),
+            //->store(new StoreImage)
+            //->delete(new DeleteImage)
+            //->preview(new PreviewImage)
+            //->thumbnail(new PreviewImage)
+            ,
+            Boolean::make('Synlig', 'is_visible')->withMeta(['value' => 1]),
             Text::make('Sti', 'filename')->hideWhenCreating()->hideWhenUpdating(),
-            BelongsTo::make( 'artist')->hideWhenCreating()
+            BelongsTo::make('artist')->hideWhenCreating()
         ];
     }
 
@@ -130,7 +130,7 @@ class DeleteImage
     public function __invoke(Request $request, $model, $disk, $path)
     {
         if (! $path) {
-            return null;
+            return;
         }
 
         Storage::disk($disk)->delete($path);

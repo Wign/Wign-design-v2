@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * App\Artist
+ * App\Artist.
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Art[] $arts
  * @property-read int|null $arts_count
@@ -21,7 +21,7 @@ class Artist extends Model
     protected $fillable = [
         'name',
         'url',
-        'is_visible'
+        'is_visible',
     ];
 
     // DEFINING RELATIONSHIPS -----------------------------------
@@ -29,5 +29,4 @@ class Artist extends Model
     {
         return $this->hasMany(Art::class);
     }
-
 }

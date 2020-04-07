@@ -14,7 +14,7 @@ class ArtistObserver
      */
     public function created(Artist $artist)
     {
-
+        //
     }
 
     /**
@@ -36,7 +36,7 @@ class ArtistObserver
      */
     public function deleted(Artist $artist)
     {
-
+        //
     }
 
     /**

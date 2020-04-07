@@ -14,7 +14,7 @@ class ArtObserver
      */
     public function created(Art $art)
     {
-
+        //
     }
 
     /**
