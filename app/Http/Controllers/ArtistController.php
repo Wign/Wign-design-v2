@@ -4,27 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Art;
 use App\Artist;
-use App\Repositories\GalleryRepository;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Request;
 
 class ArtistController extends Controller
 {
-    private $repository;
 
-    public function __construct(GalleryRepository $repository)
+    public function fetchRandomArt()
     {
-        $this->repository = $repository;
+        $artist = Artist::all()->where('is_visible', 'true')->inRandomOrder()->first();
+        $art = $artist->arts->where('is_visible')->inRandomOrder()->first()->with('artist')->get();
+
+        return is_null($art) ? $this->defaultArt() : $art;
     }
 
-    public function fetchArt()
+    public function fetchRandomArtOfThisArtist($id)
     {
-        $artist = Artist::inRandomOrder()->first();
-        $art = $artist->arts()->inRandomOrder()->first()->with('artist')->get();
+        $artist = Artist::find($id);
+        $art = $artist->arts->where('is_visible', 'true')->inRandomOrder()->first()->with('artist')->get();
 
-        //$exists = Storage::disk('s3')->exists('file.jpg');
-
-        return $art;
+        return is_null($art) ? $this->defaultArt() : $art;
     }
+
+    public function fetchArt($id)
+    {
+        $art = Art::find($id)->with('artist')->get();
+
+        return is_null($art) ? $this->defaultArt() : $art;
+    }
+
+    private function defaultArt()
+    {
+        return Art::find(1);
+    }
+
 }
