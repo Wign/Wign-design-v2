@@ -58,7 +58,6 @@ class Art extends Resource
             Text::make('Titel', 'title')->sortable()->required(),
             Number::make('År', 'year')->sortable(),
             DateTime::make('Ferniseringsdato', 'publish')->sortable(),
-            Boolean::make('Synlig', 'is_visible')->withMeta(["value" => 1]),
             Image::make('Værk', 'filename')->disableDownload()->prunable()
                 ->disk(env('FILESYSTEM_DRIVER'))
                 ->path('/arts')
@@ -67,6 +66,8 @@ class Art extends Resource
                 //->preview(new PreviewImage)
                 //->thumbnail(new PreviewImage)
                 ,
+            Boolean::make('Synlig', 'is_visible')->withMeta(["value" => 1]),
+            Text::make('Sti', 'filename')->hideWhenCreating()->hideWhenUpdating(),
             BelongsTo::make( 'artist')->hideWhenCreating()
         ];
     }
