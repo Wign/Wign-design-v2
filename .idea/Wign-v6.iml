@@ -55,7 +55,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/commonmark" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/event" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem-aws-s3-v3" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-server" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/maximebf/debugbar" />
