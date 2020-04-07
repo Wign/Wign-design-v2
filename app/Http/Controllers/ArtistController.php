@@ -7,7 +7,6 @@ use App\Artist;
 
 class ArtistController extends Controller
 {
-
     public function fetchRandomArt()
     {
         $artist = Artist::all()->where('is_visible', 'true')->inRandomOrder()->first();
@@ -35,5 +34,4 @@ class ArtistController extends Controller
     {
         return Art::find(1);
     }
-
 }
