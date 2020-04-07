@@ -68,7 +68,7 @@ class Art extends Resource
             ,
             Boolean::make('Synlig', 'is_visible')->withMeta(['value' => 1]),
             Text::make('Sti', 'filename')->hideWhenCreating()->hideWhenUpdating(),
-            BelongsTo::make('artist')->hideWhenCreating()
+            BelongsTo::make('artist')->hideWhenCreating(),
         ];
     }
 
