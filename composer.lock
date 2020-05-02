@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc2ea5c7bb338879b590940c032e7222",
+    "content-hash": "655c96bdb9bbea29a95fdf956794783b",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -3019,6 +3019,58 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "pascalvgemert/laravel-cloud-search",
+            "version": "0.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pascalvgemert/laravel-cloud-search.git",
+                "reference": "960d7d2a1fdd9c6c25721f52bfce1d5e4a9098f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pascalvgemert/laravel-cloud-search/zipball/960d7d2a1fdd9c6c25721f52bfce1d5e4a9098f0",
+                "reference": "960d7d2a1fdd9c6c25721f52bfce1d5e4a9098f0",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "^3.0",
+                "illuminate/contracts": "^5.5|^6|^7",
+                "illuminate/support": "^5.5|^6|^7",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaravelCloudSearch\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Pascal van Gemert",
+                    "email": "pascal@pascalvangemert.nl",
+                    "homepage": "https://www.pascalvangemert.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to use CloudSearch in an Eloquent way within Laravel",
+            "homepage": "https://github.com/pascalvgemert/laravel-cloud-search",
+            "keywords": [
+                "aws",
+                "aws cloudsearch",
+                "cloud search",
+                "cloud-search",
+                "cloudsearch",
+                "elastic search",
+                "eloquent",
+                "pascalvgemert"
+            ],
+            "time": "2020-04-02T13:25:57+00:00"
         },
         {
             "name": "php-http/message-factory",

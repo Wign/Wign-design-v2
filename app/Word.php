@@ -41,10 +41,19 @@ use Laravel\Scout\Searchable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Word whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Word extends Model
+class Word extends \LaravelCloudSearch\Document
 {
     use Searchable;
     use Sortable;
+
+    // SETUP OF AWS CLOUDSEARCH
+    protected $domain = 'search-wign-cloudsearch-5n2vwfqjlnqb4ijufokp3jpkiy.eu-central-1.cloudsearch.amazonaws.com';
+
+    /** @var array */
+    protected $casts = [
+        'literal' => 'string',
+        'searchable' => 'bool',
+    ];
 
     // MASS ASSIGNMENT ------------------------------------------
     protected $fillable = [
