@@ -150,6 +150,7 @@
       <path value="$PROJECT_DIR$/vendor/illuminate/contracts" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
       <path value="$PROJECT_DIR$/vendor/pascalvgemert/laravel-cloud-search" />
+      <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php-laravel" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
