@@ -27,7 +27,7 @@ class SignService
         return $sign;
     }
 
-    public function editSign(SignRequest $request, $user): Sign
+    public function editSign(SignRequest $request, $user): ?Sign
     {
         if ($request->input('video_uuid') != null) {
             $sign = $this->newSign($request, $user);

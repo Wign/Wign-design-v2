@@ -25,7 +25,7 @@ class DescriptionService
         return $desc;
     }
 
-    public function editDescription(DescriptionRequest $request, Translation $translation, $user): Description
+    public function editDescription(DescriptionRequest $request, Translation $translation, $user): ?Description
     {
         if ($this->isChanged($request, $translation->description)) {
             $newDesc = $this->newDescription($request, $user);

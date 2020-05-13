@@ -96,13 +96,7 @@ class TranslationController extends Controller
 
             if ($newWord != null) {
                 $newWord->save();
-                if ($this->wordService->isVacant($translation->word)) {
-                    try {
-                        $translation->word->delete();
-                    } catch (Exception $e) {
-                        Log::error('Deleting the word has failed', [$e]);
-                    }
-                }
+
             }
             if ($newSign != null) {
                 $newSign->save();
@@ -114,8 +108,13 @@ class TranslationController extends Controller
 
             try {
                 $translation->delete();
+                $translation->sign->delete();
+                $translation->description->delete();
+                if ($this->wordService->isVacant($translation->word)) {
+                    $translation->word->delete();
+                }
             } catch (Exception $e) {
-                Log::error('Delete the previous translation has failed', [$e]);
+                Log::error('Deleting the previous translation has failed', [$e]);
 
                 return abort(500);
             }
@@ -126,7 +125,7 @@ class TranslationController extends Controller
         return redirect()->back()->withErrors(__('error.translation.edit.noChanges'));
     }
 
-    public function deleteTranslation(string $translationId): bool
+    public function deleteTranslation(string $translationId)
     {
         $translation = Translation::findOrFail($translationId);
 
@@ -161,7 +160,7 @@ class TranslationController extends Controller
         if (isset($word)) {
             return $word->signs()->withCount('likes')->get()->sortBy('count_likes', SORT_REGULAR, true);
         } else {
-            return;
+            return null;
         }
     }
 }

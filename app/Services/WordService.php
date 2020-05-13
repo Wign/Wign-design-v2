@@ -40,7 +40,7 @@ class WordService
         return $word;
     }
 
-    public function editWordSoftly(WordRequest $request, Translation $translation, $user): Word
+    public function editWordSoftly(WordRequest $request, Translation $translation, $user): ?Word
     {
         if ($this->isChanged($request->input('literal'), $translation->word)) {
             $language = $this->languageService->getWritten();
@@ -52,7 +52,7 @@ class WordService
         return null;
     }
 
-    public function editWordHardly(WordRequest $request, Translation $translation, $user): Word //TODO add in API
+    public function editWordHardly(WordRequest $request, Translation $translation, $user): ?Word //TODO add in API
     {
         if (! $this->isChanged($request, $translation->word)) {
             return null;
