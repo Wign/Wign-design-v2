@@ -31,19 +31,22 @@ class TextHelper {
             return $text;
         }
 
-        for ($i = 0; $i < sizeof($replacements); $i++) {
+        $newText = '';
+        $offset = 0;
+        for ($i = 0; $i < strlen($text); $i++) {
             if (substr($text, $i, 1) === '{' && (substr($text, $i-1, 1) !== '\\' || $i == 0)) {
-                $length = 1;
+                $newText .= substr($text, $offset, $i + 1);
+                $offset = $i + 3; //Set to the position after "{n}"
 
-                while (substr($text, $i + $length, 1) !== '}' && $i + $length < strlen($text)) {
-                    $length++;
-                }
-                if ($length <= 1 || !is_int(substr($text, $i + 1, $length - 1))) {
-                    $i =+ $length;
-                    continue;
-                }
+                $number = intval(substr($text, $i + 1, 1));
+                $newText .= $replacements[$number];
+                $i =+ 2;
             }
-
         }
+        if ($offset < strlen($text)) {
+            $newText .= substr($text, $offset, strlen($text) - $offset);
+        }
+
+        return $newText;
     }
 }
