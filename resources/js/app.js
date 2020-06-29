@@ -59,6 +59,21 @@ library.add(faFacebook, faGoogle, faGithub, faHome, faPlusCircle, fasThumbsUp, f
 Vue.component('fa-icon', FontAwesomeIcon);
 
 /**
+ * Using instantsearch from algolia in front
+ * Dropped and uses a standard instead
+ */
+//import InstantSearch from 'vue-instantsearch';
+//Vue.use(InstantSearch);
+
+/**
+ * Using autocomplete in search inputs
+ */
+import Autocomplete from '@trevoreyre/autocomplete-vue'
+import '@trevoreyre/autocomplete-vue/dist/style.css'
+
+Vue.use(Autocomplete)
+
+/**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
