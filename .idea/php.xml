@@ -149,12 +149,19 @@
       <path value="$PROJECT_DIR$/vendor/illuminate/filesystem" />
       <path value="$PROJECT_DIR$/vendor/illuminate/contracts" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter id="407f4f5b-2e5f-481c-8314-ead380de1cdc" name="Remote PHP 7.3" home="sftp://DATA" debugger_id="php.debugger.XDebug" debugger_extension="/usr/lib/php/20180731/xdebug.so">
-        <remote_data WEB_SERVER_CONFIG_ID="f7f8b3d1-5995-4a7c-a058-ff7c6e765193" WEB_SERVER_CONFIG_NAME="Laravel" WEB_SERVER_CREDENTIALS_ID="sftp://root@localhost:2222" INTERPRETER_PATH="/usr/bin/php" HELPERS_PATH="/root/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" />
+      <interpreter id="407f4f5b-2e5f-481c-8314-ead380de1cdc" name="Remote PHP 7.3" home="sshConfig://DATA" debugger_id="php.debugger.XDebug" debugger_extension="/usr/lib/php/20180731/xdebug.so">
+        <remote_data INTERPRETER_PATH="/usr/bin/php" HELPERS_PATH="/root/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" SSH_CONFIG_ID="df89acec-72e4-4426-92ed-79d5b1036814" SSH_CONFIG_NAME="Laravel" SSH_CREDENTIALS_ID="sshConfig://Laravel" />
       </interpreter>
     </interpreters>
   </component>
